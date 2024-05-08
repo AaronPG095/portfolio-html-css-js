@@ -113,12 +113,20 @@ a:hover {
   transition: all 0.3 ease-in-out;
 }
 
+.menu-links a:hover {
+  color: grey;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  text-decoration-color: rgb(181, 181, 181);
+}
+
 .menu-links li {
   list-style: none;
 }
 
 .menu-links.open {
   max-height: 300px;
+  border-radius: 1rem;
 }
 
 .hamburger-icon.open span:first-child {
@@ -151,10 +159,6 @@ section {
   min-height: fit-content;
 }
 
-.section-container {
-  display: flex;
-}
-
 /* PROFILE SECTION */
 
 #profile {
@@ -166,13 +170,17 @@ section {
 
 .section__pic-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
   height: 400px;
   width: 400px;
   margin: auto 0;
 }
 
 .profile-pic {
-  border-radius: 2rem;
+  width: 100%;
+  border-radius: 5rem;
+  object-fit: contain;
 }
 
 .section__text {
@@ -264,6 +272,17 @@ section {
 
 #about {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.about-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4rem;
 }
 
 .about-containers {
@@ -283,7 +302,8 @@ section {
 }
 
 .about-pic {
-  border-radius: 2rem;
+  width: 80%;
+  border-radius: 3rem;
 }
 
 .arrow {
@@ -338,13 +358,12 @@ section {
   flex-wrap: wrap;
   flex-direction: row;
   gap: 2.5rem;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 article {
   display: flex;
   width: 10rem;
-  justify-content: space-around;
   gap: 0.5rem;
 }
 
@@ -356,6 +375,14 @@ article .icon {
 
 #projects {
   position: relative;
+}
+
+.projects-container {
+  flex-wrap: wrap;
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .color-container {

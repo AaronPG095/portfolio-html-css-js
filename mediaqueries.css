@@ -6,6 +6,10 @@
   .about-containers {
     flex-wrap: wrap;
   }
+
+  .projects-container {
+    flex-wrap: wrap;
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -33,10 +37,22 @@
   section {
     margin: 0 5%;
   }
-  .section__pic_container {
+  .section__pic-container {
     width: 275px;
     height: 275px;
     margin: 0 auto 2rem;
+  }
+
+  .profile-pic {
+    margin-bottom: 5rem;
+  }
+
+  #about {
+    gap: 3rem;
+  }
+
+  .about-title-container {
+    gap: 3rem;
   }
   .about-containers {
     margin-top: 0;
@@ -52,9 +68,25 @@
     height: 83vh;
     margin-bottom: 0;
   }
+
+  article {
+    font-size: 1rem;
+  }
   footer nav {
     height: fit-content;
     margin-bottom: 2rem;
+  }
+  #about {
+    gap: 3.5rem;
+  }
+
+  .about-title-container {
+    gap: 2.5rem;
+  }
+
+  .about-pic {
+    width: auto;
+    max-width: 200px;
   }
   .about-containers,
   .contact-info-upper-container,
@@ -81,8 +113,10 @@
   }
   .section__pic-container {
     width: auto;
+    max-width: 55%;
     height: 46vw;
     justify-content: center;
+    margin-top: 2rem;
   }
   .section__text__p2 {
     font-size: 1.25rem;
