@@ -645,12 +645,6 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-.sidebar-close .close-icon {
-  width: 24px;
-  height: 24px;
-  fill: var(--text-color);
-  transition: fill var(--transition-speed) var(--transition-ease);
-}
 
 /* Sidebar Navigation Links */
 .sidebar-links {
