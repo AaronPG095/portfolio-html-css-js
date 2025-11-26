@@ -48,18 +48,42 @@
     display: none;
   }
   
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  
+  /* Add padding to body to account for fixed header */
+  body {
+    padding-top: 70px;
+  }
+  
   #hamburger-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
     height: 70px;
+    position: relative;
+    width: 100%;
+    background-color: var(--nav-bg);
   }
   
-  /* Increase hamburger icon tap target */
+  /* Increase hamburger icon tap target - reduced by 30% */
   .hamburger-icon {
+    height: 34px;
+    width: 42px;
     padding: 10px;
     margin: -10px;
+  }
+  
+  .hamburger-svg {
+    width: 42px;
+    height: 34px;
   }
   
   header {
@@ -69,6 +93,9 @@
   #experience,
   .experience-details-container {
     margin-top: 2rem;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
   
   #profile {
@@ -186,7 +213,18 @@
   }
   
   header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 100;
     box-shadow: var(--shadow-subtle);
+  }
+  
+  /* Add padding to body to account for fixed header - mobile height is 60px */
+  body {
+    padding-top: 60px;
   }
   
   nav {
@@ -202,6 +240,9 @@
     grid-template-columns: 48px 1fr 48px;
     align-items: center;
     justify-items: center;
+    position: relative;
+    width: 100%;
+    background-color: var(--nav-bg);
   }
   
   #hamburger-nav .logo {
@@ -215,22 +256,36 @@
     justify-self: end;
   }
   
-  /* Larger hamburger icon for mobile */
+  /* Larger hamburger icon for mobile - reduced by 30% */
   .hamburger-icon {
-    height: 28px;
-    width: 34px;
+    height: 39px;
+    width: 48px;
     padding: 12px;
     margin: -12px;
   }
   
-  .hamburger-icon span {
-    height: 3px;
+  .hamburger-svg {
+    width: 48px;
+    height: 39px;
   }
   
   section {
     margin: 0 1rem;
     padding: 3rem 0;
     scroll-margin-top: 60px;
+    width: calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
+    overflow-x: hidden;
+  }
+  
+  #experience {
+    overflow-x: hidden;
+  }
+  
+  .experience-details-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
   
   #contact {
@@ -250,6 +305,7 @@
     height: auto;
     min-height: 85vh;
     margin-bottom: 0;
+    margin-top: 1rem;
     gap: 2rem;
     padding: 3rem 0;
     align-items: center;
@@ -343,20 +399,22 @@
     align-items: center;
     gap: 0.5rem;
     width: 100%;
+    max-width: 100%;
     margin-top: 1rem;
-    overflow: visible;
+    overflow: hidden;
   }
   
   .experience-carousel-container {
     flex: 1;
     overflow-x: auto;
-    overflow-y: visible;
+    overflow-y: hidden;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
     position: relative;
     max-width: 100%;
+    width: 100%;
     cursor: grab;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -618,11 +676,7 @@
     font-size: 1.25rem;
   }
   
-  /* Sidebar adjustments for mobile */
-  .sidebar-menu {
-    width: 100%;
-    max-width: 100%;
-  }
+  /* Sidebar adjustments for mobile - width is handled in main CSS with media queries */
   
   .sidebar-header {
     padding: 1.25rem 1rem;
