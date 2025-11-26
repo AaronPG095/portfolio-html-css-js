@@ -158,47 +158,378 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   // Initialize carousel
   initializeCarousel();
+  
+  // Initialize experience carousel (mobile)
+  initializeExperienceCarousel();
 });
 
 // ============================================
-// HAMBURGER MENU TOGGLE
+// EXPERIENCE CAROUSEL (MOBILE)
+// Same logic as Projects Carousel
+// ============================================
+
+let expCarouselContainer = null;
+let expTouchStartX = null;
+let expTouchEndX = null;
+let expIsDragging = false;
+let expDragStartX = 0;
+let expScrollStartX = 0;
+let expIsAnimating = false;
+
+function scrollExperienceCarousel(direction) {
+  if (!expCarouselContainer || expIsAnimating) return;
+  
+  const cards = Array.from(expCarouselContainer.querySelectorAll('.details-container'));
+  if (cards.length === 0) return;
+  
+  const containerWidth = expCarouselContainer.clientWidth;
+  const containerRect = expCarouselContainer.getBoundingClientRect();
+  const containerCenter = containerRect.left + containerRect.width / 2;
+  
+  // Find currently centered card
+  let currentIndex = -1;
+  let minDistance = Infinity;
+  
+  cards.forEach((card, index) => {
+    const cardRect = card.getBoundingClientRect();
+    const cardCenter = cardRect.left + cardRect.width / 2;
+    const distance = Math.abs(cardCenter - containerCenter);
+    
+    if (distance < minDistance) {
+      minDistance = distance;
+      currentIndex = index;
+    }
+  });
+  
+  if (currentIndex === -1) return;
+  
+  // Determine next card index
+  let nextIndex;
+  if (direction === 'left') {
+    if (currentIndex === 0) return;
+    nextIndex = currentIndex - 1;
+  } else {
+    if (currentIndex === cards.length - 1) return;
+    nextIndex = currentIndex + 1;
+  }
+  
+  const targetCard = cards[nextIndex];
+  if (!targetCard) return;
+  
+  // Calculate scroll position to center the target card
+  const cardLeft = targetCard.offsetLeft;
+  const cardWidth = targetCard.offsetWidth;
+  const targetScroll = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+  
+  // Smooth scroll animation
+  const startScroll = expCarouselContainer.scrollLeft;
+  const distance = targetScroll - startScroll;
+  const duration = 300;
+  const startTime = performance.now();
+  
+  expIsAnimating = true;
+  const originalScrollBehavior = expCarouselContainer.style.scrollBehavior;
+  expCarouselContainer.style.scrollBehavior = 'auto';
+  
+  function animateScroll(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    
+    const newScroll = startScroll + (distance * ease);
+    expCarouselContainer.scrollLeft = Math.max(0, newScroll);
+    
+    if (progress < 1) {
+      requestAnimationFrame(animateScroll);
+    } else {
+      expCarouselContainer.scrollLeft = targetScroll;
+      expCarouselContainer.style.scrollBehavior = originalScrollBehavior;
+      expIsAnimating = false;
+      updateExpCarouselUI();
+    }
+  }
+  
+  requestAnimationFrame(animateScroll);
+}
+
+function snapExpToNearestCenter() {
+  if (!expCarouselContainer || expIsAnimating) return;
+  
+  const cards = Array.from(expCarouselContainer.querySelectorAll('.details-container'));
+  if (cards.length === 0) return;
+  
+  const containerRect = expCarouselContainer.getBoundingClientRect();
+  const containerCenter = containerRect.left + containerRect.width / 2;
+  
+  let nearestCard = null;
+  let minDistance = Infinity;
+  
+  cards.forEach((card) => {
+    const cardRect = card.getBoundingClientRect();
+    const cardCenter = cardRect.left + cardRect.width / 2;
+    const distance = Math.abs(cardCenter - containerCenter);
+    
+    if (distance < minDistance) {
+      minDistance = distance;
+      nearestCard = card;
+    }
+  });
+  
+  if (!nearestCard) return;
+  
+  const containerWidth = expCarouselContainer.clientWidth;
+  const cardLeft = nearestCard.offsetLeft;
+  const cardWidth = nearestCard.offsetWidth;
+  const targetScroll = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+  
+  const startScroll = expCarouselContainer.scrollLeft;
+  const scrollDistance = targetScroll - startScroll;
+  const duration = 300;
+  const startTime = performance.now();
+  
+  expIsAnimating = true;
+  const originalScrollBehavior = expCarouselContainer.style.scrollBehavior;
+  expCarouselContainer.style.scrollBehavior = 'auto';
+  
+  function animateSnap(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    
+    const newScroll = startScroll + (scrollDistance * ease);
+    expCarouselContainer.scrollLeft = Math.max(0, newScroll);
+    
+    if (progress < 1) {
+      requestAnimationFrame(animateSnap);
+    } else {
+      expCarouselContainer.scrollLeft = targetScroll;
+      expCarouselContainer.style.scrollBehavior = originalScrollBehavior;
+      expIsAnimating = false;
+      updateExpCarouselUI();
+    }
+  }
+  
+  requestAnimationFrame(animateSnap);
+}
+
+function updateExpCarouselUI() {
+  if (!expCarouselContainer) return;
+  
+  const dots = document.querySelectorAll('.exp-dot');
+  const cards = Array.from(expCarouselContainer.querySelectorAll('.details-container'));
+  if (cards.length === 0) return;
+  
+  const containerRect = expCarouselContainer.getBoundingClientRect();
+  const containerCenter = containerRect.left + containerRect.width / 2;
+  
+  let activeIndex = 0;
+  let minDistance = Infinity;
+  
+  cards.forEach((card, index) => {
+    const cardRect = card.getBoundingClientRect();
+    const cardCenter = cardRect.left + cardRect.width / 2;
+    const distance = Math.abs(cardCenter - containerCenter);
+    
+    if (distance < minDistance) {
+      minDistance = distance;
+      activeIndex = index;
+    }
+  });
+  
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === activeIndex);
+  });
+}
+
+function initializeExperienceCarousel() {
+  expCarouselContainer = document.getElementById('experience-carousel-container');
+  const experienceContainer = document.querySelector('#experience .about-containers');
+  const dots = document.querySelectorAll('.exp-dot');
+  
+  if (!expCarouselContainer || !experienceContainer || dots.length === 0) return;
+  
+  const cards = experienceContainer.querySelectorAll('.details-container');
+  if (cards.length === 0) return;
+  
+  // Set initial cursor style
+  expCarouselContainer.style.cursor = 'grab';
+  
+  // Click on dot to scroll to specific card
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      const targetCard = cards[index];
+      if (!targetCard) return;
+      
+      const containerWidth = expCarouselContainer.clientWidth;
+      const cardLeft = targetCard.offsetLeft;
+      const cardWidth = targetCard.offsetWidth;
+      const targetScroll = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+      
+      const startScroll = expCarouselContainer.scrollLeft;
+      const distance = targetScroll - startScroll;
+      const duration = 300;
+      const startTime = performance.now();
+      
+      expIsAnimating = true;
+      const originalScrollBehavior = expCarouselContainer.style.scrollBehavior;
+      expCarouselContainer.style.scrollBehavior = 'auto';
+      
+      function animateScroll(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        
+        const newScroll = startScroll + (distance * ease);
+        expCarouselContainer.scrollLeft = Math.max(0, newScroll);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        } else {
+          expCarouselContainer.scrollLeft = targetScroll;
+          expCarouselContainer.style.scrollBehavior = originalScrollBehavior;
+          expIsAnimating = false;
+          updateExpCarouselUI();
+        }
+      }
+      
+      requestAnimationFrame(animateScroll);
+    });
+  });
+  
+  // Scroll event to update UI
+  expCarouselContainer.addEventListener('scroll', updateExpCarouselUI);
+  
+  // Touch events for swipe
+  expCarouselContainer.addEventListener('touchstart', (e) => {
+    expTouchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  
+  expCarouselContainer.addEventListener('touchmove', (e) => {
+    expTouchEndX = e.touches[0].clientX;
+  }, { passive: true });
+  
+  expCarouselContainer.addEventListener('touchend', () => {
+    if (expTouchStartX === null || expTouchEndX === null) {
+      snapExpToNearestCenter();
+      expTouchStartX = null;
+      expTouchEndX = null;
+      return;
+    }
+    
+    const distance = expTouchStartX - expTouchEndX;
+    const minSwipeDistance = 50;
+    
+    if (Math.abs(distance) > minSwipeDistance) {
+      if (distance > 0) {
+        scrollExperienceCarousel('right');
+      } else {
+        scrollExperienceCarousel('left');
+      }
+    } else {
+      snapExpToNearestCenter();
+    }
+    
+    expTouchStartX = null;
+    expTouchEndX = null;
+  }, { passive: true });
+  
+  // Mouse drag events
+  expCarouselContainer.addEventListener('mousedown', (e) => {
+    if (e.target.closest('button') || e.target.closest('a')) {
+      return;
+    }
+    
+    expIsDragging = true;
+    expDragStartX = e.clientX;
+    expScrollStartX = expCarouselContainer.scrollLeft;
+    expCarouselContainer.style.cursor = 'grabbing';
+    expCarouselContainer.style.userSelect = 'none';
+    e.preventDefault();
+  });
+  
+  document.addEventListener('mousemove', (e) => {
+    if (!expIsDragging) return;
+    
+    const deltaX = e.clientX - expDragStartX;
+    expCarouselContainer.scrollLeft = expScrollStartX - (deltaX * 1.5);
+    e.preventDefault();
+  });
+  
+  document.addEventListener('mouseup', () => {
+    if (!expIsDragging) return;
+    
+    expIsDragging = false;
+    expCarouselContainer.style.cursor = 'grab';
+    expCarouselContainer.style.userSelect = '';
+    snapExpToNearestCenter();
+  });
+  
+  expCarouselContainer.addEventListener('mouseleave', () => {
+    if (expIsDragging) {
+      expIsDragging = false;
+      expCarouselContainer.style.cursor = 'grab';
+      expCarouselContainer.style.userSelect = '';
+      updateExpCarouselUI();
+    }
+  });
+  
+  // Set initial position to Frontend card (index 0)
+  setTimeout(() => {
+    const firstCard = cards[0];
+    if (firstCard) {
+      const containerWidth = expCarouselContainer.clientWidth;
+      const cardLeft = firstCard.offsetLeft;
+      const cardWidth = firstCard.offsetWidth;
+      const centerScroll = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+      
+      expCarouselContainer.style.scrollBehavior = 'auto';
+      expCarouselContainer.scrollLeft = Math.max(0, centerScroll);
+      
+      setTimeout(() => {
+        expCarouselContainer.style.scrollBehavior = 'smooth';
+        updateExpCarouselUI();
+      }, 0);
+    }
+  }, 100);
+  
+  // Update on window resize
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateExpCarouselUI, 250);
+  });
+}
+
+// ============================================
+// SIDEBAR MENU TOGGLE
 // ============================================
 
 function toggleMenu() {
-  const menu = document.querySelector('.menu-links');
+  const sidebar = document.querySelector('.sidebar-menu');
+  const backdrop = document.querySelector('.sidebar-backdrop');
   const icon = document.querySelector('.hamburger-icon');
-  const isOpen = menu.classList.contains('open');
+  const isOpen = sidebar && sidebar.classList.contains('open');
   
-  menu.classList.toggle('open');
-  icon.classList.toggle('open');
-  
-  // Update ARIA attributes for accessibility
+  if (sidebar) {
+    sidebar.classList.toggle('open');
+  }
+  if (backdrop) {
+    backdrop.classList.toggle('open');
+  }
   if (icon) {
+    icon.classList.toggle('open');
     icon.setAttribute('aria-expanded', !isOpen);
   }
   
-  // Close menu when clicking outside
+  // Prevent body scroll when sidebar is open
   if (!isOpen) {
-    document.addEventListener('click', closeMenuOnOutsideClick);
+    document.body.style.overflow = 'hidden';
   } else {
-    document.removeEventListener('click', closeMenuOnOutsideClick);
+    document.body.style.overflow = '';
   }
 }
 
-function closeMenuOnOutsideClick(event) {
-  const menu = document.querySelector('.menu-links');
-  const icon = document.querySelector('.hamburger-icon');
-  const hamburgerNav = document.querySelector('#hamburger-nav');
-  
-  if (hamburgerNav && !hamburgerNav.contains(event.target) && menu.classList.contains('open')) {
-    menu.classList.remove('open');
-    icon.classList.remove('open');
-    if (icon) {
-      icon.setAttribute('aria-expanded', 'false');
-    }
-    document.removeEventListener('click', closeMenuOnOutsideClick);
-  }
-}
+// Close sidebar with Escape key (handled in keyboard navigation section)
 
 // ============================================
 // SMOOTH SCROLL WITH OFFSET
@@ -221,15 +552,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         behavior: 'smooth'
       });
       
-      // Close mobile menu if open
-      const menu = document.querySelector('.menu-links');
+      // Close mobile sidebar if open
+      const sidebar = document.querySelector('.sidebar-menu');
+      const backdrop = document.querySelector('.sidebar-backdrop');
       const icon = document.querySelector('.hamburger-icon');
-      if (menu && menu.classList.contains('open')) {
-        menu.classList.remove('open');
-        icon.classList.remove('open');
+      if (sidebar && sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        if (backdrop) backdrop.classList.remove('open');
         if (icon) {
+          icon.classList.remove('open');
           icon.setAttribute('aria-expanded', 'false');
         }
+        document.body.style.overflow = '';
       }
     }
   });
@@ -279,7 +613,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function updateActiveNav() {
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a, .menu-links a');
+  const navLinks = document.querySelectorAll('.nav-links a, .sidebar-links a');
   const headerHeight = document.querySelector('header')?.offsetHeight || 0;
   const scrollPosition = window.scrollY + headerHeight + 20; // Reduced offset to trigger earlier
   
@@ -381,16 +715,19 @@ document.addEventListener('DOMContentLoaded', createScrollToTopButton);
 // ============================================
 
 document.addEventListener('keydown', (e) => {
-  // Close menu with Escape key
+  // Close sidebar with Escape key
   if (e.key === 'Escape') {
-    const menu = document.querySelector('.menu-links');
+    const sidebar = document.querySelector('.sidebar-menu');
+    const backdrop = document.querySelector('.sidebar-backdrop');
     const icon = document.querySelector('.hamburger-icon');
-    if (menu && menu.classList.contains('open')) {
-      menu.classList.remove('open');
-      icon.classList.remove('open');
+    if (sidebar && sidebar.classList.contains('open')) {
+      sidebar.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
       if (icon) {
+        icon.classList.remove('open');
         icon.setAttribute('aria-expanded', 'false');
       }
+      document.body.style.overflow = '';
     }
   }
 });
@@ -886,7 +1223,7 @@ style.textContent = `
   }
   
   .nav-links a.active,
-  .menu-links a.active {
+  .sidebar-links a.active {
     color: var(--color-black);
     font-weight: 600;
     text-decoration: underline;

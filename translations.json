@@ -69,6 +69,11 @@
     },
     "footer": {
       "copyright": "Copyright © 2024 Aaron Paul Greyling. All Rights Reserved"
+    },
+    "sidebar": {
+      "menu": "Menu",
+      "language": "Language",
+      "theme": "Theme"
     }
   },
   "de": {
@@ -141,6 +146,11 @@
     },
     "footer": {
       "copyright": "Copyright © 2024 Aaron Paul Greyling. Alle Rechte vorbehalten"
+    },
+    "sidebar": {
+      "menu": "Menü",
+      "language": "Sprache",
+      "theme": "Design"
     }
   }
 }

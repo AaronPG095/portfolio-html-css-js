@@ -53,7 +53,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
-    height: 17vh;
+    height: 70px;
+  }
+  
+  /* Increase hamburger icon tap target */
+  .hamburger-icon {
+    padding: 10px;
+    margin: -10px;
   }
   
   header {
@@ -116,11 +122,17 @@
   
   #experience .about-containers {
     flex-direction: column;
+    max-width: 100%;
   }
   
   .about-details-container {
     flex-direction: column;
     gap: 2rem;
+    max-width: 100%;
+  }
+  
+  #about .about-containers {
+    max-width: 100%;
   }
   
   .text-container {
@@ -170,7 +182,7 @@
 
 @media screen and (max-width: 600px) {
   html {
-    scroll-padding-top: 15vh;
+    scroll-padding-top: 60px;
   }
   
   header {
@@ -178,19 +190,47 @@
   }
   
   nav {
-    height: 15vh;
+    height: 60px;
     padding: 0 1rem;
   }
   
+  /* Center logo in mobile header */
   #hamburger-nav {
     padding: 0 1rem;
-    height: 15vh;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 48px 1fr 48px;
+    align-items: center;
+    justify-items: center;
+  }
+  
+  #hamburger-nav .logo {
+    grid-column: 2;
+    text-align: center;
+    font-size: 1.25rem;
+  }
+  
+  #hamburger-nav .hamburger-icon {
+    grid-column: 3;
+    justify-self: end;
+  }
+  
+  /* Larger hamburger icon for mobile */
+  .hamburger-icon {
+    height: 28px;
+    width: 34px;
+    padding: 12px;
+    margin: -12px;
+  }
+  
+  .hamburger-icon span {
+    height: 3px;
   }
   
   section {
     margin: 0 1rem;
     padding: 3rem 0;
-    scroll-margin-top: 15vh;
+    scroll-margin-top: 60px;
   }
   
   #contact {
@@ -212,6 +252,8 @@
     margin-bottom: 0;
     gap: 2rem;
     padding: 3rem 0;
+    align-items: center;
+    justify-content: center;
   }
 
   .section__pic-container {
@@ -224,18 +266,25 @@
     margin-bottom: 1.5rem;
   }
   
+  /* Re-center profile title section */
+  #profile .section__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  
   .section__text__p1 {
     font-size: 1.1rem;
   }
   
   .section__text__p2 {
     font-size: 1.25rem;
-    margin-bottom: 1.5rem;
   }
   
   .title {
     font-size: 2rem;
-    margin-bottom: 1rem;
   }
   
   .btn-container {
@@ -281,6 +330,147 @@
   .about-containers {
     flex-direction: column;
     gap: 1.5rem;
+  }
+  
+  /* ========================================
+     EXPERIENCE CAROUSEL - MOBILE
+     Same logic as Projects Carousel
+     ======================================== */
+  
+  .experience-carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 1rem;
+    overflow: visible;
+  }
+  
+  .experience-carousel-container {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    position: relative;
+    max-width: 100%;
+    cursor: grab;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    /* Center content with padding - adjust based on card width */
+    padding-left: calc(50% - 140px);
+    padding-right: calc(50% - 140px);
+    box-sizing: content-box;
+    /* Fade edges like projects carousel */
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    scroll-snap-type: x mandatory;
+  }
+  
+  .experience-carousel-container:active {
+    cursor: grabbing;
+  }
+  
+  .experience-carousel-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  #experience .about-containers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0;
+    padding-right: calc(50% - 140px + 1rem);
+    min-width: fit-content;
+  }
+  
+  #experience .details-container {
+    flex: 0 0 280px;
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    box-sizing: border-box;
+  }
+  
+  /* Hide arrows */
+  .exp-carousel-arrow {
+    display: none !important;
+  }
+  
+  /* Article grid inside cards */
+  #experience .article-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  #experience article {
+    max-width: none;
+    padding: 0.25rem;
+    gap: 0.25rem;
+  }
+  
+  #experience article h3 {
+    font-size: 0.85rem;
+  }
+  
+  #experience article p {
+    font-size: 0.7rem;
+  }
+  
+  #experience .icon {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+  
+  #experience .experience-sub-title {
+    font-size: 1rem;
+  }
+  
+  /* Carousel dots */
+  .experience-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  
+  .exp-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-light-grey);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .exp-dot:hover {
+    background-color: var(--color-medium-grey);
+  }
+  
+  .exp-dot.active {
+    background-color: var(--color-dark-grey);
+    transform: scale(1.2);
+  }
+  
+  [data-theme="dark"] .exp-dot {
+    background-color: var(--color-medium-grey);
+  }
+  
+  [data-theme="dark"] .exp-dot:hover {
+    background-color: var(--color-light-grey);
+  }
+  
+  [data-theme="dark"] .exp-dot.active {
+    background-color: var(--color-white);
   }
   
   .details-container {
@@ -347,26 +537,56 @@
     font-size: 1rem;
   }
   
+  /* Smaller project cards on mobile */
   .projects-container .color-container {
-    flex: 0 0 calc(100% - 2rem); /* 1 project takes full width minus gap on mobile */
-    width: calc(100% - 2rem);
-    min-width: 280px;
-    max-width: 100%;
+    flex: 0 0 260px;
+    width: 260px;
+    min-width: 240px;
+    max-width: 280px;
+    padding: 1rem;
   }
 
   .color-container {
     width: auto;
-    max-width: 320px;
+    max-width: 280px;
   }
   
   .project-img {
     width: 100%;
-    max-height: 180px;
+    height: 140px;
+    max-height: 140px;
+  }
+  
+  .color-container .article-container {
+    min-height: 140px;
+  }
+  
+  .project-title {
+    font-size: 1rem;
+    margin: 0.25rem 0;
+  }
+  
+  .color-container .section__text__p2 {
+    font-size: 0.85rem;
+    margin: 0.25rem 0 0.5rem 0;
+  }
+  
+  .color-container .btn-container {
+    margin-top: 0.5rem;
+    gap: 0.5rem;
+  }
+  
+  .color-container .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    width: auto;
+    min-width: 70px;
   }
   
   .text-container {
     padding-left: 0;
     padding-top: 1.5rem;
+    max-width: 100%;
   }
   
   .text-content {
@@ -379,6 +599,17 @@
     font-size: 1rem;
   }
   
+  /* Improve carousel on mobile - center smaller cards */
+  .carousel-container {
+    padding-left: calc(50% - 130px);
+    padding-right: calc(50% - 130px);
+  }
+  
+  .projects-container {
+    padding-right: calc(50% - 130px + 1rem);
+    gap: 1rem;
+  }
+  
   .scroll-to-top {
     bottom: 1rem;
     right: 1rem;
@@ -387,14 +618,23 @@
     font-size: 1.25rem;
   }
   
-  .menu-links {
-    min-width: 180px;
-    right: 0;
+  /* Sidebar adjustments for mobile */
+  .sidebar-menu {
+    width: 100%;
+    max-width: 100%;
   }
   
-  .menu-links a {
+  .sidebar-header {
+    padding: 1.25rem 1rem;
+  }
+  
+  .sidebar-links a {
+    padding: 1.25rem 1rem;
     font-size: 1.25rem;
-    padding: 0.75rem 1rem;
+  }
+  
+  .sidebar-toggles {
+    padding: 1.25rem 1rem;
   }
 }
 
@@ -432,5 +672,70 @@
   article {
     max-width: 120px;
     font-size: 0.85rem;
+  }
+  
+  /* Experience carousel - small screens */
+  .experience-carousel-container {
+    padding-left: calc(50% - 110px);
+    padding-right: calc(50% - 110px);
+  }
+  
+  #experience .about-containers {
+    padding-right: calc(50% - 110px + 1rem);
+  }
+  
+  #experience .details-container {
+    flex: 0 0 220px;
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+  }
+  
+  #experience .experience-sub-title {
+    font-size: 0.9rem;
+  }
+  
+  #experience article h3 {
+    font-size: 0.75rem;
+  }
+  
+  #experience article p {
+    font-size: 0.65rem;
+  }
+  
+  #experience .icon {
+    height: 1.1rem;
+    width: 1.1rem;
+  }
+  
+  .exp-dot {
+    width: 8px;
+    height: 8px;
+  }
+  
+  /* Smaller project cards on very small screens */
+  .projects-container .color-container {
+    flex: 0 0 220px;
+    width: 220px;
+    min-width: 200px;
+    max-width: 240px;
+  }
+  
+  .carousel-container {
+    padding-left: calc(50% - 110px);
+    padding-right: calc(50% - 110px);
+  }
+  
+  .projects-container {
+    padding-right: calc(50% - 110px + 1rem);
+  }
+  
+  .project-img {
+    height: 120px;
+    max-height: 120px;
+  }
+  
+  .color-container .article-container {
+    min-height: 120px;
   }
 }
