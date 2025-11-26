@@ -146,21 +146,16 @@
               />
               <h3 data-translate="about.education">Education</h3>
               <p>
-                <span data-translate="about.education1">DCI (Digital Career Institue) Web Development Bootcamp</span>
+                <a href="https://start.digitalcareerinstitute.org/web-developer-weiterbildung/?utm_feeditemid=&utm_device=c&utm_campaign_id=23197762765&utm_adgroup_id=190164558840&utm_ad_id=781039568826&utm_asset_set_id=190164558840&utm_asset_id=781039568826&utm_term=dci%20web%20development&utm_source=google&utm_medium=ppc&utm_campaign=DE_SEM_Generic_overall&utm_content=190164558840&hsa_cam=23197762765&hsa_mt=p&hsa_src=g&hsa_acc=9628643656&hsa_net=adwords&hsa_kw=dci%20web%20development&hsa_tgt=kwd-1027333770361&hsa_ver=3&hsa_grp=190164558840&hsa_ad=781039568826&gad_source=1&gad_campaignid=23197762765&gbraid=0AAAAAC_FL9G14YQARMG2h8iF7jTnyug0E&gclid=CjwKCAiA55rJBhByEiwAFkY1QC-TDKIiANMVNKhvTQa1x1OXbHk8mSrMpjli4Y2NlxEHloOqbRD3OxoCljkQAvD_BwE" target="_blank" rel="noopener noreferrer" aria-label="Visit DCI Bootcamp website"><span data-translate="about.education1">DCI (Digital Career Institue) Web Development Bootcamp</span></a>
                 <br /><span data-translate="about.education2">BTEC HNC4 General Engineering</span>
               </p>
             </div>
           </div>
           <div class="text-container">
-            <p data-translate="about.description">
-              Creative, team spirited and motivated Full stack Web Developer with a background
-of six years working as a chef. Recently
-graduated from a 14 Month intensive
-web development Bootcamp. Searching for a
-work environment with the opportunity to
-apply and further develop acquired skills and
-technologies.
-            </p>
+            <div class="text-content">
+              <p data-translate="about.description1"></p>
+              <p data-translate="about.description2"></p>
+            </div>
           </div>
         </div>
     </section>
@@ -172,6 +167,7 @@ technologies.
           <div class="details-container">
             <h2 class="experience-sub-title" data-translate="experience.frontend">Frontend Development</h2>
             <div class="article-container">
+              <!-- Experienced -->
               <article>
                 <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
                 <div>
@@ -189,10 +185,33 @@ technologies.
               <article>
                 <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
                 <div>
+                  <h3>Javascript</h3>
+                  <p data-translate="experience.levels.experienced">Experienced</p>
+                </div>
+              </article>
+              <!-- Intermediate -->
+              <article>
+                <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
+                <div>
                   <h3>SASS</h3>
                   <p data-translate="experience.levels.intermediate">Intermediate</p>
                 </div>
               </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
+                <div>
+                  <h3>React.js</h3>
+                  <p data-translate="experience.levels.intermediate">Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
+                <div>
+                  <h3>Cursor</h3>
+                  <p data-translate="experience.levels.intermediate">Intermediate</p>
+                </div>
+              </article>
+              <!-- Basic -->
               <article>
                 <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
                 <div>
@@ -210,29 +229,8 @@ technologies.
               <article>
                 <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
                 <div>
-                  <h3>Javascript</h3>
-                  <p data-translate="experience.levels.experienced">Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
-                <div>
                   <h3>Typescript</h3>
                   <p data-translate="experience.levels.basic">Basic</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
-                <div>
-                  <h3>React.js</h3>
-                  <p data-translate="experience.levels.intermediate">Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
-                <div>
-                  <h3>Cursor</h3>
-                  <p data-translate="experience.levels.intermediate">Intermediate</p>
                 </div>
               </article>
               <article>
@@ -261,13 +259,7 @@ technologies.
           <div class="details-container">
             <h2 class="experience-sub-title" data-translate="experience.backend">Backend Development</h2>
             <div class="article-container">
-              <article>
-                <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
-                <div>
-                  <h3>MySQL</h3>
-                  <p data-translate="experience.levels.basic">Basic</p>
-                </div>
-              </article>
+              <!-- Intermediate -->
               <article>
                 <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
                 <div>
@@ -296,6 +288,14 @@ technologies.
                   <p data-translate="experience.levels.intermediate">Intermediate</p>
                 </div>
               </article>
+              <!-- Basic -->
+              <article>
+                <img src="./assets/checkmark.png" alt="" class="icon" aria-hidden="true">
+                <div>
+                  <h3>MySQL</h3>
+                  <p data-translate="experience.levels.basic">Basic</p>
+                </div>
+              </article>
             </div>
           </div>
         </div>
@@ -305,7 +305,10 @@ technologies.
       <p class="section__text__p1" data-translate="projects.subtitle">Browse My Recent</p>
       <h1 class="title" data-translate="projects.title">Projects</h1>
       <div class="experience-details-container">
-        <div class="projects-container">
+        <div class="carousel-wrapper">
+          <button class="carousel-arrow carousel-arrow-left" aria-label="Scroll projects left" id="carousel-arrow-left">←</button>
+          <div class="carousel-container" id="carousel-container">
+            <div class="projects-container">
         <div class="details-container color-container">
           <div class="article-container">
             <img src="./assets/Screenshot 2024-05-08 140820.png" alt="Portfolio website screenshot" class="project-img" loading="lazy">
@@ -350,6 +353,20 @@ technologies.
             <button class="btn btn-color-2 project-btn" onclick="openProjectLink('https://braynewave.netlify.app/')" aria-label="View Brainwave project live demo" data-translate="projects.liveDemo">Live Demo</button>
           </div>
         </div>
+        <div class="details-container color-container">
+          <div class="article-container">
+            <img src="./assets/Screenshot 2025-11-12 203334.png" alt="Kollektiv Spinnen Website project screenshot" class="project-img" loading="lazy">
+          </div>
+          <h2 class="experience-sub-title project-title" data-translate="projects.project5.title">Kollektiv Spinnen Website</h2>
+          <p class="section__text__p2" data-translate="projects.project5.description">TypeScript / PLpgSQL / CSS</p>
+          <div class="btn-container">
+            <button class="btn btn-color-2 project-btn" onclick="openProjectLink('https://github.com/AaronPG095/kollektiv-spinnen-timetable')" aria-label="View Kollektiv Spinnen Website project on GitHub" data-translate="projects.github">Github</button>
+            <button class="btn btn-color-2 project-btn" onclick="openProjectLink('https://kollektiv-spinnen-timetable.lovable.app/')" aria-label="View Kollektiv Spinnen Website project live demo" data-translate="projects.liveDemo">Live Demo</button>
+          </div>
+            </div>
+          </div>
+          </div>
+          <button class="carousel-arrow carousel-arrow-right" aria-label="Scroll projects right" id="carousel-arrow-right">→</button>
         </div>
       </div>
     </section>

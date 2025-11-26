@@ -18,8 +18,20 @@
   }
 
   .projects-container {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 1.5rem;
+  }
+  
+  .projects-container .color-container {
+    flex: 0 0 350px; /* Fixed width - approximately 2 fit in viewport */
+    width: 350px;
+    min-width: 300px;
+  }
+  
+  .carousel-arrow {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.25rem;
   }
   
   .arrow {
@@ -102,18 +114,40 @@
     flex-direction: column;
   }
   
+  #experience .about-containers {
+    flex-direction: column;
+  }
+  
   .about-details-container {
     flex-direction: column;
     gap: 2rem;
   }
   
   .text-container {
+    padding-left: 0;
+    padding-top: 2rem;
+  }
+  
+  .text-content {
     text-align: center;
-    padding: 0 1rem;
+  }
+  
+  .text-content p {
+    text-align: center;
   }
   
   .projects-container {
-    justify-content: center;
+    justify-content: flex-start;
+  }
+  
+  .carousel-wrapper {
+    gap: 0.5rem;
+  }
+  
+  .carousel-arrow {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.1rem;
   }
   
   .contact-info-upper-container {
@@ -291,19 +325,38 @@
   }
   
   .article-container {
+    grid-template-columns: 1fr;
     gap: 1.5rem;
-    justify-content: center;
+    justify-items: center;
   }
   
   .projects-container {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: stretch;
     gap: 1.5rem;
   }
   
-  .color-container {
-    width: 100%;
+  .carousel-wrapper {
+    margin: 1.5rem 0;
+    gap: 0.5rem;
+  }
+  
+  .carousel-arrow {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  
+  .projects-container .color-container {
+    flex: 0 0 calc(100% - 2rem); /* 1 project takes full width minus gap on mobile */
+    width: calc(100% - 2rem);
+    min-width: 280px;
     max-width: 100%;
+  }
+
+  .color-container {
+    width: auto;
+    max-width: 320px;
   }
   
   .project-img {
@@ -312,12 +365,18 @@
   }
   
   .text-container {
-    text-align: center;
-    padding: 0;
+    padding-left: 0;
+    padding-top: 1.5rem;
   }
   
-  .text-container p {
+  .text-content {
+    text-align: center;
+  }
+  
+  .text-content p {
+    text-align: center;
     line-height: 1.8;
+    font-size: 1rem;
   }
   
   .scroll-to-top {
