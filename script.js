@@ -1,6 +1,112 @@
 // ============================================
-// HAMBURGER MENU TOGGLE
+// LANGUAGE TRANSLATION SYSTEM
 // ============================================
+
+let translations = {};
+let currentLanguage = 'en';
+
+// Load translations from JSON file
+async function loadTranslations() {
+  try {
+    const response = await fetch('./translations.json');
+    translations = await response.json();
+    return translations;
+  } catch (error) {
+    console.error('Error loading translations:', error);
+    return null;
+  }
+}
+
+// Get nested translation value using dot notation (e.g., "nav.about")
+function getTranslation(key, lang = currentLanguage) {
+  if (!translations[lang]) return key;
+  const keys = key.split('.');
+  let value = translations[lang];
+  for (const k of keys) {
+    if (value && typeof value === 'object' && k in value) {
+      value = value[k];
+    } else {
+      return key; // Return key if translation not found
+    }
+  }
+  return typeof value === 'string' ? value : key;
+}
+
+// Apply translations to all elements with data-translate attribute
+function applyTranslations(lang = currentLanguage) {
+  const elements = document.querySelectorAll('[data-translate]');
+  elements.forEach(element => {
+    const key = element.getAttribute('data-translate');
+    const translation = getTranslation(key, lang);
+    element.textContent = translation;
+  });
+  
+  // Update CV download button to use correct language file
+  const cvButton = document.querySelector('.btn-color-2[data-translate="profile.downloadCV"]');
+  if (cvButton) {
+    const cvFile = lang === 'de' ? './assets/CV-German.pdf' : './assets/CV-English.pdf';
+    cvButton.setAttribute('onclick', `window.open('${cvFile}')`);
+    cvButton.setAttribute('aria-label', lang === 'de' ? 'Lebenslauf auf Deutsch herunterladen' : 'Download CV in English');
+  }
+  
+  // Update HTML lang attribute
+  document.documentElement.setAttribute('lang', lang);
+}
+
+// Set language and apply translations
+function setLanguage(lang) {
+  currentLanguage = lang;
+  localStorage.setItem('language', lang);
+  applyTranslations(lang);
+  updateLanguageToggle(lang);
+}
+
+// Update language toggle visual state
+function updateLanguageToggle(lang) {
+  const toggles = document.querySelectorAll('.language-toggle');
+  toggles.forEach(toggle => {
+    const enOption = toggle.querySelector('[data-lang="en"]');
+    const deOption = toggle.querySelector('[data-lang="de"]');
+    
+    if (lang === 'en') {
+      enOption?.classList.add('active');
+      deOption?.classList.remove('active');
+    } else {
+      enOption?.classList.remove('active');
+      deOption?.classList.add('active');
+    }
+  });
+}
+
+// Toggle language between English and German
+function toggleLanguage() {
+  const newLang = currentLanguage === 'en' ? 'de' : 'en';
+  setLanguage(newLang);
+}
+
+// Initialize language system
+async function initializeLanguage() {
+  await loadTranslations();
+  
+  // Get saved language preference or default to English
+  const savedLanguage = localStorage.getItem('language');
+  const initialLanguage = savedLanguage || 'en';
+  setLanguage(initialLanguage);
+  
+  // Add event listeners to language toggle buttons
+  const languageToggles = document.querySelectorAll('.language-toggle');
+  languageToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      // Check if clicking on a specific language option
+      const clickedLang = e.target.getAttribute('data-lang');
+      if (clickedLang && (clickedLang === 'en' || clickedLang === 'de')) {
+        setLanguage(clickedLang);
+      } else {
+        toggleLanguage();
+      }
+    });
+  });
+}
 
 // ============================================
 // THEME TOGGLE FUNCTIONALITY
@@ -32,7 +138,10 @@ function toggleTheme() {
 }
 
 // Initialize theme on page load
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  // Initialize language first
+  await initializeLanguage();
+  
   // Check for saved theme preference or use time-based default
   const savedTheme = localStorage.getItem('theme');
   const initialTheme = savedTheme || getTimeBasedTheme();

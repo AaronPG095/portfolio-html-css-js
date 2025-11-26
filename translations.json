@@ -1,0 +1,137 @@
+{
+  "en": {
+    "nav": {
+      "about": "About",
+      "experience": "Experience",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "profile": {
+      "greeting": "Hey, I'm",
+      "name": "Aaron",
+      "title": "Fullstack Developer",
+      "downloadCV": "Download CV",
+      "contactInfo": "Contact Info"
+    },
+    "about": {
+      "subtitle": "Get To Know More",
+      "title": "About Me",
+      "experience": "Experience",
+      "experienceYears": "2 Years - Frontend Development",
+      "experienceMonths": "6 Months - Backend Development",
+      "education": "Education",
+      "education1": "DCI (Digital Career Institue) Web Development Bootcamp",
+      "education2": "BTEC HNC4 General Engineering",
+      "description": "Creative, team spirited and motivated Full stack Web Developer with a background of six years working as a chef. Recently graduated from a 14 Month intensive web development Bootcamp. Searching for a work environment with the opportunity to apply and further develop acquired skills and technologies."
+    },
+    "experience": {
+      "subtitle": "Explore My",
+      "title": "Experience",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "levels": {
+        "experienced": "Experienced",
+        "intermediate": "Intermediate",
+        "basic": "Basic"
+      }
+    },
+    "projects": {
+      "subtitle": "Browse My Recent",
+      "title": "Projects",
+      "project1": {
+        "title": "This Website",
+        "description": "HTML / CSS / JAVASCRIPT"
+      },
+      "project2": {
+        "title": "Bohemian Kids Cafe",
+        "description": "SCSS / MERN Full Stack"
+      },
+      "project3": {
+        "title": "ASK Online Store",
+        "description": "SCSS / REACT.JS"
+      },
+      "project4": {
+        "title": "Brainwave",
+        "description": "TAILWIND / REACT.JS"
+      },
+      "github": "Github",
+      "liveDemo": "Live Demo"
+    },
+    "contact": {
+      "subtitle": "Get in Touch",
+      "title": "Contact Me",
+      "linkedin": "LinkedIn"
+    },
+    "footer": {
+      "copyright": "Copyright © 2024 Aaron Paul Greyling. All Rights Reserved"
+    }
+  },
+  "de": {
+    "nav": {
+      "about": "Über mich",
+      "experience": "Erfahrung",
+      "projects": "Projekte",
+      "contact": "Kontakt"
+    },
+    "profile": {
+      "greeting": "Hallo, ich bin",
+      "name": "Aaron",
+      "title": "Fullstack Entwickler",
+      "downloadCV": "Lebenslauf",
+      "contactInfo": "Kontakt"
+    },
+    "about": {
+      "subtitle": "Lerne mich besser kennen",
+      "title": "Über mich",
+      "experience": "Erfahrung",
+      "experienceYears": "2 Jahre - Frontend Entwicklung",
+      "experienceMonths": "6 Monate - Backend Entwicklung",
+      "education": "Bildung",
+      "education1": "DCI (Digital Career Institue) Web Development Bootcamp",
+      "education2": "BTEC HNC4 Allgemeines Ingenieurwesen",
+      "description": "Kreativer, teamorientierter und motivierter Full Stack Webentwickler mit einem Hintergrund von sechs Jahren als Koch. Kürzlich Abschluss eines 14-monatigen intensiven Webentwicklungs-Bootcamps. Suche nach einem Arbeitsumfeld mit der Möglichkeit, erworbene Fähigkeiten und Technologien anzuwenden und weiterzuentwickeln."
+    },
+    "experience": {
+      "subtitle": "Erkunde meine",
+      "title": "Erfahrung",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "levels": {
+        "experienced": "Erfahren",
+        "intermediate": "Fortgeschritten",
+        "basic": "Grundkenntnisse"
+      }
+    },
+    "projects": {
+      "subtitle": "Durchsuche meine neuesten",
+      "title": "Projekte",
+      "project1": {
+        "title": "Diese Website",
+        "description": "HTML / CSS / JAVASCRIPT"
+      },
+      "project2": {
+        "title": "Bohemian Kids Cafe",
+        "description": "SCSS / MERN Full Stack"
+      },
+      "project3": {
+        "title": "ASK Online Store",
+        "description": "SCSS / REACT.JS"
+      },
+      "project4": {
+        "title": "Brainwave",
+        "description": "TAILWIND / REACT.JS"
+      },
+      "github": "Github",
+      "liveDemo": "Live Demo"
+    },
+    "contact": {
+      "subtitle": "Kontakt aufnehmen",
+      "title": "Kontaktiere mich",
+      "linkedin": "LinkedIn"
+    },
+    "footer": {
+      "copyright": "Copyright © 2024 Aaron Paul Greyling. Alle Rechte vorbehalten"
+    }
+  }
+}
+
