@@ -222,7 +222,7 @@
     box-shadow: var(--shadow-subtle);
   }
   
-  /* Add padding to body to account for fixed header - mobile height is 60px */
+  /* Add padding to body to account for fixed header */
   body {
     padding-top: 60px;
   }

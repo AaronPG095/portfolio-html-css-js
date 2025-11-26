@@ -101,12 +101,20 @@ a,
    ============================================ */
 
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: 100;
   background-color: var(--nav-bg);
   box-shadow: var(--shadow-subtle);
   transition: background-color var(--transition-speed) var(--transition-ease);
+}
+
+/* Add padding to body to account for fixed header */
+body {
+  padding-top: 17vh;
 }
 
 nav,
