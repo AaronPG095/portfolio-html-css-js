@@ -159,12 +159,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize carousel
   initializeCarousel();
   
-  // Initialize experience carousel (mobile)
+  // Initialize skills carousel (mobile)
   initializeExperienceCarousel();
 });
 
 // ============================================
-// EXPERIENCE CAROUSEL (MOBILE)
+// SKILLS CAROUSEL (MOBILE)
 // Same logic as Projects Carousel
 // ============================================
 
@@ -343,7 +343,7 @@ function updateExpCarouselUI() {
 
 function initializeExperienceCarousel() {
   expCarouselContainer = document.getElementById('experience-carousel-container');
-  const experienceContainer = document.querySelector('#experience .about-containers');
+  const experienceContainer = document.querySelector('#skills .about-containers');
   const dots = document.querySelectorAll('.exp-dot');
   
   if (!expCarouselContainer || !experienceContainer || dots.length === 0) return;
@@ -399,20 +399,44 @@ function initializeExperienceCarousel() {
   // Scroll event to update UI
   expCarouselContainer.addEventListener('scroll', updateExpCarouselUI);
   
-  // Touch events for swipe
+  // Touch events for swipe - allow native scrolling
+  let expTouchStartY = null;
+  let expIsScrolling = false;
+  
   expCarouselContainer.addEventListener('touchstart', (e) => {
     expTouchStartX = e.touches[0].clientX;
+    expTouchStartY = e.touches[0].clientY;
+    expIsScrolling = false;
   }, { passive: true });
   
   expCarouselContainer.addEventListener('touchmove', (e) => {
+    if (expTouchStartX === null || expTouchStartY === null) return;
+    
+    const deltaX = Math.abs(e.touches[0].clientX - expTouchStartX);
+    const deltaY = Math.abs(e.touches[0].clientY - expTouchStartY);
+    
+    // If vertical movement is greater, user is scrolling page - don't interfere
+    if (deltaY > deltaX) {
+      expIsScrolling = true;
+      return;
+    }
+    
     expTouchEndX = e.touches[0].clientX;
   }, { passive: true });
   
   expCarouselContainer.addEventListener('touchend', () => {
-    if (expTouchStartX === null || expTouchEndX === null) {
-      snapExpToNearestCenter();
+    // Only handle swipe if it was a horizontal gesture and not page scrolling
+    if (expIsScrolling || expTouchStartX === null || expTouchEndX === null) {
+      // Allow native scrolling to complete, then snap after a delay
+      setTimeout(() => {
+        if (!expIsDragging) {
+          snapExpToNearestCenter();
+        }
+      }, 100);
       expTouchStartX = null;
       expTouchEndX = null;
+      expTouchStartY = null;
+      expIsScrolling = false;
       return;
     }
     
@@ -431,6 +455,8 @@ function initializeExperienceCarousel() {
     
     expTouchStartX = null;
     expTouchEndX = null;
+    expTouchStartY = null;
+    expIsScrolling = false;
   }, { passive: true });
   
   // Mouse drag events
@@ -747,8 +773,8 @@ function openProjectLink(url) {
 // ============================================
 
 let carouselContainer = null;
-let carouselArrowLeft = null;
-let carouselArrowRight = null;
+let projectDotsContainer = null;
+let projectDots = [];
 let touchStartX = null;
 let touchEndX = null;
 let isDragging = false;
@@ -756,30 +782,28 @@ let dragStartX = 0;
 let scrollStartX = 0;
 
 let isCarouselAnimating = false;
+let dotUpdateRAF = null;
 
-function scrollCarousel(direction) {
-  if (!carouselContainer || isCarouselAnimating) return;
+function getProjects() {
+  if (!carouselContainer) return [];
+  return Array.from(carouselContainer.querySelectorAll('.color-container'));
+}
+
+function getCurrentProjectIndex() {
+  if (!carouselContainer) return -1;
+  const projects = getProjects();
+  if (projects.length === 0) return -1;
   
-  // Get all project cards (no clones needed)
-  const realProjects = Array.from(carouselContainer.querySelectorAll('.color-container'));
-  if (realProjects.length === 0) return;
-  
-  // Find the currently centered project by checking scroll position relative to project positions
-  const currentScroll = carouselContainer.scrollLeft;
-  const containerWidth = carouselContainer.clientWidth;
   const containerRect = carouselContainer.getBoundingClientRect();
   const containerCenter = containerRect.left + containerRect.width / 2;
   
-  // Find which real project is currently closest to center based on scroll position
-  // Use offsetLeft which is relative to projects-container (accounts for padding automatically)
-  let currentIndex = -1;
+  let currentIndex = 0;
   let minDistance = Infinity;
   
-  realProjects.forEach((project, index) => {
-    const projectLeft = project.offsetLeft;
-    const projectWidth = project.offsetWidth;
-    const projectCenterScroll = projectLeft - (containerWidth / 2) + (projectWidth / 2);
-    const distance = Math.abs(currentScroll - projectCenterScroll);
+  projects.forEach((project, index) => {
+    const projectRect = project.getBoundingClientRect();
+    const projectCenter = projectRect.left + projectRect.width / 2;
+    const distance = Math.abs(projectCenter - containerCenter);
     
     if (distance < minDistance) {
       minDistance = distance;
@@ -787,160 +811,93 @@ function scrollCarousel(direction) {
     }
   });
   
-  // If we couldn't find a centered project, try to find by visual position
-  if (currentIndex === -1) {
-    realProjects.forEach((project, index) => {
-      const projectRect = project.getBoundingClientRect();
-      const projectCenter = projectRect.left + projectRect.width / 2;
-      const distance = Math.abs(projectCenter - containerCenter);
-      
-      if (distance < minDistance) {
-        minDistance = distance;
-        currentIndex = index;
-      }
-    });
-  }
-  
+  return currentIndex;
+}
+
+function requestDotUpdate() {
+  if (dotUpdateRAF) return;
+  dotUpdateRAF = requestAnimationFrame(() => {
+    dotUpdateRAF = null;
+    updateProjectDots();
+  });
+}
+
+function updateProjectDots() {
+  if (!projectDots.length) return;
+  const currentIndex = getCurrentProjectIndex();
   if (currentIndex === -1) return;
   
-  // Determine next project index (no wrapping - stop at boundaries)
-  let nextIndex;
-  if (direction === 'left') {
-    // Can't go left if already at the start
-    if (currentIndex === 0) return;
-    nextIndex = currentIndex - 1;
-  } else {
-    // Can't go right if already at the end
-    if (currentIndex === realProjects.length - 1) return;
-    nextIndex = currentIndex + 1;
-  }
-  
-  const targetProject = realProjects[nextIndex];
+  projectDots.forEach((dot, index) => {
+    const isActive = index === currentIndex;
+    dot.classList.toggle('active', isActive);
+    dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    dot.tabIndex = isActive ? 0 : -1;
+  });
+}
+
+function scrollToProjectIndex(targetIndex, options = {}) {
+  if (!carouselContainer || isCarouselAnimating) return;
+  const projects = getProjects();
+  const targetProject = projects[targetIndex];
   if (!targetProject) return;
   
-  // Calculate scroll position to center the target project
-  // offsetLeft is relative to projects-container, but we need to account for carousel padding
-  const projectLeft = targetProject.offsetLeft; // Relative to projects-container
-  const projectWidth = targetProject.offsetWidth;
+  const duration = typeof options.duration === 'number' ? options.duration : 600;
+  const containerRect = carouselContainer.getBoundingClientRect();
+  const projectRect = targetProject.getBoundingClientRect();
+  const containerCenter = containerRect.left + containerRect.width / 2;
+  const projectCenter = projectRect.left + projectRect.width / 2;
+  const delta = projectCenter - containerCenter;
   
-  // Get the padding-left of carousel-container (for centering calculation)
-  const carouselPaddingLeft = parseFloat(getComputedStyle(carouselContainer).paddingLeft) || 0;
-  
-  // Calculate target scroll: project left edge - half container width + half project width
-  // This centers the project in the visible area (accounting for padding)
-  let targetScroll = projectLeft - (containerWidth / 2) + (projectWidth / 2);
-  
-  // Clamp target scroll to valid bounds
-  // With content-box, scrollWidth includes all content including padding
   const scrollWidth = carouselContainer.scrollWidth;
   const clientWidth = carouselContainer.clientWidth;
   const maxScroll = Math.max(0, scrollWidth - clientWidth);
   
-  // For the last project, allow scrolling to reach it (may need to exceed maxScroll slightly)
-  // The padding-right on projects-container should provide enough space
-  if (nextIndex === realProjects.length - 1) {
-    // Last project: ensure we can scroll to center it
-    // Don't clamp to maxScroll - allow the full calculated position
-    targetScroll = Math.max(0, Math.min(targetScroll, scrollWidth));
-  } else {
-    // Other projects: clamp to normal bounds
-    targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
-  }
+  let targetScroll = carouselContainer.scrollLeft + delta;
+  targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
   
-  // Custom smooth scroll with rotation-like animation (600ms duration)
   const startScroll = carouselContainer.scrollLeft;
   const distance = targetScroll - startScroll;
-  const duration = 600; // Slightly longer for smoother rotation feel
   const startTime = performance.now();
   
-  // Mark as animating to prevent conflicts
   isCarouselAnimating = true;
-  
-  // Temporarily disable smooth scroll behavior to avoid conflicts
   const originalScrollBehavior = carouselContainer.style.scrollBehavior;
   carouselContainer.style.scrollBehavior = 'auto';
-  
-  let animationFrameId = null;
   
   function animateScroll(currentTime) {
     const elapsed = currentTime - startTime;
     const progress = Math.min(elapsed / duration, 1);
-    
-    // Rotation-like easing: smooth acceleration and deceleration with circular motion feel
-    // Using cubic-bezier-like easing that mimics rotation (smooth start, peak, smooth end)
     const ease = progress < 0.5
-      ? 4 * progress * progress * progress // Smooth acceleration
-      : 1 - Math.pow(-2 * progress + 2, 3) / 2; // Smooth deceleration with rotation feel
+      ? 4 * progress * progress * progress
+      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
     
     const newScroll = startScroll + (distance * ease);
-    // Clamp during animation - use scrollWidth to allow reaching the end
-    const scrollWidth = carouselContainer.scrollWidth;
-    const clampedScroll = Math.max(0, Math.min(newScroll, scrollWidth));
+    const clampedScroll = Math.max(0, Math.min(newScroll, maxScroll));
     carouselContainer.scrollLeft = clampedScroll;
     
     if (progress < 1) {
-      animationFrameId = requestAnimationFrame(animateScroll);
+      requestAnimationFrame(animateScroll);
     } else {
-      // Ensure final position is correct
       carouselContainer.scrollLeft = targetScroll;
-      // Restore scroll behavior and update visibility
       carouselContainer.style.scrollBehavior = originalScrollBehavior;
       isCarouselAnimating = false;
-      updateArrowVisibility();
+      updateProjectDots();
     }
   }
   
-  animationFrameId = requestAnimationFrame(animateScroll);
+  requestAnimationFrame(animateScroll);
 }
 
-function updateArrowVisibility() {
-  if (!carouselContainer || !carouselArrowLeft || !carouselArrowRight) return;
+function scrollCarousel(direction) {
+  if (!carouselContainer || isCarouselAnimating) return;
+  const projects = getProjects();
+  if (projects.length === 0) return;
   
-  const realProjects = Array.from(carouselContainer.querySelectorAll('.color-container'));
-  if (realProjects.length === 0) return;
+  const currentIndex = getCurrentProjectIndex();
+  let targetIndex = direction === 'left' ? currentIndex - 1 : currentIndex + 1;
+  targetIndex = Math.max(0, Math.min(projects.length - 1, targetIndex));
   
-  const currentScroll = carouselContainer.scrollLeft;
-  const containerWidth = carouselContainer.clientWidth;
-  
-  // Find which project is currently centered
-  // Use getBoundingClientRect for accurate position calculation accounting for padding
-  const containerRect = carouselContainer.getBoundingClientRect();
-  let currentIndex = -1;
-  let minDistance = Infinity;
-  
-  realProjects.forEach((project, index) => {
-    // Use offsetLeft which is relative to projects-container (accounts for padding automatically)
-    const projectLeft = project.offsetLeft;
-    const projectWidth = project.offsetWidth;
-    const projectCenterScroll = projectLeft - (containerWidth / 2) + (projectWidth / 2);
-    const distance = Math.abs(currentScroll - projectCenterScroll);
-    
-    if (distance < minDistance) {
-      minDistance = distance;
-      currentIndex = index;
-    }
-  });
-  
-  // Show/hide arrows based on position (no wrapping)
-  if (currentIndex === 0) {
-    // At the start - can only go right
-    carouselArrowLeft.disabled = true;
-    carouselArrowLeft.setAttribute('aria-hidden', 'true');
-    carouselArrowRight.disabled = false;
-    carouselArrowRight.removeAttribute('aria-hidden');
-  } else if (currentIndex === realProjects.length - 1) {
-    // At the end - can only go left
-    carouselArrowLeft.disabled = false;
-    carouselArrowLeft.removeAttribute('aria-hidden');
-    carouselArrowRight.disabled = true;
-    carouselArrowRight.setAttribute('aria-hidden', 'true');
-  } else {
-    // In the middle - can go both directions
-    carouselArrowLeft.disabled = false;
-    carouselArrowLeft.removeAttribute('aria-hidden');
-    carouselArrowRight.disabled = false;
-    carouselArrowRight.removeAttribute('aria-hidden');
-  }
+  if (targetIndex === currentIndex) return;
+  scrollToProjectIndex(targetIndex);
 }
 
 function handleTouchStart(e) {
@@ -1007,74 +964,9 @@ function handleMouseMove(e) {
 
 function snapToNearestCenter() {
   if (!carouselContainer || isCarouselAnimating) return;
-  
-  const projects = Array.from(carouselContainer.querySelectorAll('.color-container'));
-  if (projects.length === 0) return;
-  
-  const containerRect = carouselContainer.getBoundingClientRect();
-  const containerCenter = containerRect.left + containerRect.width / 2;
-  
-  // Find the nearest project to center
-  let nearestProject = null;
-  let minDistance = Infinity;
-  
-  projects.forEach((project) => {
-    const projectRect = project.getBoundingClientRect();
-    const projectCenter = projectRect.left + projectRect.width / 2;
-    const distance = Math.abs(projectCenter - containerCenter);
-    
-    if (distance < minDistance) {
-      minDistance = distance;
-      nearestProject = project;
-    }
-  });
-  
-  if (!nearestProject) return;
-  
-  // Calculate scroll position to center the nearest project
-  // Use offsetLeft which is relative to projects-container (accounts for padding automatically)
-  const containerWidth = carouselContainer.clientWidth;
-  const projectLeft = nearestProject.offsetLeft;
-  const projectWidth = nearestProject.offsetWidth;
-  let targetScroll = projectLeft - (containerWidth / 2) + (projectWidth / 2);
-  
-  // Clamp target scroll to valid bounds - allow full scroll width to reach last project
-  const scrollWidth = carouselContainer.scrollWidth;
-  targetScroll = Math.max(0, Math.min(targetScroll, scrollWidth));
-  
-  // Smooth scroll to center
-  const startScroll = carouselContainer.scrollLeft;
-  const distance = targetScroll - startScroll;
-  const duration = 300;
-  const startTime = performance.now();
-  
-  isCarouselAnimating = true;
-  const originalScrollBehavior = carouselContainer.style.scrollBehavior;
-  carouselContainer.style.scrollBehavior = 'auto';
-  
-  function animateSnap(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const ease = 1 - Math.pow(1 - progress, 3);
-    
-    const newScroll = startScroll + (distance * ease);
-    // Clamp during animation - use scrollWidth to allow reaching the end
-    const scrollWidth = carouselContainer.scrollWidth;
-    const clampedScroll = Math.max(0, Math.min(newScroll, scrollWidth));
-    carouselContainer.scrollLeft = clampedScroll;
-    
-    if (progress < 1) {
-      requestAnimationFrame(animateSnap);
-    } else {
-      // Ensure final position is correct
-      carouselContainer.scrollLeft = targetScroll;
-      carouselContainer.style.scrollBehavior = originalScrollBehavior;
-      isCarouselAnimating = false;
-      updateArrowVisibility();
-    }
-  }
-  
-  requestAnimationFrame(animateSnap);
+  const nearestIndex = getCurrentProjectIndex();
+  if (nearestIndex === -1) return;
+  scrollToProjectIndex(nearestIndex, { duration: 300 });
 }
 
 function handleMouseUp() {
@@ -1093,8 +985,8 @@ function handleMouseLeave() {
     isDragging = false;
     carouselContainer.style.cursor = 'grab';
     carouselContainer.style.userSelect = '';
-    updateArrowVisibility();
   }
+  requestDotUpdate();
 }
 
 function setupCarousel() {
@@ -1109,6 +1001,7 @@ function setupCarousel() {
     // Remove any existing clones
     const existingClones = projectsContainer.querySelectorAll('.carousel-clone');
     existingClones.forEach(clone => clone.remove());
+    buildProjectDots();
     
     // Set initial scroll position to center the first project
     carouselContainer.style.scrollBehavior = 'auto';
@@ -1122,18 +1015,65 @@ function setupCarousel() {
     }
     setTimeout(() => {
       carouselContainer.style.scrollBehavior = 'smooth';
-      // Update arrow visibility after initial positioning
-      updateArrowVisibility();
+      requestDotUpdate();
     }, 0);
   }, 100);
 }
 
+function buildProjectDots() {
+  if (!projectDotsContainer) return;
+  const projects = getProjects();
+  projectDotsContainer.innerHTML = '';
+  projectDots = [];
+  
+  if (projects.length <= 1) {
+    projectDotsContainer.style.display = 'none';
+    return;
+  }
+  
+  projectDotsContainer.style.display = '';
+  
+  projects.forEach((project, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'project-dot';
+    dot.setAttribute('data-index', index.toString());
+    dot.setAttribute('role', 'tab');
+    const titleElement = project.querySelector('.project-title');
+    if (titleElement) {
+      if (!titleElement.id) {
+        titleElement.id = `project-title-${index + 1}`;
+      }
+      dot.setAttribute('aria-labelledby', titleElement.id);
+    } else {
+      dot.setAttribute('aria-label', `Show project ${index + 1}`);
+    }
+    dot.setAttribute('aria-selected', 'false');
+    dot.tabIndex = index === 0 ? 0 : -1;
+    
+    dot.addEventListener('click', () => scrollToProjectIndex(index));
+    dot.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        const delta = event.key === 'ArrowRight' ? 1 : -1;
+        const nextIndex = Math.max(0, Math.min(projectDots.length - 1, index + delta));
+        projectDots[nextIndex]?.focus();
+        scrollToProjectIndex(nextIndex);
+      }
+    });
+    
+    projectDotsContainer.appendChild(dot);
+    projectDots.push(dot);
+  });
+  
+  updateProjectDots();
+}
+
 function initializeCarousel() {
   carouselContainer = document.getElementById('carousel-container');
-  carouselArrowLeft = document.getElementById('carousel-arrow-left');
-  carouselArrowRight = document.getElementById('carousel-arrow-right');
+  projectDotsContainer = document.getElementById('projects-carousel-dots');
   
-  if (!carouselContainer || !carouselArrowLeft || !carouselArrowRight) {
+  if (!carouselContainer || !projectDotsContainer) {
     return; // Carousel elements not found
   }
   
@@ -1141,14 +1081,11 @@ function initializeCarousel() {
   carouselContainer.style.cursor = 'grab';
   
   // Setup carousel
+  buildProjectDots();
   setupCarousel();
-  
-  // Add click event listeners to arrows
-  carouselArrowLeft.addEventListener('click', () => scrollCarousel('left'));
-  carouselArrowRight.addEventListener('click', () => scrollCarousel('right'));
-  
-  // Add scroll event listener to update arrow visibility
-  carouselContainer.addEventListener('scroll', updateArrowVisibility);
+
+  // Add scroll event listener to update dots
+  carouselContainer.addEventListener('scroll', requestDotUpdate);
   
   // Add touch event listeners for swipe support
   carouselContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
@@ -1160,15 +1097,18 @@ function initializeCarousel() {
   document.addEventListener('mousemove', handleMouseMove);
   document.addEventListener('mouseup', handleMouseUp);
   carouselContainer.addEventListener('mouseleave', handleMouseLeave);
+
+  // Initial dot state
+  requestDotUpdate();
   
-  // Initial arrow visibility check
-  updateArrowVisibility();
-  
-  // Update arrow visibility on window resize
+  // Update dot state on window resize
   let resizeTimeout;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(updateArrowVisibility, 250);
+    resizeTimeout = setTimeout(() => {
+      snapToNearestCenter();
+      requestDotUpdate();
+    }, 250);
   });
 }
 

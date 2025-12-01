@@ -2,7 +2,7 @@
   "en": {
     "nav": {
       "about": "About",
-      "experience": "Experience",
+      "skills": "Skills",
       "projects": "Projects",
       "contact": "Contact"
     },
@@ -25,9 +25,9 @@
       "description1": "Originally from South Africa, and now over 10 years in Germany. I'm a Creative, team spirited and motivated Full stack Web Developer with a background working the last 9 years as a chef. Most recently at a high quality vegan restaurant in the heart of Connewitz, Leipzig.",
       "description2": "I received a comprehensive base in Development over my 14 Month DCI Web Development Bootcamp, and have been working on various private projects ever since. I love creating intuitive, aesthetic, functional applications and am on the look out for a work environment that fits my skills, progresses my interests and aligns with my values."
     },
-    "experience": {
+    "skills": {
       "subtitle": "Explore My",
-      "title": "Experience",
+      "title": "Skills",
       "frontend": "Frontend",
       "backend": "Backend",
       "levels": {
@@ -79,7 +79,7 @@
   "de": {
     "nav": {
       "about": "Über mich",
-      "experience": "Erfahrung",
+      "skills": "Fähigkeiten",
       "projects": "Projekte",
       "contact": "Kontakt"
     },
@@ -102,9 +102,9 @@
       "description1": "Ursprünglich aus Südafrika, jetzt seit über 10 Jahren in Deutschland. Ich bin ein kreativer, teamorientierter und motivierter Full Stack Webentwickler mit einem Hintergrund von neun Jahren als Koch. Zuletzt in einem hochwertigen veganen Restaurant im Herzen von Connewitz, Leipzig.",
       "description2": "Ich habe eine umfassende Grundlage in der Entwicklung durch mein 14-monatiges DCI Web Development Bootcamp erhalten und arbeite seitdem an verschiedenen privaten Projekten. Ich liebe es, intuitive, ästhetische und funktionale Anwendungen zu erstellen und suche nach einem Arbeitsumfeld, das zu meinen Fähigkeiten passt, meine Interessen fördert und mit meinen Werten übereinstimmt."
     },
-    "experience": {
+    "skills": {
       "subtitle": "Erkunde meine",
-      "title": "Erfahrung",
+      "title": "Fähigkeiten",
       "frontend": "Frontend",
       "backend": "Backend",
       "levels": {

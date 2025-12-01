@@ -1,0 +1,102 @@
+/* ============================================
+   RESPONSIVE DESIGN - MOBILE SMALL
+   ============================================ */
+
+@media screen and (max-width: 400px) {
+  .logo {
+    font-size: 1.25rem;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .section__text__p2 {
+    font-size: 1.1rem;
+  }
+  
+  .section__pic-container {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .about-pic {
+    max-width: 180px;
+  }
+  
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  article {
+    max-width: 120px;
+    font-size: 0.85rem;
+  }
+  
+  /* Experience carousel - small screens */
+  .experience-carousel-container {
+    padding-left: calc(50% - 110px);
+    padding-right: calc(50% - 110px);
+  }
+  
+  #skills .about-containers {
+    padding-right: calc(50% - 110px + 1rem);
+  }
+  
+  #skills .details-container {
+    flex: 0 0 220px;
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+  }
+  
+  #skills .experience-sub-title {
+    font-size: 0.9rem;
+  }
+  
+  #skills article h3 {
+    font-size: 0.75rem;
+  }
+  
+  #skills article p {
+    font-size: 0.65rem;
+  }
+  
+  #skills .icon {
+    height: 1.1rem;
+    width: 1.1rem;
+  }
+  
+  .exp-dot {
+    width: 8px;
+    height: 8px;
+  }
+  
+  /* Smaller project cards on very small screens */
+  .projects-container .color-container {
+    flex: 0 0 220px;
+    width: 220px;
+    min-width: 200px;
+    max-width: 240px;
+  }
+  
+  .carousel-container {
+    padding-left: calc(50% - 110px);
+    padding-right: calc(50% - 110px);
+  }
+  
+  .projects-container {
+    padding-right: calc(50% - 110px + 1rem);
+  }
+  
+  .project-img {
+    height: 120px;
+    max-height: 120px;
+  }
+  
+  .color-container .article-container {
+    min-height: 120px;
+  }
+}
+

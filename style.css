@@ -791,6 +791,7 @@ section:focus-visible {
   justify-content: center;
   gap: 5rem;
   height: 80vh;
+  margin-top: 2rem;
 }
 
 .section__pic-container {
@@ -799,7 +800,6 @@ section:focus-visible {
   justify-content: center;
   height: 400px;
   width: 400px;
-  margin: auto 0;
 }
 
 .profile-pic {
@@ -985,11 +985,11 @@ img[loading="lazy"] {
 }
 
 .about-details-container {
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: row;
   gap: 2rem;
-  align-items: flex-start;
-  max-width: 55%;
+  align-items: center;
+  max-width: 75%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1097,10 +1097,10 @@ img[loading="lazy"] {
 }
 
 /* ============================================
-   EXPERIENCE SECTION
+   SKILLS SECTION
    ============================================ */
 
-#experience {
+#skills {
   position: relative;
   padding-bottom: var(--spacing-lg);
 }
@@ -1134,6 +1134,19 @@ img[loading="lazy"] {
   flex: 1;
 }
 
+/* Skills section - align details-containers horizontally for screens above 1200px */
+@media screen and (min-width: 1201px) {
+  #skills .about-containers {
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  #skills .details-container {
+    flex: 1;
+  }
+}
+
 /* Hide experience carousel elements on desktop */
 .experience-carousel-dots {
   display: none;
@@ -1149,6 +1162,50 @@ img[loading="lazy"] {
 
 .experience-carousel-container {
   display: contents; /* Allow children to flow normally on desktop */
+}
+
+.projects-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.exp-dot,
+.project-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-light-grey);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.exp-dot:hover,
+.project-dot:hover {
+  background-color: var(--color-medium-grey);
+}
+
+.exp-dot.active,
+.project-dot.active {
+  background-color: var(--color-dark-grey);
+  transform: scale(1.2);
+}
+
+[data-theme="dark"] .exp-dot,
+[data-theme="dark"] .project-dot {
+  background-color: var(--color-medium-grey);
+}
+
+[data-theme="dark"] .exp-dot:hover,
+[data-theme="dark"] .project-dot:hover {
+  background-color: var(--color-light-grey);
+}
+
+[data-theme="dark"] .exp-dot.active,
+[data-theme="dark"] .project-dot.active {
+  background-color: var(--color-white);
 }
 
 .article-container {
@@ -1253,6 +1310,7 @@ article p {
   mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   scroll-snap-type: x mandatory;
+  touch-action: pan-x;
 }
 
 .carousel-container:active {
