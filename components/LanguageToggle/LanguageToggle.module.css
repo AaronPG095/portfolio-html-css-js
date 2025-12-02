@@ -1,0 +1,101 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  transition: background-color var(--transition-speed) var(--transition-ease);
+}
+
+:global([data-theme="dark"]) .container {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-light-grey);
+  transition: color var(--transition-speed) var(--transition-ease), transform var(--transition-speed) var(--transition-ease), background-color var(--transition-speed) var(--transition-ease);
+  user-select: none;
+  letter-spacing: 0.05em;
+  border-radius: 0.5rem;
+}
+
+.toggle:hover {
+  transform: scale(1.05);
+  color: var(--color-dark-grey);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--color-dark-grey);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.option {
+  transition: color var(--transition-speed) var(--transition-ease);
+  cursor: pointer;
+}
+
+.option.active {
+  color: var(--color-black);
+  font-weight: 700;
+}
+
+:global([data-theme="dark"]) .toggle {
+  color: var(--color-medium-grey);
+}
+
+:global([data-theme="dark"]) .toggle:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+:global([data-theme="dark"]) .option.active {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+:global([data-theme="dark"]) .option:not(.active) {
+  color: var(--color-medium-grey);
+}
+
+.separator {
+  color: var(--color-light-grey);
+  pointer-events: none;
+}
+
+:global([data-theme="dark"]) .separator {
+  color: var(--color-medium-grey);
+}
+
+:global([data-theme="light"]) .toggle {
+  color: var(--color-light-grey);
+}
+
+:global([data-theme="light"]) .toggle:hover {
+  color: var(--color-black);
+}
+
+:global([data-theme="light"]) .option.active {
+  color: var(--color-black);
+}
+
+@media screen and (max-width: 600px) {
+  .toggle {
+    font-size: 0.875rem;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .container {
+    gap: 0.5rem;
+  }
+}
+

@@ -1,6 +1,6 @@
-# 🌐 Portfolio Website - Aaron Paul Greyling
+# 🌐 NextJS Portfolio - Aaron Paul Greyling
 
-A modern, responsive portfolio website showcasing my work as a Fullstack Developer. Built with vanilla HTML, CSS, and JavaScript, featuring bilingual support (English/German), dark/light theme toggle, and smooth animations.
+A modern, responsive portfolio website showcasing my work as a Fullstack Developer. Built with Next.js 14 (App Router), React, and CSS Modules, featuring bilingual support (English/German), dark/light theme toggle, and smooth animations.
 
 ![Portfolio Preview](assets/Screenshot%202024-05-08%20140820.png)
 

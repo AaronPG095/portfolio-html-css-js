@@ -1,0 +1,239 @@
+.about {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding-top: 4vh;
+  height: 96vh;
+  margin: 0 10rem;
+  min-height: fit-content;
+  scroll-margin-top: 17vh;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.titleText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.subtitle {
+  text-align: center;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+  color: var(--text-color);
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+.detailsContainer {
+  justify-content: center;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  max-width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.containers {
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 0;
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  max-width: 60%;
+}
+
+.detailsCard {
+  padding: 1.5rem;
+  flex: 1;
+  background: var(--bg-color);
+  border-radius: var(--border-radius-md);
+  border: var(--color-light-grey) 0.1rem solid;
+  text-align: center;
+  transition: transform var(--transition-speed) var(--transition-ease), box-shadow var(--transition-speed) var(--transition-ease), background-color var(--transition-speed) var(--transition-ease);
+}
+
+.detailsCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+}
+
+.detailsCard h3 {
+  color: var(--text-color);
+  margin: 1rem 0;
+  font-weight: 600;
+}
+
+.detailsCard p {
+  color: var(--color-medium-grey);
+  margin: 0.5rem 0;
+}
+
+.detailsCard a {
+  color: var(--color-medium-grey);
+  text-decoration: none;
+}
+
+.detailsCard a:hover {
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
+.icon {
+  cursor: pointer;
+  height: 2rem;
+  width: auto;
+  transition: transform var(--transition-speed) var(--transition-ease), opacity var(--transition-speed) var(--transition-ease), filter var(--transition-speed) var(--transition-ease);
+}
+
+:global([data-theme="dark"]) .icon {
+  filter: brightness(0) invert(1);
+}
+
+.textContainer {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 2rem;
+  margin-top: 0;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  max-width: 50%;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 100%;
+}
+
+.textContent p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin: 0;
+  text-align: left;
+  color: var(--color-medium-grey);
+}
+
+@media screen and (max-width: 1200px) {
+  .about {
+    gap: 3rem;
+    padding-bottom: 4rem;
+    margin: 0;
+  }
+
+  .titleContainer {
+    gap: 3rem;
+  }
+  
+  .containers {
+    margin-top: 0;
+    flex-direction: column;
+  }
+  
+  .detailsContainer {
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 100%;
+  }
+  
+  .containers {
+    max-width: 100%;
+  }
+  
+  .textContainer {
+    padding-left: 0;
+    padding-top: 2rem;
+    max-width: 100%;
+  }
+  
+  .textContent {
+    text-align: center;
+  }
+  
+  .textContent p {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .about {
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+    margin: 0 1rem;
+    width: calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
+  }
+
+  .titleContainer {
+    gap: 2rem;
+  }
+
+  .containers {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .detailsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  
+  .detailsContainer .containers {
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+  }
+  
+  .detailsContainer .detailsCard {
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .textContainer {
+    text-align: center;
+    padding-left: 0;
+    max-width: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .textContent {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .textContent p {
+    text-align: center;
+    line-height: 1.8;
+    font-size: 1rem;
+  }
+}
+

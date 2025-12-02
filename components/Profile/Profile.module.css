@@ -1,0 +1,249 @@
+.profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  height: 80vh;
+  margin-top: 2rem;
+}
+
+.picContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: auto;
+  aspect-ratio: 3 / 4;
+}
+
+.profilePic {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-xl);
+  object-fit: cover;
+  box-shadow: var(--shadow-medium);
+  transition: transform var(--transition-speed) var(--transition-ease);
+}
+
+.profilePic:hover {
+  transform: scale(1.02);
+}
+
+.text {
+  align-self: center;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+@media screen and (min-width: 1201px) {
+  .text {
+    margin-top: 0;
+  }
+}
+
+.text p {
+  font-weight: 600;
+}
+
+.textP1 {
+  text-align: center;
+}
+
+.textP2 {
+  font-size: 1.75rem;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+  color: var(--text-color);
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+.socialsContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.socialsContainer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-speed) var(--transition-ease);
+}
+
+.socialsContainer a:hover {
+  transform: translateY(-3px);
+  text-decoration: none;
+}
+
+.icon {
+  cursor: pointer;
+  height: 2rem;
+  width: auto;
+  transition: transform var(--transition-speed) var(--transition-ease), opacity var(--transition-speed) var(--transition-ease), filter var(--transition-speed) var(--transition-ease);
+}
+
+:global([data-theme="dark"]) .icon {
+  filter: brightness(0) invert(1);
+}
+
+.icon:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  font-weight: 600;
+  transition: all 300ms ease;
+  padding: 1rem;
+  width: 8rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  border: var(--color-dark-grey) 0.1rem solid;
+  font-family: var(--font-family);
+  font-size: 1rem;
+}
+
+.btnColor1,
+.btnColor2:hover {
+  background: var(--color-dark-grey);
+  color: var(--color-white);
+}
+
+.btnColor1:hover {
+  background: var(--color-black);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-subtle);
+}
+
+.btnColor2 {
+  background: transparent;
+  color: var(--text-color);
+}
+
+.btnColor2:hover {
+  border: var(--color-white) 0.1rem solid;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-subtle);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+@media screen and (max-width: 1400px) {
+  .profile {
+    height: 83vh;
+    margin-bottom: 6rem;
+    gap: 4rem;
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    height: auto;
+    min-height: 80vh;
+    padding: 4rem 0;
+    margin-top: 2rem;
+  }
+  
+  .picContainer {
+    width: 275px;
+    height: 275px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile {
+    height: auto;
+    min-height: 85vh;
+    margin-bottom: 0;
+    margin-top: 2rem;
+    gap: 2rem;
+    padding: 3rem 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .picContainer {
+    width: 250px;
+    height: 250px;
+    max-width: 70%;
+  }
+  
+  .profilePic {
+    margin-bottom: 1.5rem;
+  }
+  
+  .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .textP1 {
+    font-size: 1.1rem;
+  }
+  
+  .textP2 {
+    font-size: 1.25rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .btnContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .socialsContainer {
+    margin-top: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .picContainer {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .textP2 {
+    font-size: 1.1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+

@@ -1,0 +1,179 @@
+/* ============================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   ============================================ */
+
+:root {
+  --color-black: rgb(0, 0, 0);
+  --color-dark-grey: rgb(53, 53, 53);
+  --color-medium-grey: rgb(85, 85, 85);
+  --color-light-grey: rgb(163, 163, 163);
+  --color-lighter-grey: rgb(181, 181, 181);
+  --color-bg-light: rgb(250, 250, 250);
+  --color-white: rgb(255, 255, 255);
+  
+  --bg-color: rgb(255, 255, 255);
+  --text-color: rgb(0, 0, 0);
+  --nav-bg: rgb(255, 255, 255);
+  
+  --font-family: 'Poppins', sans-serif;
+  --transition-speed: 300ms;
+  --transition-ease: ease;
+  --border-radius-sm: 1rem;
+  --border-radius-md: 2rem;
+  --border-radius-lg: 3rem;
+  --border-radius-xl: 5rem;
+  
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 5rem;
+  
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --color-black: rgb(255, 255, 255);
+  --color-dark-grey: rgb(200, 200, 200);
+  --color-medium-grey: rgb(170, 170, 170);
+  --color-light-grey: rgb(100, 100, 100);
+  --color-lighter-grey: rgb(80, 80, 80);
+  --color-bg-light: rgb(30, 30, 30);
+  --color-white: rgb(20, 20, 20);
+  
+  --bg-color: rgb(20, 20, 20);
+  --text-color: rgb(255, 255, 255);
+  --nav-bg: rgb(25, 25, 25);
+  
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   GENERAL STYLES
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 14vh;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: background-color var(--transition-speed) var(--transition-ease), color var(--transition-speed) var(--transition-ease);
+  overflow-x: hidden;
+  padding-top: 14vh;
+}
+
+p {
+  color: var(--color-medium-grey);
+}
+
+/* ============================================
+   TRANSITIONS & INTERACTIONS
+   ============================================ */
+
+a,
+button,
+.icon,
+.arrow {
+  transition: all var(--transition-speed) var(--transition-ease);
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+  text-decoration-color: var(--color-white);
+  position: relative;
+}
+
+a:hover {
+  color: var(--color-light-grey);
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+  text-decoration-color: var(--color-lighter-grey);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-dark-grey);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Mobile Small - 400px */
+@media screen and (max-width: 400px) {
+  html {
+    scroll-padding-top: 48px;
+  }
+  
+  body {
+    padding-top: 48px;
+  }
+}
+
+/* Mobile - 600px */
+@media screen and (max-width: 600px) {
+  html {
+    scroll-padding-top: 48px;
+  }
+  
+  body {
+    padding-top: 48px;
+  }
+}
+
+/* Tablet - 1200px */
+@media screen and (max-width: 1200px) {
+  html {
+    scroll-padding-top: 56px;
+  }
+  
+  body {
+    padding-top: 56px;
+  }
+}
+
+/* Tablet Large - 1400px */
+@media screen and (max-width: 1400px) {
+  /* Styles handled in components */
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in forwards;
+}
+

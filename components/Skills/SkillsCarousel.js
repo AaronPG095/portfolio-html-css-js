@@ -1,0 +1,75 @@
+'use client';
+
+import React, { useRef, useEffect } from 'react';
+import { useCarousel } from '@/hooks/useCarousel';
+import styles from './Skills.module.css';
+
+export default function SkillsCarousel({ children, dots }) {
+  // React.Children.toArray handles both single child and multiple children
+  const items = React.Children.toArray(children);
+  const {
+    containerRef,
+    currentIndex,
+    scrollToIndex,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+    handleMouseDown,
+    handleMouseMove,
+    handleMouseUp,
+    handleMouseLeave,
+  } = useCarousel(items, { duration: 600, snapDuration: 300 });
+
+  useEffect(() => {
+    const handleMouseMoveGlobal = (e) => handleMouseMove(e);
+    const handleMouseUpGlobal = () => handleMouseUp();
+
+    if (containerRef.current) {
+      document.addEventListener('mousemove', handleMouseMoveGlobal);
+      document.addEventListener('mouseup', handleMouseUpGlobal);
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMoveGlobal);
+      document.removeEventListener('mouseup', handleMouseUpGlobal);
+    };
+  }, [handleMouseMove, handleMouseUp]);
+
+  return (
+    <>
+      <div className={styles.carouselWrapper}>
+        <div
+          ref={containerRef}
+          className={styles.carouselContainer}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div className={styles.containers}>
+            {items.map((item, index) => (
+              <div key={index} className={`${styles.detailsCard} carousel-item`}>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {dots && dots.length > 0 && (
+        <div className={styles.dots} aria-label="Skills carousel navigation">
+          {dots.map((_, index) => (
+            <button
+              key={index}
+              className={`${styles.dot} ${index === currentIndex ? styles.active : ''}`}
+              onClick={() => scrollToIndex(index)}
+              aria-label={`Show ${index === 0 ? 'Frontend' : 'Backend'} Development`}
+              data-index={index}
+            />
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
+

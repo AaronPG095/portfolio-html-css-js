@@ -1,0 +1,121 @@
+.contact {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+  padding-top: 4vh;
+  margin: 0 10rem;
+  min-height: fit-content;
+  scroll-margin-top: 17vh;
+}
+
+.subtitle {
+  text-align: center;
+  font-weight: 600;
+  color: var(--color-medium-grey);
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+  color: var(--text-color);
+  transition: color var(--transition-speed) var(--transition-ease);
+  margin-bottom: 2rem;
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: center;
+  border-radius: 2rem;
+  border: var(--color-dark-grey) 0.1rem solid;
+  border-color: var(--color-light-grey);
+  background: var(--color-bg-light);
+  margin: 2rem auto;
+  padding: 0.5rem;
+  transition: background-color var(--transition-speed) var(--transition-ease), border-color var(--transition-speed) var(--transition-ease);
+}
+
+.infoCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem;
+}
+
+.infoCard p {
+  font-size: larger;
+  margin: 0;
+  color: var(--color-medium-grey);
+}
+
+.infoCard a {
+  color: var(--color-medium-grey);
+  text-decoration: none;
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+.infoCard a:hover {
+  color: var(--text-color);
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+.icon {
+  cursor: default;
+  flex-shrink: 0;
+  height: 2rem;
+  width: auto;
+  transition: transform var(--transition-speed) var(--transition-ease), opacity var(--transition-speed) var(--transition-ease), filter var(--transition-speed) var(--transition-ease);
+}
+
+:global([data-theme="dark"]) .icon {
+  filter: brightness(0) invert(1);
+}
+
+.emailIcon {
+  height: 2.5rem;
+  width: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .contact {
+    margin: 0;
+  }
+  
+  .infoContainer {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .contact {
+    min-height: 50vh;
+    height: auto;
+    padding-bottom: 3rem;
+    margin: 0 1rem;
+    width: calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
+  }
+  
+  .infoContainer {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    margin: 1.5rem auto;
+  }
+  
+  .infoCard {
+    margin: 0;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .infoCard p {
+    font-size: 1rem;
+  }
+}
+

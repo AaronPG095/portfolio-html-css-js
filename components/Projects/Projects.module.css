@@ -1,0 +1,327 @@
+.projects {
+  position: relative;
+  padding-top: 4vh;
+  height: 96vh;
+  margin: 0 10rem;
+  min-height: fit-content;
+  scroll-margin-top: 17vh;
+}
+
+.subtitle {
+  text-align: center;
+  font-weight: 600;
+  color: var(--color-medium-grey);
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+  color: var(--text-color);
+  transition: color var(--transition-speed) var(--transition-ease);
+  margin-bottom: 2rem;
+}
+
+.detailsContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.carouselWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  overflow: visible;
+}
+
+.carouselContainer {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+  max-width: 100%;
+  cursor: grab;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: calc(50% - 200px);
+  padding-right: calc(50% - 200px);
+  box-sizing: content-box;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  scroll-snap-type: x mandatory;
+  touch-action: pan-x;
+}
+
+.carouselContainer:active {
+  cursor: grabbing;
+}
+
+.carouselContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.projectsContainer {
+  flex-wrap: nowrap;
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  padding-left: 0;
+  padding-right: calc(50% - 200px + 1rem);
+  min-width: fit-content;
+}
+
+.colorContainer {
+  flex: 0 0 400px;
+  width: 400px;
+  min-width: 400px;
+  max-width: 400px;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+.projectCard {
+  border-color: var(--color-light-grey);
+  background: var(--color-bg-light);
+  transition: transform var(--transition-speed) var(--transition-ease), box-shadow var(--transition-speed) var(--transition-ease), background-color var(--transition-speed) var(--transition-ease), border-color var(--transition-speed) var(--transition-ease);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-radius: var(--border-radius-md);
+  border: var(--color-light-grey) 0.1rem solid;
+}
+
+.projectCard:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-medium);
+  border-color: var(--color-dark-grey);
+}
+
+.articleContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.projectImg {
+  border-radius: var(--border-radius-md);
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.projectTitle {
+  margin: 0.5rem 0;
+  color: var(--text-color);
+  font-weight: 600;
+  transition: color var(--transition-speed) var(--transition-ease);
+  text-align: center;
+  font-size: 1.75rem;
+}
+
+.description {
+  margin: 0.5rem 0 1rem 0;
+  text-align: center;
+  color: var(--color-medium-grey);
+  font-size: 1.75rem;
+}
+
+.btnContainer {
+  margin-top: 1rem;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  font-weight: 600;
+  transition: all 300ms ease;
+  padding: 1rem;
+  width: 8rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  border: var(--color-dark-grey) 0.1rem solid;
+  font-family: var(--font-family);
+  font-size: 1rem;
+}
+
+.projectBtn {
+  background: transparent;
+  color: var(--text-color);
+}
+
+.projectBtn:hover {
+  background: var(--color-dark-grey);
+  color: var(--color-white);
+  border: var(--color-white) 0.1rem solid;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-subtle);
+}
+
+.projectBtn:active {
+  transform: translateY(0);
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-light-grey);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background-color: var(--color-medium-grey);
+}
+
+.dot.active {
+  background-color: var(--color-dark-grey);
+  transform: scale(1.2);
+}
+
+:global([data-theme="dark"]) .dot {
+  background-color: var(--color-medium-grey);
+}
+
+:global([data-theme="dark"]) .dot:hover {
+  background-color: var(--color-light-grey);
+}
+
+:global([data-theme="dark"]) .dot.active {
+  background-color: var(--color-white);
+}
+
+@media screen and (max-width: 1400px) {
+  .projects {
+    margin: 0 8rem;
+  }
+  
+  .projectsContainer .colorContainer {
+    flex: 0 0 350px;
+    width: 350px;
+    min-width: 300px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .projects {
+    margin: 0;
+  }
+  
+  .projectsContainer {
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .projects {
+    margin: 0 1rem;
+    width: calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
+    overflow-x: hidden;
+  }
+  
+  .projectsContainer .colorContainer {
+    flex: 0 0 260px;
+    width: 260px;
+    min-width: 240px;
+    max-width: 280px;
+    padding: 1rem;
+  }
+  
+  .carouselContainer {
+    padding-left: calc(50% - 130px);
+    padding-right: calc(50% - 130px);
+  }
+  
+  .projectsContainer {
+    padding-right: calc(50% - 130px + 1rem);
+    gap: 1rem;
+  }
+  
+  .projectImg {
+    height: 140px;
+    max-height: 140px;
+  }
+  
+  .articleContainer {
+    min-height: 140px;
+  }
+  
+  .projectTitle {
+    font-size: 1rem;
+    margin: 0.25rem 0;
+  }
+  
+  .description {
+    font-size: 0.85rem;
+    margin: 0.25rem 0 0.5rem 0;
+  }
+  
+  .btnContainer {
+    margin-top: 0.5rem;
+    gap: 0.5rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    width: auto;
+    min-width: 70px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .projectsContainer .colorContainer {
+    flex: 0 0 220px;
+    width: 220px;
+    min-width: 200px;
+    max-width: 240px;
+  }
+  
+  .carouselContainer {
+    padding-left: calc(50% - 110px);
+    padding-right: calc(50% - 110px);
+  }
+  
+  .projectsContainer {
+    padding-right: calc(50% - 110px + 1rem);
+  }
+  
+  .projectImg {
+    height: 120px;
+    max-height: 120px;
+  }
+  
+  .articleContainer {
+    min-height: 120px;
+  }
+}
+
