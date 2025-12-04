@@ -102,6 +102,7 @@
   padding: 1.5rem;
   border-radius: var(--border-radius-md);
   border: var(--color-light-grey) 0.1rem solid;
+  min-height: 560px;
 }
 
 .projectCard:hover {
