@@ -10,7 +10,7 @@ export default function Profile() {
   const { theme } = useTheme();
 
   const handleDownloadCV = () => {
-    const cvFile = language === 'de' ? '/assets/CV-German.pdf' : '/assets/CV-English.pdf';
+    const cvFile = language === 'de' ? '/assets/CV-German.pdf' : '/assets/Main CV Page English.pdf';
     window.open(cvFile);
   };
 

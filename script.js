@@ -44,7 +44,7 @@ function applyTranslations(lang = currentLanguage) {
   // Update CV download button to use correct language file
   const cvButton = document.querySelector('.btn-color-2[data-translate="profile.downloadCV"]');
   if (cvButton) {
-    const cvFile = lang === 'de' ? './assets/CV-German.pdf' : './assets/CV-English.pdf';
+    const cvFile = lang === 'de' ? './assets/CV-German.pdf' : './assets/Main CV Page English.pdf';
     cvButton.setAttribute('onclick', `window.open('${cvFile}')`);
     cvButton.setAttribute('aria-label', lang === 'de' ? 'Lebenslauf auf Deutsch herunterladen' : 'Download CV in English');
   }

@@ -6,7 +6,7 @@ import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import LanguageToggle from '../LanguageToggle/LanguageToggle';
 import styles from './Sidebar.module.css';
 
-export default function Sidebar({ isOpen, onClose }) {
+export default function Sidebar({ isOpen, onClose, activeSection = '' }) {
   const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
@@ -68,22 +68,38 @@ export default function Sidebar({ isOpen, onClose }) {
         </div>
         <ul className={styles.links}>
           <li role="menuitem">
-            <a href="#about" onClick={handleLinkClick}>
+            <a
+              href="#about"
+              onClick={handleLinkClick}
+              className={activeSection === 'about' ? 'active' : ''}
+            >
               {t('nav.about')}
             </a>
           </li>
           <li role="menuitem">
-            <a href="#skills" onClick={handleLinkClick}>
+            <a
+              href="#skills"
+              onClick={handleLinkClick}
+              className={activeSection === 'skills' ? 'active' : ''}
+            >
               {t('nav.skills')}
             </a>
           </li>
           <li role="menuitem">
-            <a href="#projects" onClick={handleLinkClick}>
+            <a
+              href="#projects"
+              onClick={handleLinkClick}
+              className={activeSection === 'projects' ? 'active' : ''}
+            >
               {t('nav.projects')}
             </a>
           </li>
           <li role="menuitem">
-            <a href="#contact" onClick={handleLinkClick}>
+            <a
+              href="#contact"
+              onClick={handleLinkClick}
+              className={activeSection === 'contact' ? 'active' : ''}
+            >
               {t('nav.contact')}
             </a>
           </li>

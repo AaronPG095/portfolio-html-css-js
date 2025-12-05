@@ -44,7 +44,7 @@
   text-decoration-color: var(--color-lighter-grey);
 }
 
-.navLinks a.active {
+.navLinks a:global(.active) {
   color: var(--text-color);
   font-weight: 600;
   text-decoration: underline;

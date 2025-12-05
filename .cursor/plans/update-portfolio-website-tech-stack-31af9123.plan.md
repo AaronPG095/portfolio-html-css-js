@@ -1,4 +1,9 @@
-<!-- 31af9123-70a1-4ac0-bcba-a225b76f7134 3465612b-602a-4740-86e5-10fa5a51d29b -->
+---
+name: Equalize Project Card Heights
+overview: ""
+todos: []
+---
+
 # Equalize Project Card Heights
 
 Make all project cards the same height by ensuring they all match the tallest card's height.

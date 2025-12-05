@@ -6,8 +6,15 @@ import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import LanguageToggle from '../LanguageToggle/LanguageToggle';
 import styles from './Header.module.css';
 
-export default function DesktopNav() {
+export default function DesktopNav({ activeSection = '' }) {
   const { t } = useLanguage();
+
+  const navItems = [
+    { href: '#about', key: 'about', label: t('nav.about') },
+    { href: '#skills', key: 'skills', label: t('nav.skills') },
+    { href: '#projects', key: 'projects', label: t('nav.projects') },
+    { href: '#contact', key: 'contact', label: t('nav.contact') },
+  ];
 
   return (
     <nav className={styles.desktopNav} role="navigation" aria-label="Main navigation">
@@ -16,10 +23,16 @@ export default function DesktopNav() {
       </Link>
       <div className={styles.navRight}>
         <ul className={styles.navLinks}>
-          <li><Link href="#about">{t('nav.about')}</Link></li>
-          <li><Link href="#skills">{t('nav.skills')}</Link></li>
-          <li><Link href="#projects">{t('nav.projects')}</Link></li>
-          <li><Link href="#contact">{t('nav.contact')}</Link></li>
+          {navItems.map((item) => (
+            <li key={item.key}>
+              <Link
+                href={item.href}
+                className={activeSection === item.key ? 'active' : undefined}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
         </ul>
         <LanguageToggle />
         <ThemeToggle />

@@ -142,7 +142,7 @@
   outline-offset: -2px;
 }
 
-.links a.active {
+.links a:global(.active) {
   color: var(--text-color);
   font-weight: 600;
   background-color: var(--color-bg-light);
