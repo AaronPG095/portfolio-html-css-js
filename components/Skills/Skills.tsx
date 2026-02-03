@@ -100,7 +100,7 @@ interface SkillCardProps {
 }
 
 function SkillCard({ title, skills }: SkillCardProps) {
-  const { t } = useLanguage();
+  const { t, translations, language } = useLanguage();
   
   return (
     <div className={styles.skillCard}>
@@ -108,7 +108,12 @@ function SkillCard({ title, skills }: SkillCardProps) {
       <div className={styles.articleContainer}>
         {skills.map((skill, index) => {
           const IconComponent = getSkillIcon(skill.name);
-          const tooltipText = t(`skills.descriptions.${skill.name}`) || '';
+          // Access descriptions directly to handle keys with dots (e.g., "React.js")
+          const currentLangTranslations = translations?.[language];
+          const descriptions = (currentLangTranslations as any)?.skills?.descriptions;
+          const tooltipText = descriptions && typeof descriptions === 'object' && skill.name in descriptions
+            ? (descriptions as Record<string, string>)[skill.name]
+            : '';
           return (
             <article 
               key={index} 
