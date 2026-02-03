@@ -32,7 +32,32 @@
   background: var(--color-bg-light);
   margin: 2rem auto;
   padding: 0.5rem;
-  transition: background-color var(--transition-speed) var(--transition-ease), border-color var(--transition-speed) var(--transition-ease);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color var(--transition-speed) var(--transition-ease), 
+              border-color var(--transition-speed) var(--transition-ease);
+  will-change: transform, box-shadow;
+}
+
+.infoContainer:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15),
+              0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-medium-grey);
+}
+
+/* Enhanced shadow for dark theme */
+[data-theme="dark"] .infoContainer:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5),
+              0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Active state for better feedback */
+.infoContainer:active {
+  transform: translateY(-4px) scale(1.01);
+  transition: transform 0.1s ease;
 }
 
 .infoCard {

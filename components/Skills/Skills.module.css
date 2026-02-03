@@ -56,17 +56,37 @@
   border-radius: var(--border-radius-md);
   border: var(--color-light-grey) 0.1rem solid;
   text-align: center;
-  transition: transform var(--transition-speed) var(--transition-ease), box-shadow var(--transition-speed) var(--transition-ease), background-color var(--transition-speed) var(--transition-ease), z-index 0s;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color var(--transition-speed) var(--transition-ease),
+              border-color var(--transition-speed) var(--transition-ease),
+              z-index 0s;
   padding: 1.5rem;
   padding-top: 2.5rem;
   overflow: visible;
   position: relative;
   z-index: 0;
+  will-change: transform, box-shadow;
 }
 
 .skillCard:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-medium);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15),
+              0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-medium-grey);
+}
+
+/* Enhanced shadow for dark theme */
+[data-theme="dark"] .skillCard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5),
+              0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Active state for better feedback */
+.skillCard:active {
+  transform: translateY(-4px) scale(1.01);
+  transition: transform 0.1s ease;
 }
 
 /* Elevate the entire card when any tooltip inside it is active */
