@@ -9,11 +9,27 @@ interface ProvidersProps {
 }
 
 export default function Providers({ children }: ProvidersProps) {
-  // Scroll to top on page load/reload
+  // Scroll to top on page load/reload (backup to head script)
   useEffect(() => {
-    // Scroll to top immediately on mount (handles page reload and initial load)
     if (typeof window !== 'undefined') {
+      // Disable browser scroll restoration if not already disabled
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      // Ensure we're at the top
       window.scrollTo(0, 0);
+      
+      // Also handle any delayed scroll restoration
+      const handleLoad = () => {
+        window.scrollTo(0, 0);
+      };
+      
+      if (document.readyState === 'complete') {
+        window.scrollTo(0, 0);
+      } else {
+        window.addEventListener('load', handleLoad);
+        return () => window.removeEventListener('load', handleLoad);
+      }
     }
   }, []);
 

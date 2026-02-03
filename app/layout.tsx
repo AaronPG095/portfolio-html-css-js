@@ -47,6 +47,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined') {
+                // Disable browser scroll restoration
+                if ('scrollRestoration' in history) {
+                  history.scrollRestoration = 'manual';
+                }
+                // Scroll to top immediately
+                window.scrollTo(0, 0);
+              }
+            `,
+          }}
+        />
+      </head>
       <body>
         <Providers>
           {children}
