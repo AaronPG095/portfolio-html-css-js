@@ -229,6 +229,15 @@
     width: 350px;
     min-width: 300px;
   }
+  
+  .carouselContainer {
+    padding-left: calc(50% - 175px);
+    padding-right: calc(50% - 175px);
+  }
+  
+  .projectsContainer {
+    padding-right: calc(50% - 175px + 1rem);
+  }
 }
 
 @media screen and (max-width: 1200px) {
