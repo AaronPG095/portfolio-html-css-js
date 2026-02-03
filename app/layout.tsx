@@ -3,7 +3,7 @@ import Providers from '@/components/Providers/Providers';
 import type { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
-  title: 'NextJS Portfolio - Aaron Paul Greyling | Fullstack Developer',
+  title: 'Aaron Paul Greyling | Fullstack Developer',
   description: 'Creative and motivated web developer with experience in frontend and backend development.',
   icons: {
     icon: [
