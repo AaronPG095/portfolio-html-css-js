@@ -122,7 +122,7 @@ export interface CarouselOptions {
 
 // Carousel return type
 export interface CarouselReturn {
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
   currentIndex: number;
   scrollToIndex: (index: number, customDuration?: number) => void;
   scroll: (direction: 'left' | 'right') => void;
@@ -131,7 +131,7 @@ export interface CarouselReturn {
   handleTouchMove: (e: React.TouchEvent) => void;
   handleTouchEnd: () => void;
   handleMouseDown: (e: React.MouseEvent) => void;
-  handleMouseMove: (e: React.MouseEvent) => void;
+  handleMouseMove: (e: React.MouseEvent | MouseEvent) => void;
   handleMouseUp: () => void;
   handleMouseLeave: () => void;
   isAnimating: boolean;

@@ -25,29 +25,20 @@ export default function ProjectsCarousel({ children }: ProjectsCarouselProps) {
   } = useCarousel(items, { duration: 600, snapDuration: 300 });
 
   useEffect(() => {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ProjectsCarousel.tsx:27',message:'useEffect entry - setting up global mouse listeners',data:{hasContainer:containerRef.current!==null},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-    // #endregion
     const handleMouseMoveGlobal = (e: Event) => {
-      handleMouseMove(e as MouseEvent);
+      // DOM MouseEvent from addEventListener - handleMouseMove accepts both DOM and React events
+      if (e instanceof MouseEvent) {
+        handleMouseMove(e);
+      }
     };
     const handleMouseUpGlobal = () => handleMouseUp();
 
     if (containerRef.current) {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ProjectsCarousel.tsx:32',message:'BEFORE adding global mouse listeners',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-      // #endregion
       document.addEventListener('mousemove', handleMouseMoveGlobal);
       document.addEventListener('mouseup', handleMouseUpGlobal);
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ProjectsCarousel.tsx:35',message:'AFTER adding global mouse listeners',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-      // #endregion
     }
 
     return () => {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ProjectsCarousel.tsx:39',message:'cleanup - removing global mouse listeners',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-      // #endregion
       document.removeEventListener('mousemove', handleMouseMoveGlobal);
       document.removeEventListener('mouseup', handleMouseUpGlobal);
     };

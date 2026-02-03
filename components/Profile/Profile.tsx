@@ -52,13 +52,7 @@ export default function Profile() {
   });
 
   const handleDownloadCV = () => {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Profile.tsx:54',message:'handleDownloadCV called',data:{language:language},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H'})}).catch(()=>{});
-    // #endregion
     const cvFile = language === 'de' ? '/assets/CV-German.pdf' : '/assets/CV-English.pdf';
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Profile.tsx:56',message:'BEFORE window.open',data:{cvFile:cvFile},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H'})}).catch(()=>{});
-    // #endregion
     window.open(cvFile);
   };
 

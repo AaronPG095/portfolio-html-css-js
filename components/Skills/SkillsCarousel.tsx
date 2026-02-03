@@ -27,7 +27,10 @@ export default function SkillsCarousel({ children, dots }: SkillsCarouselProps) 
 
   useEffect(() => {
     const handleMouseMoveGlobal = (e: Event) => {
-      handleMouseMove(e as MouseEvent);
+      // DOM MouseEvent from addEventListener - handleMouseMove accepts both DOM and React events
+      if (e instanceof MouseEvent) {
+        handleMouseMove(e);
+      }
     };
     const handleMouseUpGlobal = () => handleMouseUp();
 
