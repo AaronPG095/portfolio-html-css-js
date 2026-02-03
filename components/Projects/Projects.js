@@ -64,8 +64,8 @@ export default function Projects() {
           src={project.image}
           alt={`${t(project.titleKey)} project screenshot`}
           className={styles.projectImg}
-          width={400}
-          height={200}
+          width={500}
+          height={400}
           loading="lazy"
         />
       </div>
