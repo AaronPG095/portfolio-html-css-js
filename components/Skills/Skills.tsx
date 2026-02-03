@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useLanguage } from '@/hooks/useLanguage';
 import SkillsCarousel from './SkillsCarousel';
+import SkillProgress from './SkillProgress';
 import styles from './Skills.module.css';
 import type { Skill } from '@/types';
 
@@ -51,7 +52,7 @@ function SkillCard({ title, skills }: SkillCardProps) {
       <h2 className={styles.subTitle}>{title}</h2>
       <div className={styles.articleContainer}>
         {skills.map((skill, index) => (
-          <article key={index}>
+          <article key={index} className={styles.skillArticle}>
             <Image
               src="/assets/checkmark.png"
               alt=""
@@ -60,9 +61,9 @@ function SkillCard({ title, skills }: SkillCardProps) {
               height={24}
               aria-hidden="true"
             />
-            <div>
+            <div className={styles.skillContent}>
               <h3>{skill.name}</h3>
-              <p>{t(`skills.levels.${skill.level}`)}</p>
+              <SkillProgress level={skill.level} skillName={skill.name} />
             </div>
           </article>
         ))}
