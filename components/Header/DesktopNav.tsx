@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useLanguage } from '@/hooks/useLanguage';
+import { useScrollToSection } from '@/hooks/useScrollToSection';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import LanguageToggle from '../LanguageToggle/LanguageToggle';
 import styles from './Header.module.css';
@@ -12,6 +13,7 @@ interface DesktopNavProps {
 
 export default function DesktopNav({ activeSection = '' }: DesktopNavProps) {
   const { t } = useLanguage();
+  const scrollToSection = useScrollToSection();
 
   const navItems = [
     { href: '#about', key: 'about', label: t('nav.about') },
@@ -19,6 +21,11 @@ export default function DesktopNav({ activeSection = '' }: DesktopNavProps) {
     { href: '#projects', key: 'projects', label: t('nav.projects') },
     { href: '#contact', key: 'contact', label: t('nav.contact') },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    scrollToSection(href);
+  };
 
   return (
     <nav className={styles.desktopNav} role="navigation" aria-label="Main navigation">
@@ -29,12 +36,13 @@ export default function DesktopNav({ activeSection = '' }: DesktopNavProps) {
         <ul className={styles.navLinks}>
           {navItems.map((item) => (
             <li key={item.key}>
-              <Link
+              <a
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className={activeSection === item.key ? 'active' : undefined}
               >
                 {item.label}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>

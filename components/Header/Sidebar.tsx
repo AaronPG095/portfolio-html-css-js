@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
+import { useScrollToSection } from '@/hooks/useScrollToSection';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import LanguageToggle from '../LanguageToggle/LanguageToggle';
 import styles from './Sidebar.module.css';
@@ -14,6 +15,7 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onClose, activeSection = '' }: SidebarProps) {
   const { t } = useLanguage();
+  const scrollToSection = useScrollToSection();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -43,8 +45,11 @@ export default function Sidebar({ isOpen, onClose, activeSection = '' }: Sidebar
 
   if (!mounted) return null;
 
-  const handleLinkClick = () => {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
     onClose();
+    // Wait for sidebar close animation to complete (~300ms) before scrolling
+    scrollToSection(href, 300);
   };
 
   return (
@@ -76,7 +81,7 @@ export default function Sidebar({ isOpen, onClose, activeSection = '' }: Sidebar
           <li role="menuitem">
             <a
               href="#about"
-              onClick={handleLinkClick}
+              onClick={(e) => handleLinkClick(e, '#about')}
               className={activeSection === 'about' ? 'active' : ''}
             >
               {t('nav.about')}
@@ -85,7 +90,7 @@ export default function Sidebar({ isOpen, onClose, activeSection = '' }: Sidebar
           <li role="menuitem">
             <a
               href="#skills"
-              onClick={handleLinkClick}
+              onClick={(e) => handleLinkClick(e, '#skills')}
               className={activeSection === 'skills' ? 'active' : ''}
             >
               {t('nav.skills')}
@@ -94,7 +99,7 @@ export default function Sidebar({ isOpen, onClose, activeSection = '' }: Sidebar
           <li role="menuitem">
             <a
               href="#projects"
-              onClick={handleLinkClick}
+              onClick={(e) => handleLinkClick(e, '#projects')}
               className={activeSection === 'projects' ? 'active' : ''}
             >
               {t('nav.projects')}
@@ -103,7 +108,7 @@ export default function Sidebar({ isOpen, onClose, activeSection = '' }: Sidebar
           <li role="menuitem">
             <a
               href="#contact"
-              onClick={handleLinkClick}
+              onClick={(e) => handleLinkClick(e, '#contact')}
               className={activeSection === 'contact' ? 'active' : ''}
             >
               {t('nav.contact')}

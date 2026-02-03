@@ -83,6 +83,14 @@ p {
 }
 
 /* ============================================
+   SCROLL MARGIN (FALLBACK FOR SECTIONS)
+   ============================================ */
+
+section[id] {
+  scroll-margin-top: 14vh;
+}
+
+/* ============================================
    TRANSITIONS & INTERACTIONS
    ============================================ */
 
@@ -126,6 +134,10 @@ a:focus-visible {
   body {
     padding-top: 48px;
   }
+  
+  section[id] {
+    scroll-margin-top: 48px;
+  }
 }
 
 /* Mobile - 600px */
@@ -137,6 +149,10 @@ a:focus-visible {
   body {
     padding-top: 48px;
   }
+  
+  section[id] {
+    scroll-margin-top: 48px;
+  }
 }
 
 /* Tablet - 1200px */
@@ -147,6 +163,10 @@ a:focus-visible {
   
   body {
     padding-top: 56px;
+  }
+  
+  section[id] {
+    scroll-margin-top: 56px;
   }
 }
 
