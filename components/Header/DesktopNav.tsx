@@ -27,9 +27,22 @@ export default function DesktopNav({ activeSection = '' }: DesktopNavProps) {
     scrollToSection(href);
   };
 
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <nav className={styles.desktopNav} role="navigation" aria-label="Main navigation">
-      <Link href="#" className={styles.logo} aria-label="Go to top of page">
+      <Link 
+        href="#" 
+        className={styles.logo} 
+        aria-label="Go to top of page"
+        onClick={handleLogoClick}
+      >
         Aaron Paul Greyling
       </Link>
       <div className={styles.navRight}>
