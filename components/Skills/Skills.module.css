@@ -70,6 +70,7 @@
   position: relative;
   z-index: 0;
   will-change: transform, box-shadow;
+  box-sizing: border-box;
 }
 
 .skillCard:hover {
@@ -344,6 +345,9 @@
   scroll-snap-align: center;
   scroll-snap-stop: always;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .dots {
@@ -410,6 +414,8 @@
     max-width: 100%;
     overflow: visible;
     margin: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   
   .detailsContainer {
@@ -418,11 +424,35 @@
     overflow: visible;
   }
   
+  .carouselWrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .carouselContainer {
+    width: 100%;
+    max-width: 100%;
+  }
+  
   .skillCard {
+    flex: 0 0 280px;
+    width: 280px;
+    max-width: 280px;
     padding: 1rem;
     padding-top: 2rem;
     box-sizing: border-box;
     overflow: visible;
+    margin: 0 auto;
+  }
+  
+  .detailsCard {
+    flex: 0 0 280px;
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
   }
 
   .articleContainer {
@@ -507,9 +537,68 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
+  .skills {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  .carouselContainer {
+    padding-left: calc(50% - 140px);
+    padding-right: calc(50% - 140px);
+  }
+  
+  .containers {
+    padding-right: calc(50% - 140px);
+  }
+  
+  .detailsCard {
+    flex: 0 0 280px;
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
   .skillCard {
+    flex: 0 0 280px;
+    width: 280px;
+    max-width: 280px;
+    padding: 1rem;
+    padding-top: 2rem;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .carouselContainer {
+    padding-left: calc(50% - 140px);
+    padding-right: calc(50% - 140px);
+  }
+  
+  .containers {
+    padding-right: calc(50% - 140px);
+  }
+  
+  .detailsCard {
+    flex: 0 0 280px;
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .skillCard {
+    flex: 0 0 280px;
+    width: 280px;
+    max-width: 280px;
     padding: 0.875rem;
+    padding-top: 2rem;
+    margin: 0 auto;
   }
 
   .articleContainer {

@@ -1,0 +1,344 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease-out;
+}
+
+[data-theme="dark"] .overlay {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  position: relative;
+  background-color: var(--bg-color);
+  border-radius: var(--border-radius-lg);
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease-out;
+  border: 1px solid var(--color-light-grey);
+  transition: background-color var(--transition-speed) var(--transition-ease),
+              border-color var(--transition-speed) var(--transition-ease);
+}
+
+[data-theme="dark"] .modal {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: 1px solid var(--color-light-grey);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  color: var(--text-color);
+  transition: all var(--transition-speed) var(--transition-ease);
+  transition: background-color var(--transition-speed) var(--transition-ease),
+              color var(--transition-speed) var(--transition-ease),
+              border-color var(--transition-speed) var(--transition-ease),
+              transform var(--transition-speed) var(--transition-ease);
+}
+
+.closeButton:hover {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+  transform: rotate(90deg);
+}
+
+[data-theme="dark"] .closeButton:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-white);
+}
+
+.closeButton:active {
+  transform: rotate(90deg) scale(0.95);
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.imageSection {
+  width: 100%;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  background-color: var(--color-light-grey);
+}
+
+.modalImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.contentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modalTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+.modalDescription {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-medium-grey);
+  margin: 0;
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+.techSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.techSectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+.techTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.techTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--color-light-grey);
+  transition: background-color var(--transition-speed) var(--transition-ease),
+              color var(--transition-speed) var(--transition-ease),
+              border-color var(--transition-speed) var(--transition-ease);
+  white-space: nowrap;
+}
+
+.techIcon {
+  flex-shrink: 0;
+  height: 1rem;
+  width: 1rem;
+  color: var(--color-black);
+  transition: color var(--transition-speed) var(--transition-ease), 
+              filter var(--transition-speed) var(--transition-ease);
+  filter: brightness(0) saturate(100%);
+}
+
+[data-theme="dark"] .techIcon {
+  color: var(--color-white);
+  filter: brightness(0) saturate(100%) invert(1);
+}
+
+.techTag:hover {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+}
+
+.techTag:hover .techIcon {
+  color: var(--color-white);
+  filter: brightness(0) saturate(100%) invert(1);
+}
+
+[data-theme="dark"] .techTag:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-white);
+}
+
+[data-theme="dark"] .techTag:hover .techIcon {
+  color: var(--color-black);
+  filter: brightness(0) saturate(100%);
+}
+
+.linksSection {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.linkButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--color-dark-grey);
+  background-color: transparent;
+  color: var(--text-color);
+  font-family: var(--font-family);
+  transition: all var(--transition-speed) var(--transition-ease);
+  text-decoration: none;
+}
+
+.linkButton:hover {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .linkButton:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.linkButton:active {
+  transform: translateY(0);
+}
+
+.linkButton svg {
+  flex-shrink: 0;
+}
+
+/* Scrollbar styling for modal */
+.modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: var(--bg-color);
+  border-radius: var(--border-radius-sm);
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: var(--color-light-grey);
+  border-radius: var(--border-radius-sm);
+  transition: background var(--transition-speed) var(--transition-ease);
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+  background: var(--color-medium-grey);
+}
+
+@media screen and (max-width: 768px) {
+  .overlay {
+    padding: 1rem;
+  }
+
+  .modal {
+    max-height: 95vh;
+  }
+
+  .modalContent {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .modalTitle {
+    font-size: 1.5rem;
+  }
+
+  .modalDescription {
+    font-size: 1rem;
+  }
+
+  .linksSection {
+    flex-direction: column;
+  }
+
+  .linkButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .closeButton {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .modalContent {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .modalTitle {
+    font-size: 1.25rem;
+  }
+
+  .modalDescription {
+    font-size: 0.9rem;
+  }
+
+  .techSectionTitle {
+    font-size: 1.1rem;
+  }
+
+  .techTag {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+  }
+}
