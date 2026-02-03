@@ -65,12 +65,32 @@
   border-radius: var(--border-radius-md);
   border: var(--color-light-grey) 0.1rem solid;
   text-align: center;
-  transition: transform var(--transition-speed) var(--transition-ease), box-shadow var(--transition-speed) var(--transition-ease), background-color var(--transition-speed) var(--transition-ease);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color var(--transition-speed) var(--transition-ease),
+              border-color var(--transition-speed) var(--transition-ease);
+  will-change: transform, box-shadow;
 }
 
 .detailsCard:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-medium);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15),
+              0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-medium-grey);
+}
+
+/* Enhanced shadow for dark theme */
+[data-theme="dark"] .detailsCard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5),
+              0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Active state for better feedback */
+.detailsCard:active {
+  transform: translateY(-4px) scale(1.01);
+  transition: transform 0.1s ease;
 }
 
 .detailsCard h3 {
