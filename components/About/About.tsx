@@ -7,59 +7,47 @@ import { useCounterAnimation } from '@/hooks/useCounterAnimation';
 import styles from './About.module.css';
 
 /**
- * Extracts number, time unit, and category from text like "3 Years Frontend" or "1 Year Backend"
+ * Calculates the number of years between a start date and today, rounded to the nearest whole number.
+ */
+function calculateYears(startDate: Date): number {
+  const today = new Date();
+  const diffTime = today.getTime() - startDate.getTime();
+  const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25); // Account for leap years
+  return Math.round(diffYears);
+}
+
+/**
+ * Extracts time unit and category from text like "3 Years Frontend" or "1 Year Backend"
  * Returns data formatted as "Category - Number Time"
  */
 function parseExperienceText(text: string): { 
-  number: number; 
   timeUnit: string; 
   category: string;
 } {
   // Match pattern: "3 Years Frontend" or "1 Year Backend"
   // Format: number + time unit + category
-  const match = text.match(/^(\d+(?:\.\d+)?)\s+(Year|Years|Month|Months)\s+(.+)$/i);
+  const match = text.match(/^\d+(?:\.\d+)?\s+(Year|Years|Month|Months)\s+(.+)$/i);
   if (match) {
     return {
-      number: parseFloat(match[1]),
-      timeUnit: match[2],
-      category: match[3].trim(),
+      timeUnit: match[1],
+      category: match[2].trim(),
     };
   }
   
-  // Fallback: try to find number and extract parts
-  const numberMatch = text.match(/(\d+(?:\.\d+)?)/);
-  if (numberMatch) {
-    const number = parseFloat(numberMatch[1]);
-    const parts = text.split(numberMatch[1]);
-    const beforeNumber = parts[0]?.trim() || '';
-    const afterNumber = parts[1]?.trim() || '';
-    
-    // Try to extract time unit and category
-    const timeUnitMatch = afterNumber.match(/^(Year|Years|Month|Months)/i);
-    if (timeUnitMatch) {
-      const timeUnit = timeUnitMatch[1];
-      const category = afterNumber.substring(timeUnit.length).trim();
-      return {
-        number,
-        timeUnit,
-        category: category || 'Experience',
-      };
-    }
-    
-    // If no time unit found, assume the last word is category
-    const words = afterNumber.split(/\s+/);
-    const category = words[words.length - 1] || 'Experience';
-    const timeUnit = words.slice(0, -1).join(' ') || 'Years';
-    
+  // Fallback: try to extract time unit and category
+  const timeUnitMatch = text.match(/(Year|Years|Month|Months)/i);
+  if (timeUnitMatch) {
+    const timeUnit = timeUnitMatch[1];
+    const parts = text.split(timeUnit);
+    const category = parts[1]?.trim() || 'Experience';
     return {
-      number,
       timeUnit,
       category,
     };
   }
   
-  // Fallback: no number found
-  return { number: 0, timeUnit: 'Years', category: text };
+  // Fallback: no time unit found
+  return { timeUnit: 'Years', category: text };
 }
 
 export default function About() {
@@ -76,22 +64,31 @@ export default function About() {
     rootMargin: '0px 0px -50px 0px',
   });
 
-  // Parse experience text to extract numbers, time units, and categories
+  // Parse experience text to extract time units and categories
   const experienceYearsText = t('about.experienceYears');
   const experienceMonthsText = t('about.experienceMonths');
   
   const yearsData = parseExperienceText(experienceYearsText);
   const monthsData = parseExperienceText(experienceMonthsText);
 
+  // Calculate years dynamically from start dates
+  // Using Date(year, monthIndex, day) to avoid timezone issues
+  // monthIndex: 0 = January, so 0 = January 1st
+  const frontendStartDate = new Date(2023, 0, 1); // January 1, 2023
+  const backendStartDate = new Date(2025, 0, 1); // January 1, 2025
+  
+  const frontendYears = calculateYears(frontendStartDate);
+  const backendYears = calculateYears(backendStartDate);
+
   // Counter animations for experience numbers
-  const yearsCounter = useCounterAnimation(yearsData.number, {
+  const frontendCounter = useCounterAnimation(frontendYears, {
     duration: 2000,
     delay: 200,
     easing: 'easeOut',
     start: hasExperienceIntersected,
   });
 
-  const monthsCounter = useCounterAnimation(monthsData.number, {
+  const backendCounter = useCounterAnimation(backendYears, {
     duration: 2000,
     delay: 400,
     easing: 'easeOut',
@@ -124,16 +121,16 @@ export default function About() {
             <p className={styles.counterText}>
               <span>{yearsData.category}</span>
               <span className={styles.counterSeparator}> - </span>
-              <span className={styles.counterNumber} aria-label={`${yearsData.number} ${yearsData.timeUnit} ${yearsData.category}`}>
-                {Math.round(yearsCounter.value)}
+              <span className={styles.counterNumber} aria-label={`${frontendYears} ${yearsData.timeUnit} ${yearsData.category}`}>
+                {Math.round(frontendCounter.value)}
               </span>
               <span> {yearsData.timeUnit}</span>
             </p>
             <p className={styles.counterText}>
               <span>{monthsData.category}</span>
               <span className={styles.counterSeparator}> - </span>
-              <span className={styles.counterNumber} aria-label={`${monthsData.number} ${monthsData.timeUnit} ${monthsData.category}`}>
-                {Math.round(monthsCounter.value)}
+              <span className={styles.counterNumber} aria-label={`${backendYears} ${monthsData.timeUnit} ${monthsData.category}`}>
+                {Math.round(backendCounter.value)}
               </span>
               <span> {monthsData.timeUnit}</span>
             </p>
