@@ -1,6 +1,6 @@
 import './globals.css';
 import Providers from '@/components/Providers/Providers';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
   title: 'NextJS Portfolio - Aaron Paul Greyling | Fullstack Developer',
@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
+};
+
+export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
     { media: '(prefers-color-scheme: dark)', color: '#141414' },
