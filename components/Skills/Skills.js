@@ -11,7 +11,6 @@ const frontendSkills = [
   { name: 'Javascript', level: 'experienced' },
   { name: 'SASS', level: 'intermediate' },
   { name: 'React.js', level: 'intermediate' },
-  { name: 'Cursor', level: 'intermediate' },
   { name: 'Tailwind', level: 'basic' },
   { name: 'Framer', level: 'basic' },
   { name: 'Typescript', level: 'basic' },
@@ -26,6 +25,16 @@ const backendSkills = [
   { name: 'Express.js', level: 'intermediate' },
   { name: 'Git', level: 'intermediate' },
   { name: 'MySQL', level: 'basic' },
+  { name: 'APIs', level: 'basic' },
+];
+
+const toolsSkills = [
+  { name: 'Cursor', level: 'experienced' },
+  { name: 'MCP', level: 'basic' },
+  { name: 'Prompt Engineering', level: 'intermediate' },
+  { name: 'SPRINT', level: 'experienced' },
+  { name: 'Project Management', level: 'intermediate' },
+  { name: 'Docker', level: 'intermediate' },
 ];
 
 export default function Skills() {
@@ -57,6 +66,7 @@ export default function Skills() {
 
   const frontendCard = <SkillCard title={t('skills.frontend')} skills={frontendSkills} />;
   const backendCard = <SkillCard title={t('skills.backend')} skills={backendSkills} />;
+  const toolsCard = <SkillCard title={t('skills.tools')} skills={toolsSkills} />;
 
   return (
     <section id="skills" className={styles.skills} aria-label="Skills section">
@@ -66,11 +76,13 @@ export default function Skills() {
         <div className={styles.desktopView}>
           <SkillCard title={t('skills.frontend')} skills={frontendSkills} />
           <SkillCard title={t('skills.backend')} skills={backendSkills} />
+          <SkillCard title={t('skills.tools')} skills={toolsSkills} />
         </div>
         <div className={styles.mobileView}>
-          <SkillsCarousel dots={[0, 1]}>
+          <SkillsCarousel dots={[0, 1, 2]}>
             {frontendCard}
             {backendCard}
+            {toolsCard}
           </SkillsCarousel>
         </div>
       </div>
