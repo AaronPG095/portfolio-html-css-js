@@ -224,41 +224,108 @@
 
 .btn {
   font-weight: 600;
-  transition: all 300ms ease;
-  padding: 1rem;
-  width: 140px;
-  border-radius: 2rem;
+  transition: all var(--transition-speed) var(--transition-ease);
+  padding: 1rem 2rem;
+  min-width: 140px;
+  border-radius: var(--border-radius-md);
   cursor: pointer;
-  border: var(--color-dark-grey) 0.1rem solid;
   font-family: var(--font-family);
   font-size: 1rem;
+  border: 2px solid var(--color-black);
+  position: relative;
+  overflow: hidden;
 }
 
-.btnColor1,
-.btnColor2:hover {
-  background: var(--color-dark-grey);
+/* Primary button (btnColor1) - filled style */
+.btnColor1 {
+  background: var(--color-black);
   color: var(--color-white);
+  border-color: var(--color-black);
 }
 
 .btnColor1:hover {
-  background: var(--color-black);
+  background: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-black);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-subtle);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+.btnColor1:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Secondary button (btnColor2) - outlined style */
 .btnColor2 {
   background: transparent;
-  color: var(--text-color);
+  color: var(--color-black);
+  border-color: var(--color-black);
 }
 
 .btnColor2:hover {
-  border: var(--color-white) 0.1rem solid;
+  background: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-subtle);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.btn:active {
+.btnColor2:active {
   transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme adjustments */
+:global([data-theme="dark"]) .btnColor1 {
+  background: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-white);
+}
+
+:global([data-theme="dark"]) .btnColor1:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-white);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+:global([data-theme="dark"]) .btnColor2 {
+  color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+:global([data-theme="dark"]) .btnColor2:hover {
+  background: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-white);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 4px;
+}
+
+:global([data-theme="dark"]) .btn:focus-visible {
+  outline-color: var(--color-white);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: background-color var(--transition-speed) var(--transition-ease),
+                color var(--transition-speed) var(--transition-ease),
+                border-color var(--transition-speed) var(--transition-ease);
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+
+  .btn:active {
+    transform: none;
+  }
 }
 
 @media screen and (max-width: 1400px) {

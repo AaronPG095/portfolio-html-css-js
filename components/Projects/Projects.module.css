@@ -237,31 +237,74 @@
 
 .btn {
   font-weight: 600;
-  transition: all 300ms ease;
-  padding: 1rem;
-  width: 8rem;
-  border-radius: 2rem;
+  transition: all var(--transition-speed) var(--transition-ease);
+  padding: 0.875rem 1.5rem;
+  min-width: 8rem;
+  border-radius: var(--border-radius-md);
   cursor: pointer;
-  border: var(--color-dark-grey) 0.1rem solid;
   font-family: var(--font-family);
   font-size: 1rem;
+  border: 2px solid var(--color-black);
+  position: relative;
+  overflow: hidden;
 }
 
 .projectBtn {
   background: transparent;
-  color: var(--text-color);
+  color: var(--color-black);
+  border-color: var(--color-black);
 }
 
 .projectBtn:hover {
-  background: var(--color-dark-grey);
+  background: var(--color-black);
   color: var(--color-white);
-  border: var(--color-white) 0.1rem solid;
+  border-color: var(--color-black);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-subtle);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .projectBtn:active {
   transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme adjustments */
+:global([data-theme="dark"]) .projectBtn {
+  color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+:global([data-theme="dark"]) .projectBtn:hover {
+  background: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-white);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 4px;
+}
+
+:global([data-theme="dark"]) .btn:focus-visible {
+  outline-color: var(--color-white);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: background-color var(--transition-speed) var(--transition-ease),
+                color var(--transition-speed) var(--transition-ease),
+                border-color var(--transition-speed) var(--transition-ease);
+  }
+
+  .projectBtn:hover {
+    transform: none;
+  }
+
+  .projectBtn:active {
+    transform: none;
+  }
 }
 
 .dots {
