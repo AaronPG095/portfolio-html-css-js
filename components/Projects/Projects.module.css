@@ -163,6 +163,70 @@
   font-size: 1.75rem;
 }
 
+.techTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 0.75rem 0 1rem 0;
+  width: 100%;
+}
+
+.techTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--color-light-grey);
+  transition: background-color var(--transition-speed) var(--transition-ease),
+              color var(--transition-speed) var(--transition-ease),
+              border-color var(--transition-speed) var(--transition-ease);
+  white-space: nowrap;
+}
+
+.techIcon {
+  flex-shrink: 0;
+  height: 0.875rem;
+  width: 0.875rem;
+  color: var(--color-black);
+  transition: color var(--transition-speed) var(--transition-ease), filter var(--transition-speed) var(--transition-ease);
+  /* Convert colored icons to black in light mode */
+  filter: brightness(0) saturate(100%);
+}
+
+[data-theme="dark"] .techIcon {
+  color: var(--color-white);
+  /* Convert colored icons to white in dark mode */
+  filter: brightness(0) saturate(100%) invert(1);
+}
+
+.techTag:hover {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+}
+
+.techTag:hover .techIcon {
+  color: var(--color-white);
+  filter: brightness(0) saturate(100%) invert(1);
+}
+
+[data-theme="dark"] .techTag:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-white);
+}
+
+[data-theme="dark"] .techTag:hover .techIcon {
+  color: var(--color-black);
+  filter: brightness(0) saturate(100%);
+}
+
 .btnContainer {
   margin-top: 1rem;
   width: 100%;

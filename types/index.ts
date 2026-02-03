@@ -111,6 +111,7 @@ export interface Project {
   descriptionKey: string;
   github: string;
   liveDemo: string;
+  technologies?: string[];
 }
 
 // Carousel options
