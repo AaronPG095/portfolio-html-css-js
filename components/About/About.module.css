@@ -88,6 +88,12 @@
   will-change: transform, box-shadow;
 }
 
+[data-theme="dark"] .detailsCard {
+  background: var(--color-bg-light);
+  border-color: var(--color-light-grey);
+  border-width: 1px;
+}
+
 .detailsCard:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15),
@@ -97,8 +103,9 @@
 
 /* Enhanced shadow for dark theme */
 [data-theme="dark"] .detailsCard:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5),
-              0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-dark);
+  border-color: var(--color-medium-grey);
+  background: var(--color-bg-light);
 }
 
 /* Active state for better feedback */
@@ -116,6 +123,11 @@
 .detailsCard p {
   color: var(--color-medium-grey);
   margin: 0.5rem 0;
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+[data-theme="dark"] .detailsCard p {
+  color: var(--color-medium-grey);
 }
 
 .counterText {
@@ -158,6 +170,7 @@
 
 :global([data-theme="dark"]) .icon {
   filter: brightness(0) invert(1);
+  opacity: 0.95;
 }
 
 /* Initial state for scroll animation */
@@ -225,6 +238,11 @@
   font-size: 1.1rem;
   margin: 0;
   text-align: left;
+  color: var(--color-medium-grey);
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+[data-theme="dark"] .textContent p {
   color: var(--color-medium-grey);
 }
 

@@ -54,6 +54,12 @@
   will-change: transform, box-shadow;
 }
 
+[data-theme="dark"] .infoContainer {
+  background: var(--color-bg-light);
+  border-color: var(--color-light-grey);
+  border-width: 1px;
+}
+
 .infoContainer:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15),
@@ -63,8 +69,9 @@
 
 /* Enhanced shadow for dark theme */
 [data-theme="dark"] .infoContainer:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5),
-              0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-dark);
+  border-color: var(--color-medium-grey);
+  background: var(--color-bg-light);
 }
 
 /* Active state for better feedback */
@@ -85,6 +92,11 @@
   font-size: larger;
   margin: 0;
   color: var(--color-medium-grey);
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+[data-theme="dark"] .infoCard p {
+  color: var(--color-medium-grey);
 }
 
 .infoCard a {
@@ -99,6 +111,11 @@
   text-underline-offset: 0.25rem;
 }
 
+[data-theme="dark"] .infoCard a:hover {
+  color: var(--color-white);
+  text-decoration-color: var(--color-white);
+}
+
 .icon {
   cursor: default;
   flex-shrink: 0;
@@ -109,6 +126,7 @@
 
 :global([data-theme="dark"]) .icon {
   filter: brightness(0) invert(1);
+  opacity: 0.95;
 }
 
 .emailIcon {

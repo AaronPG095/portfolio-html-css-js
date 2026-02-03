@@ -9,6 +9,10 @@
   transition: color var(--transition-speed) var(--transition-ease);
 }
 
+[data-theme="dark"] .footer p {
+  color: var(--color-medium-grey);
+}
+
 .navLinksContainer {
   display: flex;
   justify-content: center;
@@ -33,6 +37,11 @@
   text-decoration: underline;
   text-underline-offset: 0.5rem;
   text-decoration-color: var(--color-lighter-grey);
+}
+
+[data-theme="dark"] .navLinks a:hover {
+  color: var(--color-medium-grey);
+  text-decoration-color: var(--color-medium-grey);
 }
 
 .socialsContainer {
@@ -106,6 +115,8 @@
 :global([data-theme="dark"]) .socialLink::before {
   background-color: var(--color-white);
   color: var(--color-black);
+  box-shadow: var(--shadow-dark);
+  border: 1px solid var(--color-light-grey);
 }
 
 :global([data-theme="dark"]) .socialLink::after {
@@ -123,6 +134,12 @@
 
 :global([data-theme="dark"]) .icon {
   filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+
+:global([data-theme="dark"]) .socialLink:hover .icon {
+  opacity: 1;
+  filter: brightness(0) invert(1) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
 }
 
 @media screen and (max-width: 600px) {

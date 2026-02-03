@@ -31,23 +31,25 @@
   
   --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-dark: 0 8px 24px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="dark"] {
   --color-black: rgb(255, 255, 255);
   --color-dark-grey: rgb(200, 200, 200);
-  --color-medium-grey: rgb(170, 170, 170);
-  --color-light-grey: rgb(100, 100, 100);
-  --color-lighter-grey: rgb(80, 80, 80);
-  --color-bg-light: rgb(30, 30, 30);
+  --color-medium-grey: rgb(190, 190, 190);
+  --color-light-grey: rgb(120, 120, 120);
+  --color-lighter-grey: rgb(100, 100, 100);
+  --color-bg-light: rgb(35, 35, 35);
   --color-white: rgb(20, 20, 20);
   
   --bg-color: rgb(20, 20, 20);
   --text-color: rgb(255, 255, 255);
   --nav-bg: rgb(25, 25, 25);
   
-  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-dark: 0 8px 24px rgba(0, 0, 0, 0.6), 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* ============================================

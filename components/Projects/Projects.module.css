@@ -356,6 +356,7 @@
 
 :global([data-theme="dark"]) .dot.active {
   background-color: var(--color-white);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
 @media screen and (max-width: 1400px) {

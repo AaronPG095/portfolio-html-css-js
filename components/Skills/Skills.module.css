@@ -154,6 +154,11 @@
   background-color: var(--color-bg-light);
 }
 
+[data-theme="dark"] .articleContainer :global(article:hover),
+[data-theme="dark"] .skillArticle:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
 
 /* Fixed tooltip that renders outside containers */
 .fixedTooltip {
@@ -178,7 +183,8 @@
 [data-theme="dark"] .fixedTooltip {
   background-color: var(--color-white);
   color: var(--color-black);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-dark);
+  border: 1px solid var(--color-light-grey);
 }
 
 .fixedTooltipArrow {
@@ -289,6 +295,7 @@
 
 [data-theme="dark"] .progressBar {
   background-color: var(--color-white);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
 }
 
 .progressBarAnimated {
@@ -400,6 +407,7 @@
 
 :global([data-theme="dark"]) .dot.active {
   background-color: var(--color-white);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
 @media screen and (min-width: 1201px) {

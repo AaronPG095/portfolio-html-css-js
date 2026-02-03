@@ -43,7 +43,9 @@
 }
 
 [data-theme="dark"] .modal {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--shadow-dark);
+  background-color: var(--color-bg-light);
+  border-color: var(--color-light-grey);
 }
 
 @keyframes slideUp {
@@ -79,6 +81,11 @@
               transform var(--transition-speed) var(--transition-ease);
 }
 
+[data-theme="dark"] .closeButton {
+  border-color: var(--color-light-grey);
+  color: var(--color-white);
+}
+
 .closeButton:hover {
   background-color: var(--color-black);
   color: var(--color-white);
@@ -90,6 +97,7 @@
   background-color: var(--color-white);
   color: var(--color-black);
   border-color: var(--color-white);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .closeButton:active {
@@ -176,6 +184,12 @@
   white-space: nowrap;
 }
 
+[data-theme="dark"] .techTag {
+  background-color: var(--color-bg-light);
+  border-color: var(--color-light-grey);
+  border-width: 1px;
+}
+
 .techIcon {
   flex-shrink: 0;
   height: 1rem;
@@ -189,6 +203,7 @@
 [data-theme="dark"] .techIcon {
   color: var(--color-white);
   filter: brightness(0) saturate(100%) invert(1);
+  opacity: 0.95;
 }
 
 .techTag:hover {
@@ -237,6 +252,11 @@
   text-decoration: none;
 }
 
+[data-theme="dark"] .linkButton {
+  border-color: var(--color-light-grey);
+  color: var(--color-white);
+}
+
 .linkButton:hover {
   background-color: var(--color-black);
   color: var(--color-white);
@@ -249,7 +269,7 @@
   background-color: var(--color-white);
   color: var(--color-black);
   border-color: var(--color-white);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2), 0 2px 4px rgba(255, 255, 255, 0.1);
 }
 
 .linkButton:active {
@@ -277,6 +297,18 @@
 }
 
 .modal::-webkit-scrollbar-thumb:hover {
+  background: var(--color-medium-grey);
+}
+
+[data-theme="dark"] .modal::-webkit-scrollbar-track {
+  background: var(--color-bg-light);
+}
+
+[data-theme="dark"] .modal::-webkit-scrollbar-thumb {
+  background: var(--color-light-grey);
+}
+
+[data-theme="dark"] .modal::-webkit-scrollbar-thumb:hover {
   background: var(--color-medium-grey);
 }
 
