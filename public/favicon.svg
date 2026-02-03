@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <style>
+    /* Light mode (default) */
+    .icon-fill { fill: #000000; }
+    .icon-bg { fill: #ffffff; }
+    
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      .icon-fill { fill: #ffffff; }
+      .icon-bg { fill: #141414; }
+    }
+  </style>
+  
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" class="icon-bg"/>
+  
+  <!-- APG Monogram - Bold Minimalist -->
+  <!-- A -->
+  <path d="M 20 80 L 25 65 L 23 65 L 27 50 L 31 50 L 35 65 L 33 65 L 28 80 Z" 
+        class="icon-fill"/>
+  <path d="M 24 68 L 34 68 L 29 60 Z" 
+        class="icon-bg"/>
+  
+  <!-- P -->
+  <path d="M 40 80 L 40 50 L 52 50 Q 56 50 56 53 Q 56 56 52 56 L 45 56 L 45 62 L 52 62 Q 56 62 56 65 Q 56 68 52 68 L 45 68 L 45 80 Z" 
+        class="icon-fill"/>
+  <path d="M 45 52 L 52 52 Q 54 52 54 53.5 Q 54 55 52 55 L 45 55 Z" 
+        class="icon-bg"/>
+  
+  <!-- G -->
+  <path d="M 60 50 L 75 50 Q 80 50 80 55 L 80 70 Q 80 75 75 75 L 65 75 L 65 80 L 80 80 L 80 85 Q 80 90 75 90 L 60 90 Q 55 90 55 85 L 55 55 Q 55 50 60 50 Z" 
+        class="icon-fill"/>
+  <path d="M 60 55 L 75 55 Q 77 55 77 57.5 L 77 72.5 Q 77 75 75 75 L 65 75 L 65 70 L 75 70 Q 77 70 77 67.5 L 77 57.5 Q 77 55 75 55 L 60 55 Z" 
+        class="icon-bg"/>
+  <path d="M 65 75 L 75 75 L 75 80 L 65 80 Z" 
+        class="icon-bg"/>
+</svg>
