@@ -65,8 +65,13 @@ function parseExperienceText(text: string): {
 export default function About() {
   const { t } = useLanguage();
   
-  // Intersection observer for the experience card
+  // Intersection observers for both cards
   const [experienceCardRef, , hasExperienceIntersected] = useIntersectionObserver({
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px',
+  });
+
+  const [educationCardRef, , hasEducationIntersected] = useIntersectionObserver({
     threshold: 0.2,
     rootMargin: '0px 0px -50px 0px',
   });
@@ -110,7 +115,7 @@ export default function About() {
             <Image
               src="/assets/experience.png"
               alt=""
-              className={styles.icon}
+              className={`${styles.icon} ${hasExperienceIntersected ? styles.iconAnimated : styles.iconInitial} ${styles.iconDelay1}`}
               width={32}
               height={32}
               aria-hidden="true"
@@ -133,11 +138,14 @@ export default function About() {
               <span> {monthsData.timeUnit}</span>
             </p>
           </div>
-          <div className={styles.detailsCard}>
+          <div 
+            ref={educationCardRef as React.RefObject<HTMLDivElement>}
+            className={styles.detailsCard}
+          >
             <Image
               src="/assets/education.png"
               alt=""
-              className={styles.icon}
+              className={`${styles.icon} ${hasEducationIntersected ? styles.iconAnimated : styles.iconInitial} ${styles.iconDelay2}`}
               width={32}
               height={32}
               aria-hidden="true"

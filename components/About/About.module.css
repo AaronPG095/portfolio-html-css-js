@@ -137,11 +137,37 @@
   cursor: pointer;
   height: 2rem;
   width: auto;
-  transition: transform var(--transition-speed) var(--transition-ease), opacity var(--transition-speed) var(--transition-ease), filter var(--transition-speed) var(--transition-ease);
+  transition: transform var(--transition-speed) var(--transition-ease), 
+              opacity var(--transition-speed) var(--transition-ease), 
+              filter var(--transition-speed) var(--transition-ease);
 }
 
 :global([data-theme="dark"]) .icon {
   filter: brightness(0) invert(1);
+}
+
+/* Initial state for scroll animation */
+.iconInitial {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Animated state when scrolled into view */
+.iconAnimated {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              filter var(--transition-speed) var(--transition-ease);
+}
+
+/* Staggered animation delays for sequential reveal */
+.iconAnimated.iconDelay1 {
+  transition-delay: 0s;
+}
+
+.iconAnimated.iconDelay2 {
+  transition-delay: 0.15s;
 }
 
 .textContainer {
