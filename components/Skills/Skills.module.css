@@ -7,6 +7,7 @@
   margin-top: 4rem;
   min-height: fit-content;
   scroll-margin-top: 17vh;
+  overflow: visible;
 }
 
 .subtitle {
@@ -27,6 +28,8 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  overflow: visible;
+  position: relative;
 }
 
 .desktopView {
@@ -43,6 +46,8 @@
 
 .mobileView {
   display: none;
+  overflow: visible;
+  position: relative;
 }
 
 .skillCard {
@@ -53,6 +58,7 @@
   text-align: center;
   transition: transform var(--transition-speed) var(--transition-ease), box-shadow var(--transition-speed) var(--transition-ease), background-color var(--transition-speed) var(--transition-ease), z-index 0s;
   padding: 1.5rem;
+  padding-top: 2.5rem;
   overflow: visible;
   position: relative;
   z-index: 0;
@@ -87,6 +93,8 @@
   overflow: visible;
   position: relative;
   z-index: 0;
+  padding-top: 1rem;
+  margin-top: 1rem;
 }
 
 .articleContainer :global(article),
@@ -110,18 +118,10 @@
   background-color: var(--color-bg-light);
 }
 
-/* Increase z-index when tooltip is active to ensure it's on top */
-.skillArticle[data-tooltip]:hover {
-  z-index: 9998;
-  position: relative;
-}
 
-/* Tooltip styling */
-.skillArticle[data-tooltip]:hover::before {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 0;
+/* Fixed tooltip that renders outside containers */
+.fixedTooltip {
+  position: fixed;
   background-color: var(--color-black);
   color: var(--color-white);
   padding: 0.5rem 0.75rem;
@@ -132,34 +132,29 @@
   max-width: 280px;
   min-width: 200px;
   width: max-content;
-  z-index: 9999;
+  z-index: 99999;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   pointer-events: none;
-  opacity: 0;
   animation: tooltipFadeIn 0.2s ease-out forwards;
+  margin-bottom: 8px;
 }
 
-[data-theme="dark"] .skillArticle[data-tooltip]:hover::before {
+[data-theme="dark"] .fixedTooltip {
   background-color: var(--color-white);
   color: var(--color-black);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.skillArticle[data-tooltip]:hover::after {
-  content: '';
+.fixedTooltipArrow {
   position: absolute;
-  bottom: calc(100% + 2px);
-  left: 1rem;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
   border: 6px solid transparent;
   border-top-color: var(--color-black);
-  z-index: 10000;
-  pointer-events: none;
-  opacity: 0;
-  animation: tooltipFadeInArrow 0.2s ease-out forwards;
-  transform: translateY(0);
 }
 
-[data-theme="dark"] .skillArticle[data-tooltip]:hover::after {
+[data-theme="dark"] .fixedTooltipArrow {
   border-top-color: var(--color-white);
 }
 
@@ -185,16 +180,7 @@
   }
 }
 
-/* Adjust tooltip position for right column items (even) - center them */
-.skillArticle[data-tooltip]:nth-child(even):hover::before {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.skillArticle[data-tooltip]:nth-child(even):hover::after {
-  left: 50%;
-  transform: translateX(-50%);
-}
+/* Old tooltip styles removed - using fixed positioning now */
 
 .skillContent {
   flex: 1;
@@ -412,7 +398,9 @@
   
   .skillCard {
     padding: 1rem;
+    padding-top: 2rem;
     box-sizing: border-box;
+    overflow: visible;
   }
 
   .articleContainer {
@@ -422,6 +410,9 @@
     align-items: start;
     width: 100%;
     box-sizing: border-box;
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+    overflow: visible;
   }
 
   .articleContainer :global(article),
