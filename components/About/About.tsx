@@ -119,16 +119,14 @@ export default function About() {
             />
             <h3>{t('about.experience')}</h3>
             <p className={styles.counterText}>
-              <span>{yearsData.category}</span>
-              <span className={styles.counterSeparator}> - </span>
+              <span>{yearsData.category} </span>
               <span className={styles.counterNumber} aria-label={`${frontendYears} ${yearsData.timeUnit} ${yearsData.category}`}>
                 {Math.round(frontendCounter.value)}
               </span>
               <span> {yearsData.timeUnit}</span>
             </p>
             <p className={styles.counterText}>
-              <span>{monthsData.category}</span>
-              <span className={styles.counterSeparator}> - </span>
+              <span>{monthsData.category} </span>
               <span className={styles.counterNumber} aria-label={`${backendYears} ${monthsData.timeUnit} ${monthsData.category}`}>
                 {Math.round(backendCounter.value)}
               </span>
