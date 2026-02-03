@@ -176,6 +176,32 @@ a:focus-visible {
 }
 
 /* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable fade-in animations for lazy-loaded images */
+  img[loading="lazy"] {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+
+/* ============================================
    ANIMATIONS
    ============================================ */
 

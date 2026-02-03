@@ -1,6 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/hooks/useLanguage';
+import { useKeyboardShortcut } from '@/hooks/useKeyboardShortcuts';
 import styles from './LanguageToggle.module.css';
 import type { Language } from '@/types';
 
@@ -9,7 +10,10 @@ interface LanguageToggleProps {
 }
 
 export default function LanguageToggle({ isMobile = false }: LanguageToggleProps) {
-  const { language, setLanguage, mounted } = useLanguage();
+  const { language, setLanguage, toggleLanguage, mounted } = useLanguage();
+
+  // Keyboard shortcut: 'L' to toggle language
+  useKeyboardShortcut('l', toggleLanguage, mounted);
 
   if (!mounted) {
     return null; // Prevent hydration mismatch

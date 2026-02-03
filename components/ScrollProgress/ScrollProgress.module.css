@@ -14,3 +14,10 @@
   background-color: var(--color-black);
   transition: width 0.1s ease-out;
 }
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .progressBar {
+    transition: none;
+  }
+}

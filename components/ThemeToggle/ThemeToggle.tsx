@@ -1,10 +1,14 @@
 'use client';
 
 import { useTheme } from '@/hooks/useTheme';
+import { useKeyboardShortcut } from '@/hooks/useKeyboardShortcuts';
 import styles from './ThemeToggle.module.css';
 
 export default function ThemeToggle() {
   const { theme, toggleTheme, mounted } = useTheme();
+
+  // Keyboard shortcut: 'T' to toggle theme
+  useKeyboardShortcut('t', toggleTheme, mounted);
 
   if (!mounted) {
     return null; // Prevent hydration mismatch

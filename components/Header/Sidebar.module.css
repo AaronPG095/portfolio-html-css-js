@@ -176,3 +176,17 @@
   }
 }
 
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .backdrop {
+    transition: opacity 0.01ms, visibility 0.01ms;
+  }
+
+  .sidebar {
+    transition: background-color var(--transition-speed) var(--transition-ease);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}

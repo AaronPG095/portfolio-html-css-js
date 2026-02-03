@@ -51,3 +51,13 @@
   }
 }
 
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .scrollToTop {
+    transition: opacity 0.01ms, visibility 0.01ms, background-color var(--transition-speed) var(--transition-ease);
+  }
+
+  .scrollToTop:hover {
+    transform: none;
+  }
+}

@@ -170,6 +170,23 @@
   transition-delay: 0.15s;
 }
 
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .iconInitial {
+    opacity: 1;
+    transform: none;
+  }
+
+  .iconAnimated {
+    transition: filter var(--transition-speed) var(--transition-ease);
+  }
+
+  .iconAnimated.iconDelay1,
+  .iconAnimated.iconDelay2 {
+    transition-delay: 0s;
+  }
+}
+
 .textContainer {
   flex: 1;
   display: flex;
