@@ -28,7 +28,7 @@ export default function ProjectsCarousel({ children }: ProjectsCarouselProps) {
     // #region agent log
     fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ProjectsCarousel.tsx:27',message:'useEffect entry - setting up global mouse listeners',data:{hasContainer:containerRef.current!==null},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
     // #endregion
-    const handleMouseMoveGlobal = (e: globalThis.MouseEvent) => handleMouseMove(e);
+    const handleMouseMoveGlobal = (e) => handleMouseMove(e);
     const handleMouseUpGlobal = () => handleMouseUp();
 
     if (containerRef.current) {
