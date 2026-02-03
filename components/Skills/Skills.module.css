@@ -51,7 +51,9 @@
 }
 
 .skillCard {
-  flex: 1;
+  flex: 0 0 370px;
+  width: 370px;
+  max-width: 370px;
   background: var(--bg-color);
   border-radius: var(--border-radius-md);
   border: var(--color-light-grey) 0.1rem solid;
@@ -107,7 +109,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   text-align: initial;
-  gap: 1.5rem;
+  gap: 1.395rem;
   justify-items: stretch;
   align-items: stretch;
   overflow: visible;
@@ -121,12 +123,12 @@
 .skillArticle {
   display: flex;
   width: 100%;
-  gap: 0.75rem;
+  gap: 0.6975rem;
   align-items: flex-start;
-  padding: 1rem;
+  padding: 0.93rem;
   border-radius: var(--border-radius-sm);
   transition: background-color var(--transition-speed) var(--transition-ease), z-index 0s;
-  min-height: 4rem;
+  min-height: 3.72rem;
   position: relative;
   cursor: help;
   overflow: visible;
@@ -206,7 +208,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.6975rem;
   min-width: 0;
   width: 100%;
   position: relative;
@@ -216,8 +218,8 @@
 .icon {
   cursor: default;
   flex-shrink: 0;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.395rem;
+  width: 1.395rem;
   color: var(--color-black);
   transition: color var(--transition-speed) var(--transition-ease), filter var(--transition-speed) var(--transition-ease);
   /* Convert colored icons to black in light mode */
@@ -236,7 +238,7 @@
   color: var(--text-color);
   margin: 0;
   transition: color var(--transition-speed) var(--transition-ease);
-  font-size: 1rem;
+  font-size: 0.93rem;
   line-height: 1.2;
   position: relative;
   z-index: 0;
@@ -249,8 +251,8 @@
 
 /* Progress Bar Styles */
 .progressContainer {
-  width: 80px;
-  height: 8px;
+  width: 74.4px;
+  height: 7.44px;
   background-color: var(--color-light-grey);
   border-radius: 4px;
   overflow: hidden;
