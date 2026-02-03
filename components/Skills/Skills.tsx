@@ -1,11 +1,31 @@
 'use client';
 
-import Image from 'next/image';
 import { useLanguage } from '@/hooks/useLanguage';
 import SkillsCarousel from './SkillsCarousel';
 import SkillProgress from './SkillProgress';
 import styles from './Skills.module.css';
 import type { Skill } from '@/types';
+import { IconType } from 'react-icons';
+import {
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiSass,
+  SiReact,
+  SiTailwindcss,
+  SiFramer,
+  SiTypescript,
+  SiNextdotjs,
+  SiPhp,
+  SiLaravel,
+  SiMongodb,
+  SiNodedotjs,
+  SiExpress,
+  SiGit,
+  SiMysql,
+  SiDocker,
+} from 'react-icons/si';
+import { FaCode, FaProjectDiagram } from 'react-icons/fa';
 
 const frontendSkills: Skill[] = [
   { name: 'HTML', level: 'experienced' },
@@ -39,6 +59,41 @@ const toolsSkills: Skill[] = [
   { name: 'Docker', level: 'intermediate' },
 ];
 
+// Icon mapping for skills
+const skillIconMap: Record<string, IconType> = {
+  // Frontend
+  'HTML': SiHtml5,
+  'CSS': SiCss3,
+  'Javascript': SiJavascript,
+  'SASS': SiSass,
+  'React.js': SiReact,
+  'Tailwind': SiTailwindcss,
+  'Framer': SiFramer,
+  'Typescript': SiTypescript,
+  'Next.js': SiNextdotjs,
+  'PHP': SiPhp,
+  'Laravel': SiLaravel,
+  // Backend
+  'MongoDB': SiMongodb,
+  'Node.js': SiNodedotjs,
+  'Express.js': SiExpress,
+  'Git': SiGit,
+  'MySQL': SiMysql,
+  'APIs': FaCode,
+  // Tools
+  'Docker': SiDocker,
+  'Cursor': FaCode,
+  'MCP': FaCode,
+  'Prompt Engineering': FaCode,
+  'SPRINT': FaProjectDiagram,
+  'Project Management': FaProjectDiagram,
+};
+
+// Helper function to get icon for a skill
+function getSkillIcon(skillName: string): IconType {
+  return skillIconMap[skillName] || FaCode;
+}
+
 interface SkillCardProps {
   title: string;
   skills: Skill[];
@@ -51,22 +106,21 @@ function SkillCard({ title, skills }: SkillCardProps) {
     <div className={styles.skillCard}>
       <h2 className={styles.subTitle}>{title}</h2>
       <div className={styles.articleContainer}>
-        {skills.map((skill, index) => (
-          <article key={index} className={styles.skillArticle}>
-            <Image
-              src="/assets/checkmark.png"
-              alt=""
-              className={styles.icon}
-              width={24}
-              height={24}
-              aria-hidden="true"
-            />
-            <div className={styles.skillContent}>
-              <h3>{skill.name}</h3>
-              <SkillProgress level={skill.level} skillName={skill.name} />
-            </div>
-          </article>
-        ))}
+        {skills.map((skill, index) => {
+          const IconComponent = getSkillIcon(skill.name);
+          return (
+            <article key={index} className={styles.skillArticle}>
+              <IconComponent
+                className={styles.icon}
+                aria-hidden="true"
+              />
+              <div className={styles.skillContent}>
+                <h3>{skill.name}</h3>
+                <SkillProgress level={skill.level} skillName={skill.name} />
+              </div>
+            </article>
+          );
+        })}
       </div>
     </div>
   );

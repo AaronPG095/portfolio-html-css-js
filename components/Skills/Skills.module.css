@@ -105,7 +105,17 @@
   cursor: default;
   flex-shrink: 0;
   height: 1.5rem;
-  width: auto;
+  width: 1.5rem;
+  color: var(--color-black);
+  transition: color var(--transition-speed) var(--transition-ease), filter var(--transition-speed) var(--transition-ease);
+  /* Convert colored icons to black in light mode */
+  filter: brightness(0) saturate(100%);
+}
+
+[data-theme="dark"] .icon {
+  color: var(--color-white);
+  /* Convert colored icons to white in dark mode */
+  filter: brightness(0) saturate(100%) invert(1);
 }
 
 .articleContainer :global(article h3),
