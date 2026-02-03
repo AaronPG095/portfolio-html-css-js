@@ -1,5 +1,7 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useLanguage } from '@/hooks/useLanguage';
 import SkillsCarousel from './SkillsCarousel';
 import SkillProgress from './SkillProgress';
@@ -97,10 +99,30 @@ function getSkillIcon(skillName: string): IconType {
 interface SkillCardProps {
   title: string;
   skills: Skill[];
+  onTooltipShow?: (text: string, x: number, y: number) => void;
+  onTooltipHide?: () => void;
 }
 
-function SkillCard({ title, skills }: SkillCardProps) {
+function SkillCard({ title, skills, onTooltipShow, onTooltipHide }: SkillCardProps) {
   const { t, translations, language } = useLanguage();
+  const articleRefs = useRef<Map<number, HTMLElement>>(new Map());
+  
+  const handleMouseEnter = (index: number, tooltipText: string, event: React.MouseEvent<HTMLElement>) => {
+    if (!tooltipText || !onTooltipShow) return;
+    const element = articleRefs.current.get(index);
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      // For left column (even index 0, 2, 4...), align to left; for right column (odd index), center
+      const isLeftColumn = index % 2 === 0;
+      const tooltipX = isLeftColumn ? rect.left : rect.left + rect.width / 2;
+      const tooltipY = rect.top;
+      onTooltipShow(tooltipText, tooltipX, tooltipY);
+    }
+  };
+  
+  const handleMouseLeave = () => {
+    if (onTooltipHide) onTooltipHide();
+  };
   
   return (
     <div className={styles.skillCard}>
@@ -117,8 +139,13 @@ function SkillCard({ title, skills }: SkillCardProps) {
           return (
             <article 
               key={index} 
+              ref={(el) => {
+                if (el) articleRefs.current.set(index, el);
+                else articleRefs.current.delete(index);
+              }}
               className={styles.skillArticle}
-              data-tooltip={tooltipText || undefined}
+              onMouseEnter={(e) => handleMouseEnter(index, tooltipText, e)}
+              onMouseLeave={handleMouseLeave}
             >
               <IconComponent
                 className={styles.icon}
@@ -138,29 +165,66 @@ function SkillCard({ title, skills }: SkillCardProps) {
 
 export default function Skills() {
   const { t } = useLanguage();
+  const [hoveredTooltip, setHoveredTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
+  const [mounted, setMounted] = useState(false);
 
-  const frontendCard = <SkillCard title={t('skills.frontend')} skills={frontendSkills} />;
-  const backendCard = <SkillCard title={t('skills.backend')} skills={backendSkills} />;
-  const toolsCard = <SkillCard title={t('skills.tools')} skills={toolsSkills} />;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleTooltipShow = (text: string, x: number, y: number) => {
+    setHoveredTooltip({ text, x, y });
+  };
+
+  const handleTooltipHide = () => {
+    setHoveredTooltip(null);
+  };
+
+  const frontendCard = <SkillCard title={t('skills.frontend')} skills={frontendSkills} onTooltipShow={handleTooltipShow} onTooltipHide={handleTooltipHide} />;
+  const backendCard = <SkillCard title={t('skills.backend')} skills={backendSkills} onTooltipShow={handleTooltipShow} onTooltipHide={handleTooltipHide} />;
+  const toolsCard = <SkillCard title={t('skills.tools')} skills={toolsSkills} onTooltipShow={handleTooltipShow} onTooltipHide={handleTooltipHide} />;
+
+  const tooltipElement = hoveredTooltip && mounted ? (
+    <div
+      className={styles.fixedTooltip}
+      style={{
+        left: `${hoveredTooltip.x}px`,
+        top: `${hoveredTooltip.y - 8}px`,
+        transform: hoveredTooltip.x < 300 ? 'translate(0, -100%)' : 'translate(-50%, -100%)',
+      }}
+    >
+      {hoveredTooltip.text}
+      <div 
+        className={styles.fixedTooltipArrow}
+        style={{
+          left: hoveredTooltip.x < 300 ? '1rem' : '50%',
+          transform: hoveredTooltip.x < 300 ? 'translateX(0)' : 'translateX(-50%)',
+        }}
+      />
+    </div>
+  ) : null;
 
   return (
-    <section id="skills" className={styles.skills} aria-label="Skills section">
-      <p className={styles.subtitle}>{t('skills.subtitle')}</p>
-      <h1 className={styles.title}>{t('skills.title')}</h1>
-      <div className={styles.detailsContainer}>
-        <div className={styles.desktopView}>
-          <SkillCard title={t('skills.frontend')} skills={frontendSkills} />
-          <SkillCard title={t('skills.backend')} skills={backendSkills} />
-          <SkillCard title={t('skills.tools')} skills={toolsSkills} />
+    <>
+      <section id="skills" className={styles.skills} aria-label="Skills section">
+        <p className={styles.subtitle}>{t('skills.subtitle')}</p>
+        <h1 className={styles.title}>{t('skills.title')}</h1>
+        <div className={styles.detailsContainer}>
+          <div className={styles.desktopView}>
+            <SkillCard title={t('skills.frontend')} skills={frontendSkills} onTooltipShow={handleTooltipShow} onTooltipHide={handleTooltipHide} />
+            <SkillCard title={t('skills.backend')} skills={backendSkills} onTooltipShow={handleTooltipShow} onTooltipHide={handleTooltipHide} />
+            <SkillCard title={t('skills.tools')} skills={toolsSkills} onTooltipShow={handleTooltipShow} onTooltipHide={handleTooltipHide} />
+          </div>
+          <div className={styles.mobileView}>
+            <SkillsCarousel dots={[0, 1, 2]}>
+              {frontendCard}
+              {backendCard}
+              {toolsCard}
+            </SkillsCarousel>
+          </div>
         </div>
-        <div className={styles.mobileView}>
-          <SkillsCarousel dots={[0, 1, 2]}>
-            {frontendCard}
-            {backendCard}
-            {toolsCard}
-          </SkillsCarousel>
-        </div>
-      </div>
-    </section>
+      </section>
+      {mounted && tooltipElement && createPortal(tooltipElement, document.body)}
+    </>
   );
 }
