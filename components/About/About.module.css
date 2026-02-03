@@ -84,6 +84,25 @@
   margin: 0.5rem 0;
 }
 
+.counterText {
+  display: block;
+  min-width: 1.5em; /* Prevent layout shift during animation */
+  margin: 0.5rem 0;
+}
+
+.counterSeparator {
+  margin: 0 0.5rem;
+  color: var(--color-medium-grey);
+}
+
+.counterNumber {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--text-color);
+  transition: color var(--transition-speed) var(--transition-ease);
+  min-width: 1ch; /* Prevent layout shift during animation */
+}
+
 .detailsCard a {
   color: var(--color-medium-grey);
   text-decoration: none;
