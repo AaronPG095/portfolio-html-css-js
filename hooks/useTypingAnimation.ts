@@ -127,13 +127,7 @@ export function useTypingAnimation(
 
   // Initialize animation on mount (if enabled)
   useEffect(() => {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useTypingAnimation.ts:129',message:'useEffect entry - initialize animation',data:{enabled:enabled,textLength:text.length,hasTimeout:timeoutRef.current!==null},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'I'})}).catch(()=>{});
-    // #endregion
     if (enabled && text.length > 0) {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useTypingAnimation.ts:132',message:'BEFORE startAnimation',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'I'})}).catch(()=>{});
-      // #endregion
       startAnimation();
     } else {
       // If disabled, show empty text
@@ -149,9 +143,6 @@ export function useTypingAnimation(
 
     // Cleanup on unmount
     return () => {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useTypingAnimation.ts:152',message:'cleanup - clearing timeouts',data:{hasTimeout:timeoutRef.current!==null,hasAnimationFrame:animationFrameRef.current!==null},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'I'})}).catch(()=>{});
-      // #endregion
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
@@ -163,9 +154,6 @@ export function useTypingAnimation(
 
   // Restart animation when text changes (if enabled and restartOnChange is true)
   useEffect(() => {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useTypingAnimation.ts:156',message:'useEffect entry - restart on text change',data:{enabled:enabled,text:text,previousText:previousTextRef.current,restartOnChange:restartOnChange},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'I'})}).catch(()=>{});
-    // #endregion
     if (!enabled) {
       setDisplayedText('');
       setIsComplete(false);
@@ -174,9 +162,6 @@ export function useTypingAnimation(
     }
 
     if (restartOnChange && text !== previousTextRef.current && text.length > 0) {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useTypingAnimation.ts:166',message:'BEFORE restarting animation',data:{text:text,previousText:previousTextRef.current},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'I'})}).catch(()=>{});
-      // #endregion
       previousTextRef.current = text;
       startAnimation();
     } else if (text === previousTextRef.current && text.length === 0) {

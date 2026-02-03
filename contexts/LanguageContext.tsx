@@ -25,23 +25,11 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageContext.tsx:27',message:'useEffect entry - loading translations',data:{hasTranslations:translations!==null},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-    // #endregion
     setMounted(true);
     const storedLang = getStoredLanguage();
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageContext.tsx:30',message:'BEFORE setLanguageState',data:{storedLang:storedLang,currentLanguage:language},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-    // #endregion
     setLanguageState(storedLang);
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageContext.tsx:33',message:'AFTER setLanguageState, BEFORE loadTranslations',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-    // #endregion
     
     loadTranslations().then((translationsData) => {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageContext.tsx:36',message:'loadTranslations resolved',data:{hasTranslations:translationsData!==null,hasEn:translationsData?.en!==undefined,hasDe:translationsData?.de!==undefined},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-      // #endregion
       setTranslations(translationsData);
     });
   }, []);
@@ -60,20 +48,8 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   };
 
   const t = (key: string) => {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageContext.tsx:50',message:'t function called',data:{key:key,hasTranslations:translations!==null,language:language},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-    // #endregion
-    if (!translations) {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageContext.tsx:53',message:'translations is null, returning key',data:{key:key},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-      // #endregion
-      return key;
-    }
-    const result = getTranslation(translations, key, language);
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/73b67db3-c5d1-4f81-8065-642fb9e31171',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageContext.tsx:58',message:'translation result',data:{key:key,result:result},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-    // #endregion
-    return result;
+    if (!translations) return key;
+    return getTranslation(translations, key, language);
   };
 
   return (
