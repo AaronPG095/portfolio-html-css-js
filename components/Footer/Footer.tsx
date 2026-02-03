@@ -29,6 +29,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           aria-label="Visit LinkedIn profile"
           className={styles.socialLink}
+          data-tooltip="LinkedIn"
         >
           <Image
             src="/assets/linkedin.png"
@@ -46,6 +47,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           aria-label="Visit GitHub profile"
           className={styles.socialLink}
+          data-tooltip="GitHub"
         >
           <Image
             src="/assets/github.png"

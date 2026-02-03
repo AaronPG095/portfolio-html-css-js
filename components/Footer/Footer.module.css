@@ -47,6 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   transition: transform var(--transition-speed) var(--transition-ease),
               opacity var(--transition-speed) var(--transition-ease);
 }
@@ -54,6 +55,61 @@
 .socialLink:hover {
   transform: translateY(-4px) scale(1.1);
   opacity: 0.8;
+}
+
+/* Tooltip styling */
+.socialLink::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  padding: 0.5rem 0.75rem;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-speed) var(--transition-ease),
+              transform var(--transition-speed) var(--transition-ease);
+  z-index: 1000;
+  box-shadow: var(--shadow-medium);
+}
+
+.socialLink::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-2px);
+  border: 5px solid transparent;
+  border-top-color: var(--color-black);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-speed) var(--transition-ease);
+  z-index: 1000;
+}
+
+.socialLink:hover::before,
+.socialLink:hover::after {
+  opacity: 1;
+}
+
+.socialLink:hover::before {
+  transform: translateX(-50%) translateY(-12px);
+}
+
+/* Dark theme tooltip */
+:global([data-theme="dark"]) .socialLink::before {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+:global([data-theme="dark"]) .socialLink::after {
+  border-top-color: var(--color-white);
 }
 
 .icon {
