@@ -291,26 +291,26 @@
 /* Dark theme adjustments */
 :global([data-theme="dark"]) .btnColor1 {
   background: var(--color-white);
-  color: var(--color-black);
-  border-color: var(--color-white);
+  color: rgb(255, 255, 255) !important;
+  border: 2px solid rgb(255, 255, 255) !important;
 }
 
 :global([data-theme="dark"]) .btnColor1:hover {
   background: var(--color-black);
-  color: var(--color-white);
-  border-color: var(--color-white);
+  color: rgb(0, 0, 0) !important;
+  border: 2px solid rgb(255, 255, 255) !important;
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
 :global([data-theme="dark"]) .btnColor2 {
-  color: var(--color-white);
-  border-color: var(--color-white);
+  color: rgb(255, 255, 255) !important;
+  border: 2px solid rgb(255, 255, 255) !important;
 }
 
 :global([data-theme="dark"]) .btnColor2:hover {
-  background: var(--color-white);
-  color: var(--color-black);
-  border-color: var(--color-white);
+  background: var(--color-black);
+  color: rgb(0, 0, 0) !important;
+  border: 2px solid rgb(255, 255, 255) !important;
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
