@@ -13,14 +13,27 @@
   text-align: center;
   font-weight: 600;
   color: var(--color-medium-grey);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  transition: color var(--transition-speed) var(--transition-ease);
 }
 
 .title {
   font-size: 3rem;
   text-align: center;
   color: var(--text-color);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   transition: color var(--transition-speed) var(--transition-ease);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   margin-bottom: 2rem;
+  margin-top: 0.5rem;
+}
+
+:global([data-theme="dark"]) .title {
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
 }
 
 .infoContainer {
