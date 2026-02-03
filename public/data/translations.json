@@ -35,6 +35,31 @@
         "experienced": "Experienced",
         "intermediate": "Intermediate",
         "basic": "Basic"
+      },
+      "descriptions": {
+        "HTML": "HyperText Markup Language - The standard markup language for creating web pages and web applications. Used for structuring content and defining the semantic meaning of elements.",
+        "CSS": "Cascading Style Sheets - Used for styling and layout of web pages, including responsive design, animations, and visual effects. Expertise in modern CSS features like Flexbox and Grid.",
+        "Javascript": "A programming language that enables interactive web pages and dynamic content. Experience with ES6+ features, async/await, and modern JavaScript patterns.",
+        "SASS": "Syntactically Awesome Style Sheets - A CSS preprocessor that adds features like variables, nesting, mixins, and functions to enhance CSS development workflow.",
+        "React.js": "A JavaScript library for building user interfaces, particularly single-page applications. Experience with hooks, context API, and component-based architecture.",
+        "Tailwind": "A utility-first CSS framework for rapidly building custom user interfaces. Used for responsive design and rapid prototyping with utility classes.",
+        "Framer": "Framer Motion - A production-ready motion library for React animations. Used for creating smooth, performant animations and transitions in React applications.",
+        "Typescript": "A typed superset of JavaScript that compiles to plain JavaScript, adding static type definitions. Helps catch errors early and improves code maintainability.",
+        "Next.js": "A React framework for production with features like server-side rendering, static site generation, API routes, and optimized performance out of the box.",
+        "PHP": "A server-side scripting language designed for web development. Used for building dynamic web applications and server-side logic.",
+        "Laravel": "A PHP web application framework with expressive, elegant syntax. Includes features like routing, authentication, and database migrations.",
+        "MongoDB": "A NoSQL document database used for modern applications. Experience with document modeling, queries, and aggregation pipelines.",
+        "Node.js": "A JavaScript runtime built on Chrome's V8 engine for building server-side applications. Enables JavaScript to run on the server for full-stack development.",
+        "Express.js": "A minimal and flexible Node.js web application framework. Used for building RESTful APIs and web servers with middleware support.",
+        "Git": "A distributed version control system for tracking changes in source code. Experience with branching, merging, pull requests, and collaborative workflows.",
+        "MySQL": "A relational database management system based on SQL. Used for storing and managing structured data with relationships and transactions.",
+        "APIs": "Application Programming Interfaces - Building and consuming RESTful APIs for data exchange. Experience with API design, authentication, and integration.",
+        "Docker": "A platform for developing, shipping, and running applications in containers. Used for containerization, deployment, and development environment consistency.",
+        "Cursor": "An AI-powered code editor for enhanced development productivity. Experience using AI-assisted coding features for faster development workflows.",
+        "MCP": "Model Context Protocol - A protocol for AI-assisted development workflows. Used for integrating AI tools and enhancing development processes.",
+        "Prompt Engineering": "The practice of designing effective prompts for AI systems to achieve desired outputs. Experience crafting prompts for code generation, debugging, and documentation.",
+        "SPRINT": "Agile project management methodology for iterative development cycles. Experience with sprint planning, daily standups, and iterative delivery.",
+        "Project Management": "Planning, organizing, and managing resources to achieve specific project goals. Skills in task prioritization, timeline management, and team coordination."
       }
     },
     "projects": {
@@ -113,6 +138,31 @@
         "experienced": "Erfahren",
         "intermediate": "Fortgeschritten",
         "basic": "Grundkenntnisse"
+      },
+      "descriptions": {
+        "HTML": "HyperText Markup Language - Die Standard-Auszeichnungssprache zum Erstellen von Webseiten und Webanwendungen. Wird für die Strukturierung von Inhalten und die Definition der semantischen Bedeutung von Elementen verwendet.",
+        "CSS": "Cascading Style Sheets - Wird für das Styling und Layout von Webseiten verwendet, einschließlich responsivem Design, Animationen und visuellen Effekten. Expertise in modernen CSS-Funktionen wie Flexbox und Grid.",
+        "Javascript": "Eine Programmiersprache, die interaktive Webseiten und dynamische Inhalte ermöglicht. Erfahrung mit ES6+ Funktionen, async/await und modernen JavaScript-Mustern.",
+        "SASS": "Syntactically Awesome Style Sheets - Ein CSS-Präprozessor, der Funktionen wie Variablen, Verschachtelung, Mixins und Funktionen hinzufügt, um den CSS-Entwicklungsworkflow zu verbessern.",
+        "React.js": "Eine JavaScript-Bibliothek zum Erstellen von Benutzeroberflächen, insbesondere Single-Page-Anwendungen. Erfahrung mit Hooks, Context API und komponentenbasierter Architektur.",
+        "Tailwind": "Ein Utility-First CSS-Framework zum schnellen Erstellen benutzerdefinierter Benutzeroberflächen. Wird für responsives Design und schnelles Prototyping mit Utility-Klassen verwendet.",
+        "Framer": "Framer Motion - Eine produktionsreife Animationsbibliothek für React. Wird für die Erstellung flüssiger, performanter Animationen und Übergänge in React-Anwendungen verwendet.",
+        "Typescript": "Eine typisierte Obermenge von JavaScript, die zu reinem JavaScript kompiliert und statische Typdefinitionen hinzufügt. Hilft Fehler frühzeitig zu erkennen und verbessert die Wartbarkeit des Codes.",
+        "Next.js": "Ein React-Framework für die Produktion mit Funktionen wie Server-Side Rendering, statischer Site-Generierung, API-Routen und optimierter Performance von Haus aus.",
+        "PHP": "Eine serverseitige Skriptsprache, die für die Webentwicklung entwickelt wurde. Wird für den Aufbau dynamischer Webanwendungen und serverseitiger Logik verwendet.",
+        "Laravel": "Ein PHP-Webanwendungsframework mit ausdrucksstarker, eleganter Syntax. Enthält Funktionen wie Routing, Authentifizierung und Datenbank-Migrationen.",
+        "MongoDB": "Eine NoSQL-Dokumentdatenbank für moderne Anwendungen. Erfahrung mit Dokumentmodellierung, Abfragen und Aggregations-Pipelines.",
+        "Node.js": "Eine JavaScript-Laufzeitumgebung, die auf der V8-Engine von Chrome basiert, zum Erstellen serverseitiger Anwendungen. Ermöglicht JavaScript auf dem Server für Full-Stack-Entwicklung.",
+        "Express.js": "Ein minimales und flexibles Node.js-Webanwendungsframework. Wird für den Aufbau von RESTful APIs und Webservern mit Middleware-Unterstützung verwendet.",
+        "Git": "Ein verteiltes Versionskontrollsystem zur Nachverfolgung von Änderungen im Quellcode. Erfahrung mit Branching, Merging, Pull Requests und kollaborativen Workflows.",
+        "MySQL": "Ein relationales Datenbankverwaltungssystem basierend auf SQL. Wird für die Speicherung und Verwaltung strukturierter Daten mit Beziehungen und Transaktionen verwendet.",
+        "APIs": "Application Programming Interfaces - Erstellen und Nutzen von RESTful APIs für den Datenaustausch. Erfahrung mit API-Design, Authentifizierung und Integration.",
+        "Docker": "Eine Plattform zum Entwickeln, Versenden und Ausführen von Anwendungen in Containern. Wird für Containerisierung, Deployment und Konsistenz der Entwicklungsumgebung verwendet.",
+        "Cursor": "Ein KI-gestützter Code-Editor für verbesserte Entwicklungsproduktivität. Erfahrung mit KI-gestützten Codierungsfunktionen für schnellere Entwicklungs-Workflows.",
+        "MCP": "Model Context Protocol - Ein Protokoll für KI-gestützte Entwicklungs-Workflows. Wird für die Integration von KI-Tools und die Verbesserung von Entwicklungsprozessen verwendet.",
+        "Prompt Engineering": "Die Praxis des Entwerfens effektiver Prompts für KI-Systeme, um gewünschte Ausgaben zu erzielen. Erfahrung beim Erstellen von Prompts für Codegenerierung, Debugging und Dokumentation.",
+        "SPRINT": "Agile Projektmanagement-Methodik für iterative Entwicklungszyklen. Erfahrung mit Sprint-Planung, Daily Standups und iterativer Lieferung.",
+        "Project Management": "Planung, Organisation und Verwaltung von Ressourcen zur Erreichung spezifischer Projektziele. Fähigkeiten in Aufgabenpriorisierung, Zeitplanmanagement und Teamkoordination."
       }
     },
     "projects": {

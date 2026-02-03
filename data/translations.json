@@ -35,6 +35,31 @@
         "experienced": "Experienced",
         "intermediate": "Intermediate",
         "basic": "Basic"
+      },
+      "descriptions": {
+        "HTML": "HyperText Markup Language - The standard markup language for creating web pages and web applications.",
+        "CSS": "Cascading Style Sheets - Used for styling and layout of web pages, including responsive design.",
+        "Javascript": "A programming language that enables interactive web pages and dynamic content.",
+        "SASS": "Syntactically Awesome Style Sheets - A CSS preprocessor that adds features like variables and nesting.",
+        "React.js": "A JavaScript library for building user interfaces, particularly single-page applications.",
+        "Tailwind": "A utility-first CSS framework for rapidly building custom user interfaces.",
+        "Framer": "Framer Motion - A production-ready motion library for React animations.",
+        "Typescript": "A typed superset of JavaScript that compiles to plain JavaScript, adding static type definitions.",
+        "Next.js": "A React framework for production with features like server-side rendering and static site generation.",
+        "PHP": "A server-side scripting language designed for web development.",
+        "Laravel": "A PHP web application framework with expressive, elegant syntax.",
+        "MongoDB": "A NoSQL document database used for modern applications.",
+        "Node.js": "A JavaScript runtime built on Chrome's V8 engine for building server-side applications.",
+        "Express.js": "A minimal and flexible Node.js web application framework.",
+        "Git": "A distributed version control system for tracking changes in source code.",
+        "MySQL": "A relational database management system based on SQL.",
+        "APIs": "Application Programming Interfaces - Building and consuming RESTful APIs for data exchange.",
+        "Docker": "A platform for developing, shipping, and running applications in containers.",
+        "Cursor": "An AI-powered code editor for enhanced development productivity.",
+        "MCP": "Model Context Protocol - A protocol for AI-assisted development workflows.",
+        "Prompt Engineering": "The practice of designing effective prompts for AI systems to achieve desired outputs.",
+        "SPRINT": "Agile project management methodology for iterative development cycles.",
+        "Project Management": "Planning, organizing, and managing resources to achieve specific project goals."
       }
     },
     "projects": {
@@ -113,6 +138,31 @@
         "experienced": "Erfahren",
         "intermediate": "Fortgeschritten",
         "basic": "Grundkenntnisse"
+      },
+      "descriptions": {
+        "HTML": "HyperText Markup Language - Die Standard-Auszeichnungssprache zum Erstellen von Webseiten und Webanwendungen.",
+        "CSS": "Cascading Style Sheets - Wird für das Styling und Layout von Webseiten verwendet, einschließlich responsivem Design.",
+        "Javascript": "Eine Programmiersprache, die interaktive Webseiten und dynamische Inhalte ermöglicht.",
+        "SASS": "Syntactically Awesome Style Sheets - Ein CSS-Präprozessor, der Funktionen wie Variablen und Verschachtelung hinzufügt.",
+        "React.js": "Eine JavaScript-Bibliothek zum Erstellen von Benutzeroberflächen, insbesondere Single-Page-Anwendungen.",
+        "Tailwind": "Ein Utility-First CSS-Framework zum schnellen Erstellen benutzerdefinierter Benutzeroberflächen.",
+        "Framer": "Framer Motion - Eine produktionsreife Animationsbibliothek für React.",
+        "Typescript": "Eine typisierte Obermenge von JavaScript, die zu reinem JavaScript kompiliert und statische Typdefinitionen hinzufügt.",
+        "Next.js": "Ein React-Framework für die Produktion mit Funktionen wie Server-Side Rendering und statischer Site-Generierung.",
+        "PHP": "Eine serverseitige Skriptsprache, die für die Webentwicklung entwickelt wurde.",
+        "Laravel": "Ein PHP-Webanwendungsframework mit ausdrucksstarker, eleganter Syntax.",
+        "MongoDB": "Eine NoSQL-Dokumentdatenbank für moderne Anwendungen.",
+        "Node.js": "Eine JavaScript-Laufzeitumgebung, die auf der V8-Engine von Chrome basiert, zum Erstellen serverseitiger Anwendungen.",
+        "Express.js": "Ein minimales und flexibles Node.js-Webanwendungsframework.",
+        "Git": "Ein verteiltes Versionskontrollsystem zur Nachverfolgung von Änderungen im Quellcode.",
+        "MySQL": "Ein relationales Datenbankverwaltungssystem basierend auf SQL.",
+        "APIs": "Application Programming Interfaces - Erstellen und Nutzen von RESTful APIs für den Datenaustausch.",
+        "Docker": "Eine Plattform zum Entwickeln, Versenden und Ausführen von Anwendungen in Containern.",
+        "Cursor": "Ein KI-gestützter Code-Editor für verbesserte Entwicklungsproduktivität.",
+        "MCP": "Model Context Protocol - Ein Protokoll für KI-gestützte Entwicklungs-Workflows.",
+        "Prompt Engineering": "Die Praxis des Entwerfens effektiver Prompts für KI-Systeme, um gewünschte Ausgaben zu erzielen.",
+        "SPRINT": "Agile Projektmanagement-Methodik für iterative Entwicklungszyklen.",
+        "Project Management": "Planung, Organisation und Verwaltung von Ressourcen zur Erreichung spezifischer Projektziele."
       }
     },
     "projects": {

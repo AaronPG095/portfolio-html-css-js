@@ -108,8 +108,13 @@ function SkillCard({ title, skills }: SkillCardProps) {
       <div className={styles.articleContainer}>
         {skills.map((skill, index) => {
           const IconComponent = getSkillIcon(skill.name);
+          const tooltipText = t(`skills.descriptions.${skill.name}`) || '';
           return (
-            <article key={index} className={styles.skillArticle}>
+            <article 
+              key={index} 
+              className={styles.skillArticle}
+              data-tooltip={tooltipText || undefined}
+            >
               <IconComponent
                 className={styles.icon}
                 aria-hidden="true"
