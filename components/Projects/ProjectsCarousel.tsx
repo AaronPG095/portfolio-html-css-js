@@ -4,7 +4,11 @@ import React, { useRef, useEffect, useCallback } from 'react';
 import { useCarousel } from '@/hooks/useCarousel';
 import styles from './Projects.module.css';
 
-export default function ProjectsCarousel({ children }) {
+interface ProjectsCarouselProps {
+  children: React.ReactNode;
+}
+
+export default function ProjectsCarousel({ children }: ProjectsCarouselProps) {
   // React.Children.toArray handles both single child and multiple children
   const items = React.Children.toArray(children);
   const {
@@ -21,7 +25,7 @@ export default function ProjectsCarousel({ children }) {
   } = useCarousel(items, { duration: 600, snapDuration: 300 });
 
   useEffect(() => {
-    const handleMouseMoveGlobal = (e) => handleMouseMove(e);
+    const handleMouseMoveGlobal = (e: MouseEvent) => handleMouseMove(e);
     const handleMouseUpGlobal = () => handleMouseUp();
 
     if (containerRef.current) {
@@ -41,7 +45,7 @@ export default function ProjectsCarousel({ children }) {
     
     // Find projects container - it's the direct child div
     const projectsContainer = containerRef.current.firstElementChild;
-    const firstProject = containerRef.current.querySelector('.carousel-item');
+    const firstProject = containerRef.current.querySelector('.carousel-item') as HTMLElement;
     
     if (firstProject && projectsContainer) {
       const containerWidth = containerRef.current.clientWidth;
@@ -72,7 +76,7 @@ export default function ProjectsCarousel({ children }) {
 
   // Re-center on window resize to handle responsive breakpoints
   useEffect(() => {
-    let resizeTimeout;
+    let resizeTimeout: NodeJS.Timeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
@@ -127,4 +131,3 @@ export default function ProjectsCarousel({ children }) {
     </>
   );
 }
-

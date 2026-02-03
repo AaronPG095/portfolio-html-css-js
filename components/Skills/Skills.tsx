@@ -4,8 +4,9 @@ import Image from 'next/image';
 import { useLanguage } from '@/hooks/useLanguage';
 import SkillsCarousel from './SkillsCarousel';
 import styles from './Skills.module.css';
+import type { Skill } from '@/types';
 
-const frontendSkills = [
+const frontendSkills: Skill[] = [
   { name: 'HTML', level: 'experienced' },
   { name: 'CSS', level: 'experienced' },
   { name: 'Javascript', level: 'experienced' },
@@ -19,7 +20,7 @@ const frontendSkills = [
   { name: 'Laravel', level: 'basic' },
 ];
 
-const backendSkills = [
+const backendSkills: Skill[] = [
   { name: 'MongoDB', level: 'intermediate' },
   { name: 'Node.js', level: 'intermediate' },
   { name: 'Express.js', level: 'intermediate' },
@@ -28,7 +29,7 @@ const backendSkills = [
   { name: 'APIs', level: 'basic' },
 ];
 
-const toolsSkills = [
+const toolsSkills: Skill[] = [
   { name: 'Cursor', level: 'experienced' },
   { name: 'MCP', level: 'basic' },
   { name: 'Prompt Engineering', level: 'intermediate' },
@@ -37,10 +38,15 @@ const toolsSkills = [
   { name: 'Docker', level: 'intermediate' },
 ];
 
-export default function Skills() {
-  const { t } = useLanguage();
+interface SkillCardProps {
+  title: string;
+  skills: Skill[];
+}
 
-  const SkillCard = ({ title, skills }) => (
+function SkillCard({ title, skills }: SkillCardProps) {
+  const { t } = useLanguage();
+  
+  return (
     <div className={styles.skillCard}>
       <h2 className={styles.subTitle}>{title}</h2>
       <div className={styles.articleContainer}>
@@ -63,6 +69,10 @@ export default function Skills() {
       </div>
     </div>
   );
+}
+
+export default function Skills() {
+  const { t } = useLanguage();
 
   const frontendCard = <SkillCard title={t('skills.frontend')} skills={frontendSkills} />;
   const backendCard = <SkillCard title={t('skills.backend')} skills={backendSkills} />;
@@ -89,4 +99,3 @@ export default function Skills() {
     </section>
   );
 }
-

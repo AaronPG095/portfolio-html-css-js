@@ -1,13 +1,27 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { loadTranslations, getStoredLanguage, setStoredLanguage, getTranslation } from '@/lib/translations';
+import type { Language, TranslationsData } from '@/types';
 
-const LanguageContext = createContext(undefined);
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  toggleLanguage: () => void;
+  t: (key: string) => string;
+  translations: TranslationsData | null;
+  mounted: boolean;
+}
 
-export function LanguageProvider({ children }) {
-  const [language, setLanguageState] = useState('en');
-  const [translations, setTranslations] = useState(null);
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+interface LanguageProviderProps {
+  children: ReactNode;
+}
+
+export function LanguageProvider({ children }: LanguageProviderProps) {
+  const [language, setLanguageState] = useState<Language>('en');
+  const [translations, setTranslations] = useState<TranslationsData | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -20,7 +34,7 @@ export function LanguageProvider({ children }) {
     });
   }, []);
 
-  const setLanguage = (lang) => {
+  const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     setStoredLanguage(lang);
     if (typeof document !== 'undefined') {
@@ -33,7 +47,7 @@ export function LanguageProvider({ children }) {
     setLanguage(newLang);
   };
 
-  const t = (key) => {
+  const t = (key: string) => {
     if (!translations) return key;
     return getTranslation(translations, key, language);
   };
@@ -52,4 +66,3 @@ export function useLanguage() {
   }
   return context;
 }
-

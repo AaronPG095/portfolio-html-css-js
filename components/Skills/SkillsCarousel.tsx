@@ -4,7 +4,12 @@ import React, { useRef, useEffect } from 'react';
 import { useCarousel } from '@/hooks/useCarousel';
 import styles from './Skills.module.css';
 
-export default function SkillsCarousel({ children, dots }) {
+interface SkillsCarouselProps {
+  children: React.ReactNode;
+  dots?: number[];
+}
+
+export default function SkillsCarousel({ children, dots }: SkillsCarouselProps) {
   // React.Children.toArray handles both single child and multiple children
   const items = React.Children.toArray(children);
   const {
@@ -21,7 +26,7 @@ export default function SkillsCarousel({ children, dots }) {
   } = useCarousel(items, { duration: 600, snapDuration: 300 });
 
   useEffect(() => {
-    const handleMouseMoveGlobal = (e) => handleMouseMove(e);
+    const handleMouseMoveGlobal = (e: MouseEvent) => handleMouseMove(e);
     const handleMouseUpGlobal = () => handleMouseUp();
 
     if (containerRef.current) {
@@ -34,6 +39,12 @@ export default function SkillsCarousel({ children, dots }) {
       document.removeEventListener('mouseup', handleMouseUpGlobal);
     };
   }, [handleMouseMove, handleMouseUp]);
+
+  const getDotLabel = (index: number): string => {
+    if (index === 0) return 'Frontend';
+    if (index === 1) return 'Backend';
+    return 'Tools';
+  };
 
   return (
     <>
@@ -63,7 +74,7 @@ export default function SkillsCarousel({ children, dots }) {
               key={index}
               className={`${styles.dot} ${index === currentIndex ? styles.active : ''}`}
               onClick={() => scrollToIndex(index)}
-              aria-label={`Show ${index === 0 ? 'Frontend' : 'Backend'} Development`}
+              aria-label={`Show ${getDotLabel(index)} Development`}
               data-index={index}
             />
           ))}
@@ -72,4 +83,3 @@ export default function SkillsCarousel({ children, dots }) {
     </>
   );
 }
-

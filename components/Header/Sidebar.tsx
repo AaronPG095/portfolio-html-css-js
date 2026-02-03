@@ -6,7 +6,13 @@ import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import LanguageToggle from '../LanguageToggle/LanguageToggle';
 import styles from './Sidebar.module.css';
 
-export default function Sidebar({ isOpen, onClose, activeSection = '' }) {
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+  activeSection?: string;
+}
+
+export default function Sidebar({ isOpen, onClose, activeSection = '' }: SidebarProps) {
   const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
@@ -26,7 +32,7 @@ export default function Sidebar({ isOpen, onClose, activeSection = '' }) {
   }, [isOpen]);
 
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
         onClose();
       }
@@ -108,4 +114,3 @@ export default function Sidebar({ isOpen, onClose, activeSection = '' }) {
     </>
   );
 }
-

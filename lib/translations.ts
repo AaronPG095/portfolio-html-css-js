@@ -2,9 +2,11 @@
  * Translation utilities
  */
 
-let translationsCache = null;
+import type { TranslationsData, Language } from '@/types';
 
-export async function loadTranslations() {
+let translationsCache: TranslationsData | null = null;
+
+export async function loadTranslations(): Promise<TranslationsData | null> {
   if (translationsCache) {
     return translationsCache;
   }
@@ -19,10 +21,14 @@ export async function loadTranslations() {
   }
 }
 
-export function getTranslation(translations, key, lang = 'en') {
+export function getTranslation(
+  translations: TranslationsData | null,
+  key: string,
+  lang: Language = 'en'
+): string {
   if (!translations || !translations[lang]) return key;
   const keys = key.split('.');
-  let value = translations[lang];
+  let value: any = translations[lang];
   for (const k of keys) {
     if (value && typeof value === 'object' && k in value) {
       value = value[k];
@@ -33,13 +39,13 @@ export function getTranslation(translations, key, lang = 'en') {
   return typeof value === 'string' ? value : key;
 }
 
-export function getStoredLanguage() {
+export function getStoredLanguage(): Language {
   if (typeof window === 'undefined') return 'en';
-  return localStorage.getItem('language') || 'en';
+  const stored = localStorage.getItem('language');
+  return stored === 'de' ? 'de' : 'en';
 }
 
-export function setStoredLanguage(lang) {
+export function setStoredLanguage(lang: Language): void {
   if (typeof window === 'undefined') return;
   localStorage.setItem('language', lang);
 }
-

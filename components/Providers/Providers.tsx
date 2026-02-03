@@ -1,12 +1,16 @@
 'use client';
 
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import type { ReactNode } from 'react';
 
-export default function Providers({ children }) {
+interface ProvidersProps {
+  children: ReactNode;
+}
+
+export default function Providers({ children }: ProvidersProps) {
   return (
     <LanguageProvider>
       {children}
     </LanguageProvider>
   );
 }
-

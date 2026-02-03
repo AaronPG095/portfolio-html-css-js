@@ -3,7 +3,12 @@
 import Link from 'next/link';
 import styles from './Header.module.css';
 
-export default function MobileNav({ onMenuToggle, isOpen }) {
+interface MobileNavProps {
+  onMenuToggle: () => void;
+  isOpen: boolean;
+}
+
+export default function MobileNav({ onMenuToggle, isOpen }: MobileNavProps) {
   return (
     <nav className={styles.mobileNav} role="navigation" aria-label="Mobile navigation">
       <Link href="#" className={styles.logo} aria-label="Go to top of page">
@@ -24,4 +29,3 @@ export default function MobileNav({ onMenuToggle, isOpen }) {
     </nav>
   );
 }
-

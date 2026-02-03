@@ -185,7 +185,7 @@ Edit CSS custom properties in `style.css`:
 
 ## 📄 License
 
-Copyright © 2024 Aaron Paul Greyling. All Rights Reserved.
+Copyright © 2026 Aaron Paul Greyling. All Rights Reserved.
 
 ## 🤝 Contributing
 

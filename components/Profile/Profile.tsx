@@ -14,7 +14,7 @@ export default function Profile() {
     window.open(cvFile);
   };
 
-  const handleContactClick = (e) => {
+  const handleContactClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -93,4 +93,3 @@ export default function Profile() {
     </section>
   );
 }
-

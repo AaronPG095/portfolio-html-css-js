@@ -6,6 +6,8 @@ import styles from './Footer.module.css';
 
 export default function Footer() {
   const { t } = useLanguage();
+  const currentYear = new Date().getFullYear();
+  const copyrightText = t('footer.copyright').replace('2026', currentYear.toString());
 
   return (
     <footer className={styles.footer} role="contentinfo">
@@ -19,8 +21,7 @@ export default function Footer() {
           </ul>
         </div>
       </nav>
-      <p>{t('footer.copyright')}</p>
+      <p>{copyrightText}</p>
     </footer>
   );
 }
-

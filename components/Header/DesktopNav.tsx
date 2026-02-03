@@ -6,7 +6,11 @@ import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import LanguageToggle from '../LanguageToggle/LanguageToggle';
 import styles from './Header.module.css';
 
-export default function DesktopNav({ activeSection = '' }) {
+interface DesktopNavProps {
+  activeSection?: string;
+}
+
+export default function DesktopNav({ activeSection = '' }: DesktopNavProps) {
   const { t } = useLanguage();
 
   const navItems = [
@@ -40,4 +44,3 @@ export default function DesktopNav({ activeSection = '' }) {
     </nav>
   );
 }
-

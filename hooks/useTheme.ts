@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { getTimeBasedTheme, getStoredTheme, setStoredTheme, applyTheme } from '@/lib/theme';
+import type { Theme } from '@/types';
 
 export function useTheme() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export function useTheme() {
     applyTheme(newTheme);
   };
 
-  const setThemeValue = (newTheme) => {
+  const setThemeValue = (newTheme: Theme) => {
     setTheme(newTheme);
     setStoredTheme(newTheme);
     applyTheme(newTheme);
@@ -30,4 +31,3 @@ export function useTheme() {
 
   return { theme, toggleTheme, setTheme: setThemeValue, mounted };
 }
-

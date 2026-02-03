@@ -4,8 +4,9 @@ import Image from 'next/image';
 import { useLanguage } from '@/hooks/useLanguage';
 import ProjectsCarousel from './ProjectsCarousel';
 import styles from './Projects.module.css';
+import type { Project } from '@/types';
 
-const projects = [
+const projects: Project[] = [
   {
     id: 1,
     image: '/assets/Screenshot 2024-05-08 140820.png',
@@ -51,7 +52,7 @@ const projects = [
 export default function Projects() {
   const { t } = useLanguage();
 
-  const openProjectLink = (url) => {
+  const openProjectLink = (url: string) => {
     if (url) {
       window.open(url, '_blank', 'noopener,noreferrer');
     }
@@ -100,4 +101,3 @@ export default function Projects() {
     </section>
   );
 }
-
