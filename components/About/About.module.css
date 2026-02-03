@@ -248,7 +248,15 @@
   }
 
   .titleContainer {
-    gap: 2rem;
+    gap: 1.5rem;
+  }
+
+  .subtitle {
+    display: none;
+  }
+
+  .titleText {
+    gap: 0.5rem;
   }
 
   .containers {
