@@ -92,6 +92,7 @@
 
 .textP2 {
   font-size: 1.75rem;
+  min-height: 1.2em; /* Prevent layout shift during typing */
 }
 
 .title {
@@ -99,6 +100,25 @@
   text-align: center;
   color: var(--text-color);
   transition: color var(--transition-speed) var(--transition-ease);
+  min-height: 1.2em; /* Prevent layout shift during typing */
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--text-color);
+  font-weight: 300;
+  animation: blink 1s infinite;
+  vertical-align: baseline;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
 }
 
 .socialsContainer {

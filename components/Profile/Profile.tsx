@@ -1,13 +1,55 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useTheme } from '@/hooks/useTheme';
+import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 import styles from './Profile.module.css';
 
 export default function Profile() {
   const { t, language } = useLanguage();
   const { theme } = useTheme();
+
+  // Get the text values
+  const nameText = t('profile.name');
+  const titleText = t('profile.title');
+
+  // State to control when title animation should start
+  const [shouldStartTitle, setShouldStartTitle] = useState(false);
+
+  // Typing animation for name (starts immediately)
+  const nameAnimation = useTypingAnimation(nameText, {
+    speed: 120,
+    delay: 300,
+    showCursor: true,
+    restartOnChange: true,
+  });
+
+  // Reset title start state when name text changes (language change)
+  useEffect(() => {
+    setShouldStartTitle(false);
+  }, [nameText]);
+
+  // Start title animation when name completes
+  useEffect(() => {
+    if (nameAnimation.isComplete && !shouldStartTitle) {
+      // Small pause after name completes before starting title
+      const timer = setTimeout(() => {
+        setShouldStartTitle(true);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [nameAnimation.isComplete, shouldStartTitle]);
+
+  // Typing animation for title (starts when shouldStartTitle is true)
+  const titleAnimation = useTypingAnimation(titleText, {
+    speed: 80,
+    delay: 0,
+    showCursor: true,
+    restartOnChange: true,
+    enabled: shouldStartTitle,
+  });
 
   const handleDownloadCV = () => {
     const cvFile = language === 'de' ? '/assets/CV-German.pdf' : '/assets/Main CV Page English.pdf';
@@ -41,8 +83,14 @@ export default function Profile() {
       </div>
       <div className={styles.text}>
         <p className={styles.textP1}>{t('profile.greeting')}</p>
-        <h1 className={styles.title}>{t('profile.name')}</h1>
-        <p className={styles.textP2}>{t('profile.title')}</p>
+        <h1 className={styles.title} aria-label={nameText}>
+          {nameAnimation.displayedText}
+          {nameAnimation.isTyping && <span className={styles.cursor} aria-hidden="true">|</span>}
+        </h1>
+        <p className={styles.textP2} aria-label={titleText}>
+          {titleAnimation.displayedText}
+          {titleAnimation.isTyping && <span className={styles.cursor} aria-hidden="true">|</span>}
+        </p>
         <div className={styles.btnContainer}>
           <button
             className={`${styles.btn} ${styles.btnColor2}`}
