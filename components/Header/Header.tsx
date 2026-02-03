@@ -4,6 +4,7 @@ import { useState } from 'react';
 import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
 import Sidebar from './Sidebar';
+import ScrollProgress from '@/components/ScrollProgress/ScrollProgress';
 import { useActiveSection } from '@/hooks/useActiveSection';
 import styles from './Header.module.css';
 
@@ -21,6 +22,7 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
+      <ScrollProgress />
       <DesktopNav activeSection={activeSection} />
       <MobileNav onMenuToggle={toggleMenu} isOpen={sidebarOpen} />
       <Sidebar isOpen={sidebarOpen} onClose={closeMenu} activeSection={activeSection} />
