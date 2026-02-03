@@ -67,7 +67,7 @@
   flex: 0 0 370px;
   width: 370px;
   max-width: 370px;
-  background: var(--bg-color);
+  background: var(--color-bg-light);
   border-radius: var(--border-radius-md);
   border: var(--color-light-grey) 0.1rem solid;
   text-align: center;
@@ -84,6 +84,12 @@
   z-index: 0;
   will-change: transform, box-shadow;
   box-sizing: border-box;
+}
+
+[data-theme="dark"] .skillCard {
+  background: var(--color-bg-light);
+  border-color: var(--color-light-grey);
+  border-width: 1px;
 }
 
 .skillCard:hover {
@@ -283,6 +289,7 @@
 
 [data-theme="dark"] .progressContainer {
   background-color: var(--color-medium-grey);
+  border: 1px solid var(--color-white);
 }
 
 .progressBar {
@@ -294,8 +301,8 @@
 }
 
 [data-theme="dark"] .progressBar {
-  background-color: var(--color-white);
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
 .progressBarAnimated {
