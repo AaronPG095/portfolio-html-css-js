@@ -30,6 +30,7 @@
       "title": "Skills",
       "frontend": "Frontend",
       "backend": "Backend",
+      "tools": "Other",
       "levels": {
         "experienced": "Experienced",
         "intermediate": "Intermediate",
@@ -41,7 +42,7 @@
       "title": "Projects",
       "project1": {
         "title": "Portfolio Website",
-        "description": "HTML / CSS / Javascript"
+        "description": "HTML / CSS / Javascript / NextJS"
       },
       "project2": {
         "title": "Bohemian Kids Cafe",
@@ -57,7 +58,7 @@
       },
       "project5": {
         "title": "Kollektiv Spinnen Website",
-        "description": "TypeScript / PLpgSQL / CSS"
+        "description": "TypeScript / PLpgSQL / CSS / NextJS / ReactJS"
       },
       "github": "Github",
       "liveDemo": "Live Demo"
@@ -107,6 +108,7 @@
       "title": "Fähigkeiten",
       "frontend": "Frontend",
       "backend": "Backend",
+      "tools": "Other",
       "levels": {
         "experienced": "Erfahren",
         "intermediate": "Fortgeschritten",
@@ -118,7 +120,7 @@
       "title": "Projekte",
       "project1": {
         "title": "Portfolio Website",
-        "description": "HTML / CSS / Javascript"
+        "description": "HTML / CSS / Javascript / NextJS"
       },
       "project2": {
         "title": "Bohemian Kids Cafe",
@@ -134,7 +136,7 @@
       },
       "project5": {
         "title": "Kollektiv Spinnen Website",
-        "description": "TypeScript / PLpgSQL / CSS"
+        "description": "TypeScript / PLpgSQL / CSS / NextJS / ReactJS"
       },
       "github": "Github",
       "liveDemo": "Live Demo"
