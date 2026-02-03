@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLanguage } from '@/hooks/useLanguage';
 import styles from './Footer.module.css';
 
@@ -21,6 +22,38 @@ export default function Footer() {
           </ul>
         </div>
       </nav>
+      <div className={styles.socialsContainer}>
+        <a
+          href="https://linkedin.com/in/aaron-paul-greyling-54a8a954"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit LinkedIn profile"
+          className={styles.socialLink}
+        >
+          <Image
+            src="/assets/linkedin.png"
+            alt="LinkedIn icon"
+            className={styles.icon}
+            width={32}
+            height={32}
+          />
+        </a>
+        <a
+          href="https://github.com/AaronPG095"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit GitHub profile"
+          className={styles.socialLink}
+        >
+          <Image
+            src="/assets/github.png"
+            alt="GitHub icon"
+            className={styles.icon}
+            width={32}
+            height={32}
+          />
+        </a>
+      </div>
       <p>{copyrightText}</p>
     </footer>
   );

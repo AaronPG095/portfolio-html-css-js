@@ -1,0 +1,88 @@
+.skillsSkeleton {
+  position: relative;
+  padding-top: 4vh;
+  height: 96vh;
+  margin: 0 10rem;
+  min-height: fit-content;
+  scroll-margin-top: 17vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.subtitle {
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0 auto 2rem;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 55%;
+  margin: 0 auto;
+}
+
+.card {
+  flex: 0 0 370px;
+  width: 370px;
+  max-width: 370px;
+  background: var(--bg-color);
+  border-radius: var(--border-radius-md);
+  border: var(--color-light-grey) 0.1rem solid;
+  padding: 1.5rem;
+  padding-top: 2.5rem;
+  box-sizing: border-box;
+}
+
+.cardTitle {
+  margin: 0 auto 2rem;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.395rem;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.skillItem {
+  display: flex;
+  gap: 0.6975rem;
+  align-items: flex-start;
+  padding: 0.93rem;
+  border-radius: var(--border-radius-sm);
+  min-height: 3.72rem;
+}
+
+.skillContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6975rem;
+  flex: 1;
+}
+
+@media screen and (max-width: 1200px) {
+  .skillsSkeleton {
+    margin: 0;
+  }
+  
+  .cardsContainer {
+    flex-direction: column;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .card {
+    flex: 0 0 280px;
+    width: 280px;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,118 @@
+.projectsSkeleton {
+  position: relative;
+  padding-top: 4vh;
+  height: 96vh;
+  margin: 0 10rem;
+  min-height: fit-content;
+  scroll-margin-top: 17vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.subtitle {
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0 auto 2rem;
+}
+
+.carouselContainer {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 2rem 0;
+  overflow: hidden;
+}
+
+.card {
+  flex: 0 0 400px;
+  width: 400px;
+  max-width: 400px;
+  background: var(--bg-color);
+  border-radius: var(--border-radius-md);
+  border: var(--color-light-grey) 0.1rem solid;
+  padding: 1.5rem;
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+.image {
+  border-radius: var(--border-radius-md);
+  margin-bottom: 1rem;
+}
+
+.cardTitle {
+  margin: 0.5rem 0;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  width: 100%;
+  margin: 0.75rem 0;
+}
+
+.tag {
+  border-radius: var(--border-radius-sm);
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.button {
+  border-radius: 2rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .projectsSkeleton {
+    margin: 0;
+  }
+  
+  .carouselContainer {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .card {
+    flex: 0 0 280px;
+    width: 280px;
+    max-width: 280px;
+    min-height: 400px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    flex: 0 0 260px;
+    width: 260px;
+    max-width: 260px;
+    min-height: 392px;
+    padding: 1rem;
+  }
+  
+  .image {
+    height: 140px;
+  }
+  
+  .button {
+    width: 70px;
+    height: 2.5rem;
+  }
+}

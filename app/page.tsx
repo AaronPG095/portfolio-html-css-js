@@ -8,24 +8,12 @@ import About from '@/components/About/About';
 import Contact from '@/components/Contact/Contact';
 import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
+import SkillsSkeleton from '@/components/ui/SkillsSkeleton';
+import ProjectsSkeleton from '@/components/ui/ProjectsSkeleton';
 
 // Lazy load heavy components (below the fold)
 const Skills = lazy(() => import('@/components/Skills/Skills'));
 const Projects = lazy(() => import('@/components/Projects/Projects'));
-
-// Loading fallback component
-function SectionLoader() {
-  return (
-    <div style={{ 
-      minHeight: '400px', 
-      display: 'flex', 
-      alignItems: 'center', 
-      justifyContent: 'center' 
-    }}>
-      <div>Loading...</div>
-    </div>
-  );
-}
 
 export default function Home() {
   return (
@@ -39,12 +27,12 @@ export default function Home() {
           <About />
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<SectionLoader />}>
+          <Suspense fallback={<SkillsSkeleton />}>
             <Skills />
           </Suspense>
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<SectionLoader />}>
+          <Suspense fallback={<ProjectsSkeleton />}>
             <Projects />
           </Suspense>
         </ErrorBoundary>
