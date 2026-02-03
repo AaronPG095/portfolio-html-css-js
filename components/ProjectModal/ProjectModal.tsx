@@ -125,6 +125,8 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               className={styles.modalImage}
               width={800}
               height={600}
+              quality={90}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 800px"
               priority
             />
           </div>

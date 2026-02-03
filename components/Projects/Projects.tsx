@@ -150,6 +150,8 @@ export default function Projects() {
           className={styles.projectImg}
           width={500}
           height={400}
+          quality={85}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
           loading="lazy"
         />
       </div>

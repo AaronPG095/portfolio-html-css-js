@@ -115,6 +115,8 @@ export default function About() {
               className={`${styles.icon} ${hasExperienceIntersected ? styles.iconAnimated : styles.iconInitial} ${styles.iconDelay1}`}
               width={32}
               height={32}
+              quality={90}
+              sizes="32px"
               aria-hidden="true"
             />
             <h3>{t('about.experience')}</h3>
@@ -143,6 +145,8 @@ export default function About() {
               className={`${styles.icon} ${hasEducationIntersected ? styles.iconAnimated : styles.iconInitial} ${styles.iconDelay2}`}
               width={32}
               height={32}
+              quality={90}
+              sizes="32px"
               aria-hidden="true"
             />
             <h3>{t('about.education')}</h3>

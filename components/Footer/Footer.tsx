@@ -36,6 +36,8 @@ export default function Footer() {
             className={styles.icon}
             width={32}
             height={32}
+            quality={90}
+            sizes="32px"
           />
         </a>
         <a
@@ -51,6 +53,8 @@ export default function Footer() {
             className={styles.icon}
             width={32}
             height={32}
+            quality={90}
+            sizes="32px"
           />
         </a>
       </div>

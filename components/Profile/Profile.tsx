@@ -78,6 +78,8 @@ export default function Profile() {
           className={styles.profilePic}
           width={400}
           height={533}
+          quality={90}
+          sizes="(max-width: 768px) 100vw, 400px"
           priority
         />
       </div>
@@ -122,6 +124,8 @@ export default function Profile() {
               className={styles.icon}
               width={32}
               height={32}
+              quality={90}
+              sizes="32px"
             />
           </a>
           <a
@@ -138,6 +142,8 @@ export default function Profile() {
               className={styles.icon}
               width={32}
               height={32}
+              quality={90}
+              sizes="32px"
             />
           </a>
         </div>

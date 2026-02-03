@@ -19,6 +19,8 @@ export default function Contact() {
             className={`${styles.icon} ${styles.emailIcon}`}
             width={40}
             height={40}
+            quality={90}
+            sizes="40px"
             aria-hidden="true"
           />
           <p>
@@ -34,6 +36,8 @@ export default function Contact() {
             className={styles.icon}
             width={32}
             height={32}
+            quality={90}
+            sizes="32px"
             aria-hidden="true"
           />
           <p>
