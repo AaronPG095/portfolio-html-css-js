@@ -133,7 +133,7 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
         aria-label={t('about.timeline.heading')}
       >
         {/* Background */}
-        <rect width={svgWidth} height="450" fill="#f8f9fa" className={styles.timelineBackground} />
+        <rect width={svgWidth} height="450" fill="#f8f9fa" className={styles.timelineBackground} rx="12" ry="12" />
         
         {/* Timeline markers */}
         <text x={60 + leftPadding} y="30" fontSize="11" fill="#7f8c8d" fontStyle="italic" className={styles.timelineMarker}>
