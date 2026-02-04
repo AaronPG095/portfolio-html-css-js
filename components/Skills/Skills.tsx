@@ -91,9 +91,44 @@ const skillIconMap: Record<string, IconType> = {
   'Project Management': FaProjectDiagram,
 };
 
+// Color mapping for skill icons
+const skillColorMap: Record<string, string> = {
+  // Frontend
+  'HTML': '#E34F26',
+  'CSS': '#1572B6',
+  'Javascript': '#F7DF1E',
+  'SASS': '#CC6699',
+  'React.js': '#61DAFB',
+  'Tailwind': '#38BDF8',
+  'Framer': '#E11D48',
+  'Typescript': '#3178C6',
+  'Next.js': '#000000',
+  'PHP': '#777BB4',
+  'Laravel': '#FF2D20',
+  // Backend
+  'MongoDB': '#47A248',
+  'Node.js': '#339933',
+  'Express.js': '#000000',
+  'Git': '#F05032',
+  'MySQL': '#00758F',
+  'APIs': '#6366F1',
+  // Tools / Other
+  'Docker': '#0DB7ED',
+  'Cursor': '#0891B2',
+  'MCP': '#22C55E',
+  'Prompt Engineering': '#A855F7',
+  'SPRINT': '#EC4899',
+  'Project Management': '#F97316',
+};
+
 // Helper function to get icon for a skill
 function getSkillIcon(skillName: string): IconType {
   return skillIconMap[skillName] || FaCode;
+}
+
+// Helper function to get color for a skill icon
+function getSkillColor(skillName: string): string {
+  return skillColorMap[skillName] || 'var(--color-accent, #6366f1)';
 }
 
 interface SkillCardProps {
@@ -149,6 +184,7 @@ function SkillCard({ title, skills, onTooltipShow, onTooltipHide }: SkillCardPro
             >
               <IconComponent
                 className={styles.icon}
+                style={{ color: getSkillColor(skill.name) }}
                 aria-hidden="true"
               />
               <div className={styles.skillContent}>

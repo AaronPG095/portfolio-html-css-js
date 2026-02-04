@@ -246,16 +246,7 @@
   flex-shrink: 0;
   height: 1.395rem;
   width: 1.395rem;
-  color: var(--color-black);
-  transition: color var(--transition-speed) var(--transition-ease), filter var(--transition-speed) var(--transition-ease);
-  /* Convert colored icons to black in light mode */
-  filter: brightness(0) saturate(100%);
-}
-
-[data-theme="dark"] .icon {
-  color: var(--color-white);
-  /* Convert colored icons to white in dark mode */
-  filter: brightness(0) saturate(100%) invert(1);
+  transition: color var(--transition-speed) var(--transition-ease);
 }
 
 .articleContainer :global(article h3),
