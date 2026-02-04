@@ -1,24 +1,27 @@
 /**
  * Translation utilities
+ *
+ * Note: Translations are statically imported so they're available
+ * both on the server and the client without an extra network roundtrip.
  */
 
-import type { TranslationsData, Language } from '@/types';
+import type { TranslationsData, Language, Translations } from '@/types';
+import rawTranslations from '@/data/translations.json';
 
-let translationsCache: TranslationsData | null = null;
+const STATIC_TRANSLATIONS = rawTranslations as TranslationsData;
+
+export function getAllTranslations(): TranslationsData {
+  return STATIC_TRANSLATIONS;
+}
+
+export function getServerTranslations(lang: Language): Translations {
+  return STATIC_TRANSLATIONS[lang];
+}
 
 export async function loadTranslations(): Promise<TranslationsData | null> {
-  if (translationsCache) {
-    return translationsCache;
-  }
-
-  try {
-    const response = await fetch('/data/translations.json');
-    translationsCache = await response.json();
-    return translationsCache;
-  } catch (error) {
-    console.error('Error loading translations:', error);
-    return null;
-  }
+  // Kept for backward compatibility with existing async callers,
+  // but now simply returns the statically imported data.
+  return STATIC_TRANSLATIONS;
 }
 
 export function getTranslation(

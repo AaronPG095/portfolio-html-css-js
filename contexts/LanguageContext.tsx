@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { loadTranslations, getStoredLanguage, setStoredLanguage, getTranslation } from '@/lib/translations';
+import { getAllTranslations, getStoredLanguage, setStoredLanguage, getTranslation } from '@/lib/translations';
 import type { Language, TranslationsData } from '@/types';
 
 interface LanguageContextType {
@@ -17,21 +17,25 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 interface LanguageProviderProps {
   children: ReactNode;
+  initialLanguage?: Language;
+  initialTranslations?: TranslationsData | null;
 }
 
-export function LanguageProvider({ children }: LanguageProviderProps) {
-  const [language, setLanguageState] = useState<Language>('en');
-  const [translations, setTranslations] = useState<TranslationsData | null>(null);
+export function LanguageProvider({
+  children,
+  initialLanguage,
+  initialTranslations,
+}: LanguageProviderProps) {
+  const [language, setLanguageState] = useState<Language>(initialLanguage ?? 'en');
+  const [translations] = useState<TranslationsData | null>(
+    initialTranslations ?? getAllTranslations(),
+  );
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     const storedLang = getStoredLanguage();
     setLanguageState(storedLang);
-    
-    loadTranslations().then((translationsData) => {
-      setTranslations(translationsData);
-    });
   }, []);
 
   const setLanguage = (lang: Language) => {
