@@ -131,6 +131,28 @@
   gap: 1.5rem;
 }
 
+.summarySection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.summaryTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+.summaryText {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-medium-grey);
+  margin: 0;
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
 .modalTitle {
   font-size: 2rem;
   font-weight: 700;

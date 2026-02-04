@@ -212,16 +212,7 @@
   flex-shrink: 0;
   height: 0.875rem;
   width: 0.875rem;
-  color: var(--color-black);
-  transition: color var(--transition-speed) var(--transition-ease), filter var(--transition-speed) var(--transition-ease);
-  /* Convert colored icons to black in light mode */
-  filter: brightness(0) saturate(100%);
-}
-
-[data-theme="dark"] .techIcon {
-  color: var(--color-white);
-  /* Convert colored icons to white in dark mode */
-  filter: brightness(0) saturate(100%) invert(1);
+  transition: color var(--transition-speed) var(--transition-ease);
 }
 
 .techTag:hover {
@@ -232,7 +223,6 @@
 
 .techTag:hover .techIcon {
   color: var(--color-white);
-  filter: brightness(0) saturate(100%) invert(1);
 }
 
 [data-theme="dark"] .techTag:hover {
@@ -243,7 +233,6 @@
 
 [data-theme="dark"] .techTag:hover .techIcon {
   color: var(--color-black);
-  filter: brightness(0) saturate(100%);
 }
 
 .btnContainer {

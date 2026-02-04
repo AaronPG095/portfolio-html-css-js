@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Project } from '@/types';
@@ -86,10 +86,44 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
+function extractGithubRepo(githubUrl: string | undefined): { owner: string; repo: string } | null {
+  if (!githubUrl) return null;
+  const match = githubUrl.match(/github\.com\/([^/]+)\/([^/?#]+)/);
+  if (!match) return null;
+  const [, owner, repo] = match;
+  return { owner, repo };
+}
+
+function extractSummaryFromReadme(content: string): string | null {
+  const normalized = content.replace(/\r\n/g, '\n');
+  const paragraphs = normalized
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  if (!paragraphs.length) return null;
+
+  // Prefer the first real prose paragraph, skipping markdown headings and images
+  const firstProse =
+    paragraphs.find((p) => {
+      const trimmed = p.trim();
+      if (!trimmed) return false;
+      if (trimmed.startsWith('#')) return false; // headings like "# Title"
+      if (trimmed.startsWith('![')) return false; // images
+      return true;
+    }) ?? paragraphs[0];
+
+  if (!firstProse) return null;
+
+  const summary = firstProse.length > 500 ? `${firstProse.slice(0, 500)}…` : firstProse;
+  return summary;
+}
+
 export default function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   const { t } = useLanguage();
   const modalRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const [summary, setSummary] = useState<string | null>(null);
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -110,6 +144,68 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
       document.body.style.overflow = 'unset';
     };
   }, [isOpen, onClose]);
+
+  // Fetch project summary from GitHub README when modal opens
+  useEffect(() => {
+    setSummary(null);
+
+    if (!isOpen || !project?.github) {
+      return;
+    }
+
+    const repoInfo = extractGithubRepo(project.github);
+    if (!repoInfo) {
+      return;
+    }
+
+    const controller = new AbortController();
+
+    async function fetchSummary() {
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${repoInfo.owner}/${repoInfo.repo}/readme`,
+          {
+            headers: {
+              Accept: 'application/vnd.github.v3+json',
+            },
+            signal: controller.signal,
+          },
+        );
+
+        if (!res.ok) {
+          return;
+        }
+
+        const data = await res.json() as { content?: string };
+        if (!data.content) {
+          return;
+        }
+
+        const base64 = data.content.replace(/\s/g, '');
+        if (!base64) return;
+
+        let decoded = '';
+        try {
+          decoded = atob(base64);
+        } catch {
+          return;
+        }
+
+        const extracted = extractSummaryFromReadme(decoded);
+        if (extracted) {
+          setSummary(extracted);
+        }
+      } catch {
+        // Ignore errors – if README can't be fetched, we just omit the summary
+      }
+    }
+
+    fetchSummary();
+
+    return () => {
+      controller.abort();
+    };
+  }, [isOpen, project?.github]);
 
   // Handle click outside modal to close
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -164,6 +260,13 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             <h2 id="modal-title" className={styles.modalTitle}>
               {t(project.titleKey)}
             </h2>
+
+            {summary && (
+              <section className={styles.summarySection} aria-label="Project summary">
+                <h3 className={styles.summaryTitle}>Project Summary</h3>
+                <p className={styles.summaryText}>{summary}</p>
+              </section>
+            )}
 
             {project.technologies && project.technologies.length > 0 && (
               <div className={styles.techSection}>
