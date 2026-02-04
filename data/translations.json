@@ -23,7 +23,48 @@
       "education1": "DCI (Digital Career Institue) Web Development Bootcamp",
       "education2": "BTEC HNC4 General Engineering",
       "description1": "Originally from South Africa and now over ten years in Germany, I'm a creative, team‑oriented Fullstack Web Developer with a background of nine years in professional kitchens. Currently at a vegan restaurant in Connewitz, Leipzig – an experience that has taught me patience, teamwork and attention to detail.",
-      "description2": "I received a comprehensive knowledge base in Fullstack Web Development through a 14‑month DCI Web Development Bootcamp and have been continuously developing my skills with private projects and online courses ever since. I love creating intuitive, aesthetic and functional applications, and I'm always looking for work environments that fit my skills, nurture my curiosity and align with my values."
+      "description2": "I received a comprehensive knowledge base in Fullstack Web Development through a 14‑month DCI Web Development Bootcamp and have been continuously developing my skills with private projects and online courses ever since. I love creating intuitive, aesthetic and functional applications, and I'm always looking for work environments that fit my skills, nurture my curiosity and align with my values.",
+      "timeline": {
+        "heading": "Career Timeline & Professional Development",
+        "subtitle": "Journey from Culinary Arts to Software Development",
+        "markers": {
+          "startYear": "2023",
+          "future": "Future →"
+        },
+        "futureNode": {
+          "titleLine1": "Computer Science",
+          "titleLine2": "Degree",
+          "description": "(Future Goal)"
+        },
+        "branches": {
+          "chefWork": "Professional Chef",
+          "developerEducation": "Developer Education",
+          "developerExperience": "Developer Experience"
+        },
+        "nodes": {
+          "restaurantZest": "Restaurant Zest",
+          "bootcampStart": "Bootcamp Start",
+          "bootcampStartDescription": "(Major Transition)",
+          "dciBootcamp": "12-Month DCI Bootcamp",
+          "dciBootcampLine1": "12-Month DCI",
+          "dciBootcampLine2": "Bootcamp",
+          "dciBootcampDescription": "(Full-Stack Training)",
+          "graduation": "Graduation",
+          "onlineCourses": "Online Courses",
+          "onlineCoursesLine1": "Online",
+          "onlineCoursesLine2": "Courses",
+          "onlineCoursesDescription": "(Skill Enhancement)",
+          "internship": "2-Month Developer Internship",
+          "internshipLine1": "2-Month Developer",
+          "internshipLine2": "Internship",
+          "internshipDescription": "(First Pro Experience)",
+          "personalProjects": "Personal Projects",
+          "personalProjectsLine1": "Personal",
+          "personalProjectsLine2": "Projects",
+          "personalProjectsDescription": "(Portfolio Building)",
+          "currentPosition": "You are here"
+        }
+      }
     },
     "skills": {
       "subtitle": "Explore My",
@@ -132,7 +173,48 @@
       "education1": "DCI (Digital Career Institue) Web Development Bootcamp",
       "education2": "BTEC HNC4 Allgemeines Ingenieurwesen",
       "description1": "Ursprünglich aus Südafrika, jetzt seit über 10 Jahren in Deutschland. Ich bin ein kreativer, teamorientierter und motivierter Full Stack Webentwickler mit einem Hintergrund von neun Jahren als Koch. Zuletzt in einem hochwertigen veganen Restaurant im Herzen von Connewitz, Leipzig.",
-      "description2": "Ich habe eine umfassende Grundlage in der Entwicklung durch mein 14-monatiges DCI Web Development Bootcamp erhalten und arbeite seitdem an verschiedenen privaten Projekten. Ich liebe es, intuitive, ästhetische und funktionale Anwendungen zu erstellen und suche nach einem Arbeitsumfeld, das zu meinen Fähigkeiten passt, meine Interessen fördert und mit meinen Werten übereinstimmt."
+      "description2": "Ich habe eine umfassende Grundlage in der Entwicklung durch mein 14-monatiges DCI Web Development Bootcamp erhalten und arbeite seitdem an verschiedenen privaten Projekten. Ich liebe es, intuitive, ästhetische und funktionale Anwendungen zu erstellen und suche nach einem Arbeitsumfeld, das zu meinen Fähigkeiten passt, meine Interessen fördert und mit meinen Werten übereinstimmt.",
+      "timeline": {
+        "heading": "Karriere-Timeline & Berufliche Entwicklung",
+        "subtitle": "Weg von der Kochkunst zur Softwareentwicklung",
+        "markers": {
+          "startYear": "2023",
+          "future": "Zukunft →"
+        },
+        "futureNode": {
+          "titleLine1": "Informatik",
+          "titleLine2": "Studium",
+          "description": "(Zukunfts-Ziel)"
+        },
+        "branches": {
+          "chefWork": "Profikoch",
+          "developerEducation": "Entwickler-Ausbildung",
+          "developerExperience": "Entwickler-Erfahrung"
+        },
+        "nodes": {
+          "restaurantZest": "Restaurant Zest",
+          "bootcampStart": "Bootcamp Start",
+          "bootcampStartDescription": "(Großer Übergang)",
+          "dciBootcamp": "12-Monats DCI Bootcamp",
+          "dciBootcampLine1": "12-Monats DCI",
+          "dciBootcampLine2": "Bootcamp",
+          "dciBootcampDescription": "(Full-Stack Training)",
+          "graduation": "Abschluss",
+          "onlineCourses": "Online-Kurse",
+          "onlineCoursesLine1": "Online",
+          "onlineCoursesLine2": "Kurse",
+          "onlineCoursesDescription": "(Fähigkeitsverbesserung)",
+          "internship": "2-Monats Entwickler-Praktikum",
+          "internshipLine1": "2-Monats Entwickler",
+          "internshipLine2": "Praktikum",
+          "internshipDescription": "(Erste Berufserfahrung)",
+          "personalProjects": "Persönliche Projekte",
+          "personalProjectsLine1": "Persönliche",
+          "personalProjectsLine2": "Projekte",
+          "personalProjectsDescription": "(Portfolio-Aufbau)",
+          "currentPosition": "Du bist hier"
+        }
+      }
     },
     "skills": {
       "subtitle": "Erkunde meine",

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useLanguage } from '@/hooks/useLanguage';
 import styles from './About.module.css';
 
 interface TimelineNode {
@@ -114,6 +115,8 @@ function getBranchTransitionX(branchId: string): number {
 }
 
 export default function TimelineSVG({ branches }: TimelineSVGProps) {
+  const { t } = useLanguage();
+  
   // Reduced left padding by 50%: from 200px to 100px, keep right reduction: 1200 + 100 - 100 = 1200
   const leftPadding = 100;
   const rightReduction = 100;
@@ -127,17 +130,17 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
         className={styles.timelineSVG}
         preserveAspectRatio="xMidYMid meet"
         role="img"
-        aria-label="Career timeline"
+        aria-label={t('about.timeline.heading')}
       >
         {/* Background */}
         <rect width={svgWidth} height="450" fill="#f8f9fa" className={styles.timelineBackground} />
         
         {/* Timeline markers */}
         <text x={60 + leftPadding} y="30" fontSize="11" fill="#7f8c8d" fontStyle="italic" className={styles.timelineMarker}>
-          2023
+          {t('about.timeline.markers.startYear')}
         </text>
         <text x={svgWidth - 120} y="30" fontSize="11" fill="#7f8c8d" fontStyle="italic" className={styles.timelineMarker}>
-          Future →
+          {t('about.timeline.markers.future')}
         </text>
         
         {/* Branch Labels */}
@@ -258,19 +261,18 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
             const isTransition = node.isTransition || false;
             const cleanTitle = cleanNodeTitle(node.title);
             
-            // Split title based on specific node requirements
+            // Split title based on specific node requirements using translations
             let titleLines: string[] = [cleanTitle];
             
-            // Map specific node titles to match provided design
+            // Map specific node titles to match provided design using translations
             if (node.id === 'dci-bootcamp') {
-              titleLines = ['12-Month DCI', 'Bootcamp'];
+              titleLines = [t('about.timeline.nodes.dciBootcampLine1'), t('about.timeline.nodes.dciBootcampLine2')];
             } else if (node.id === 'online-courses') {
-              titleLines = ['Online', 'Courses'];
+              titleLines = [t('about.timeline.nodes.onlineCoursesLine1'), t('about.timeline.nodes.onlineCoursesLine2')];
             } else if (node.id === 'internship') {
-              // Use "2-Month Developer Internship" to match provided code
-              titleLines = ['2-Month Developer', 'Internship'];
+              titleLines = [t('about.timeline.nodes.internshipLine1'), t('about.timeline.nodes.internshipLine2')];
             } else if (node.id === 'personal-projects') {
-              titleLines = ['Personal', 'Projects'];
+              titleLines = [t('about.timeline.nodes.personalProjectsLine1'), t('about.timeline.nodes.personalProjectsLine2')];
             } else if (cleanTitle.length > 15 && !cleanTitle.includes('\n')) {
               // Generic split for long titles
               const spaceIndex = cleanTitle.lastIndexOf(' ', 15);
@@ -372,7 +374,7 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
             fontWeight="600"
             className={styles.nodeTitle}
           >
-            Computer Science
+            {t('about.timeline.futureNode.titleLine1')}
           </text>
           <text 
             x={900 + leftPadding} 
@@ -383,7 +385,7 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
             fontWeight="600"
             className={styles.nodeTitle}
           >
-            Degree
+            {t('about.timeline.futureNode.titleLine2')}
           </text>
           <text 
             x={900 + leftPadding} 
@@ -394,7 +396,7 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
             fontStyle="italic"
             className={styles.nodeDescription}
           >
-            (Future Goal)
+            {t('about.timeline.futureNode.description')}
           </text>
         </g>
         

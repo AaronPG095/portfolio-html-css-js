@@ -73,80 +73,86 @@ interface TimelineBranch {
   isPast?: boolean; // Whether this branch is in the past (dashed line)
 }
 
-const timelineBranches: TimelineBranch[] = [
-  {
-    id: 'chef-work',
-    label: 'Professional Chef',
-    isPast: true,
-    nodes: [
-      {
-        id: 'restaurant-zest',
-        title: 'Restaurant Zest',
-        position: 20,
-      },
-      {
-        id: 'bootcamp-start',
-        title: 'N1: Bootcamp Start',
-        description: '(Major Transition)',
-        isTransition: true,
-        connectsToBranch: 'software-education',
-        position: 60,
-      },
-    ],
-  },
-  {
-    id: 'software-education',
-    label: 'Developer Education',
-    nodes: [
-      {
-        id: 'dci-bootcamp',
-        title: '12-Month DCI Bootcamp',
-        description: '(Full-Stack Training)',
-        position: 15,
-      },
-      {
-        id: 'graduation',
-        title: 'N2: Graduation',
-        isTransition: true,
-        connectsToBranch: 'software-experience',
-        position: 40,
-      },
-      {
-        id: 'online-courses',
-        title: 'N3: Online Courses',
-        description: '(Skill Enhancement)',
-        position: 55,
-      },
-      {
-        id: 'current-position',
-        title: 'You are here',
-        isCurrentPosition: true,
-        position: 70,
-      },
-    ],
-  },
-  {
-    id: 'software-experience',
-    label: 'Developer Experience',
-    nodes: [
-      {
-        id: 'internship',
-        title: '2-Month Developer Internship',
-        description: '(First Pro Experience)',
-        position: 20,
-      },
-      {
-        id: 'personal-projects',
-        title: 'N4: Personal Projects',
-        description: '(Portfolio Building)',
-        position: 50,
-      },
-    ],
-  },
-];
+/**
+ * Creates translated timeline branches
+ */
+function createTranslatedBranches(t: (key: string) => string): TimelineBranch[] {
+  return [
+    {
+      id: 'chef-work',
+      label: t('about.timeline.branches.chefWork'),
+      isPast: true,
+      nodes: [
+        {
+          id: 'restaurant-zest',
+          title: t('about.timeline.nodes.restaurantZest'),
+          position: 20,
+        },
+        {
+          id: 'bootcamp-start',
+          title: `N1: ${t('about.timeline.nodes.bootcampStart')}`,
+          description: t('about.timeline.nodes.bootcampStartDescription'),
+          isTransition: true,
+          connectsToBranch: 'software-education',
+          position: 60,
+        },
+      ],
+    },
+    {
+      id: 'software-education',
+      label: t('about.timeline.branches.developerEducation'),
+      nodes: [
+        {
+          id: 'dci-bootcamp',
+          title: t('about.timeline.nodes.dciBootcamp'),
+          description: t('about.timeline.nodes.dciBootcampDescription'),
+          position: 15,
+        },
+        {
+          id: 'graduation',
+          title: `N2: ${t('about.timeline.nodes.graduation')}`,
+          isTransition: true,
+          connectsToBranch: 'software-experience',
+          position: 40,
+        },
+        {
+          id: 'online-courses',
+          title: `N3: ${t('about.timeline.nodes.onlineCourses')}`,
+          description: t('about.timeline.nodes.onlineCoursesDescription'),
+          position: 55,
+        },
+        {
+          id: 'current-position',
+          title: t('about.timeline.nodes.currentPosition'),
+          isCurrentPosition: true,
+          position: 70,
+        },
+      ],
+    },
+    {
+      id: 'software-experience',
+      label: t('about.timeline.branches.developerExperience'),
+      nodes: [
+        {
+          id: 'internship',
+          title: t('about.timeline.nodes.internship'),
+          description: t('about.timeline.nodes.internshipDescription'),
+          position: 20,
+        },
+        {
+          id: 'personal-projects',
+          title: `N4: ${t('about.timeline.nodes.personalProjects')}`,
+          description: t('about.timeline.nodes.personalProjectsDescription'),
+          position: 50,
+        },
+      ],
+    },
+  ];
+}
 
 export default function About() {
   const { t } = useLanguage();
+  const timelineBranches = createTranslatedBranches(t);
   
   // Intersection observers for both cards
   const [experienceCardRef, , hasExperienceIntersected] = useIntersectionObserver({
@@ -266,9 +272,9 @@ export default function About() {
           </div>
         </div>
       </div>
-      <div className={styles.timelineSection} role="list" aria-label="Career timeline">
-        <h2 className={styles.timelineHeading}>Career Timeline & Professional Development</h2>
-        <p className={styles.timelineSubtitle}>Journey from Culinary Arts to Software Development</p>
+      <div className={styles.timelineSection} role="list" aria-label={t('about.timeline.heading')}>
+        <h2 className={styles.timelineHeading}>{t('about.timeline.heading')}</h2>
+        <p className={styles.timelineSubtitle}>{t('about.timeline.subtitle')}</p>
         <div className={styles.timelineWrapper}>
           <TimelineSVG branches={timelineBranches} />
         </div>
