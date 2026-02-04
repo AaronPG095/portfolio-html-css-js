@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website showcasing my work as a Fullstack Developer. Built with **Next.js 14** (App Router), **TypeScript**, **React 18**, and **CSS Modules**, featuring bilingual support (English/German), dark/light theme toggle, and smooth animations.
 
-![Portfolio Preview](assets/Screenshot%202024-05-08%20140820.png)
+![Portfolio Preview](public/assets/Screenshot%202024-05-08%20140820.png)
 
 ## ✨ Features
 
@@ -141,7 +141,6 @@ portfolio-html-css-js/
 ├── types/                  # TypeScript type definitions
 │   └── index.ts
 │
-├── mediaqueries-*.css      # Responsive breakpoint styles
 ├── package.json           # Dependencies and scripts
 ├── tsconfig.json          # TypeScript configuration
 └── next.config.js         # Next.js configuration
