@@ -692,11 +692,17 @@
 }
 
 .timelineMarker {
+  fill: var(--color-dark-grey);
+  font-weight: 500;
   transition: fill var(--transition-speed) var(--transition-ease);
 }
 
 [data-theme="dark"] .timelineMarker {
   fill: var(--color-medium-grey);
+}
+
+.timelineTopLine {
+  transition: stroke var(--transition-speed) var(--transition-ease), opacity var(--transition-speed) var(--transition-ease);
 }
 
 .branchLabelText {

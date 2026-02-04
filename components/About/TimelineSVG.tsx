@@ -136,12 +136,55 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
         <rect width={svgWidth} height="450" fill="#f8f9fa" className={styles.timelineBackground} rx="12" ry="12" />
         
         {/* Timeline markers */}
-        <text x={60 + leftPadding} y="30" fontSize="11" fill="#7f8c8d" fontStyle="italic" className={styles.timelineMarker}>
+        <text x={60 + leftPadding} y="30" fontSize="13" fontStyle="italic" className={styles.timelineMarker}>
           {t('about.timeline.markers.startYear')}
         </text>
-        <text x={svgWidth - 120} y="30" fontSize="11" fill="#7f8c8d" fontStyle="italic" className={styles.timelineMarker}>
+        <text x={svgWidth - 120} y="30" fontSize="13" fontStyle="italic" className={styles.timelineMarker}>
           {t('about.timeline.markers.future')}
         </text>
+        
+        {/* Top timeline line */}
+        <line 
+          x1={110 + leftPadding} 
+          y1="30" 
+          x2={svgWidth - 130} 
+          y2="30" 
+          stroke="#95a5a6" 
+          strokeWidth="2" 
+          strokeDasharray="5,5" 
+          opacity="0.6"
+          strokeLinecap="round"
+          className={styles.timelineTopLine}
+        />
+        
+        {/* Year 2026 Node */}
+        <g 
+          className={styles.nodeGroup}
+          pointerEvents="all"
+          style={{ transformOrigin: `${750 + leftPadding}px 30px` }}
+        >
+          <circle 
+            cx={750 + leftPadding} 
+            cy="30" 
+            r="9" 
+            fill="#95a5a6" 
+            stroke="white" 
+            strokeWidth="2"
+            className={styles.nodeCircle}
+          />
+          <text 
+            x={750 + leftPadding} 
+            y="20" 
+            textAnchor="middle" 
+            fontSize="13" 
+            fill="var(--color-dark-grey)" 
+            fontWeight="500"
+            fontStyle="italic"
+            className={styles.timelineMarker}
+          >
+            {t('about.timeline.markers.year2026')}
+          </text>
+        </g>
         
         {/* Branch Labels */}
         {branches.map((branch, branchIndex) => {
