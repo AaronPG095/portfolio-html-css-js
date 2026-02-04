@@ -48,9 +48,38 @@ const techIconMap: Record<string, IconType> = {
   'Postgres': SiPostgresql,
 };
 
+// Color mapping for technologies
+const techColorMap: Record<string, string> = {
+  'HTML': '#E34F26',
+  'CSS': '#1572B6',
+  'JavaScript': '#F7DF1E',
+  'Javascript': '#F7DF1E',
+  'SCSS': '#CC6699',
+  'SASS': '#CC6699',
+  'React.js': '#61DAFB',
+  'React': '#61DAFB',
+  'Tailwind': '#38BDF8',
+  'TypeScript': '#3178C6',
+  'Typescript': '#3178C6',
+  'Next.js': '#000000',
+  'NextJS': '#000000',
+  'Node.js': '#339933',
+  'NodeJS': '#339933',
+  'Express.js': '#000000',
+  'ExpressJS': '#000000',
+  'MongoDB': '#47A248',
+  'PostgreSQL': '#336791',
+  'Postgres': '#336791',
+};
+
 // Helper function to get icon for a technology
 function getTechIcon(techName: string): IconType {
   return techIconMap[techName] || FaCode;
+}
+
+// Helper function to get color for a technology icon
+function getTechColor(techName: string): string {
+  return techColorMap[techName] || 'var(--color-accent, #6366f1)';
 }
 
 const projects: Project[] = [
@@ -61,7 +90,7 @@ const projects: Project[] = [
     descriptionKey: 'projects.project1.description',
     github: 'https://github.com/AaronPG095/portfolio-html-css-js',
     liveDemo: 'https://github.com/AaronPG095/portfolio-html-css-js',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'Next.js'],
+    technologies: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Next.js'],
   },
   {
     id: 2,
@@ -79,7 +108,7 @@ const projects: Project[] = [
     descriptionKey: 'projects.project3.description',
     github: 'https://github.com/AaronPG095/React-Ecommerce-Project?tab=readme-ov-file',
     liveDemo: 'https://sunnyeyles.github.io/React-Ecommerce-Project/',
-    technologies: ['SCSS', 'React.js'],
+    technologies: ['HTML', 'SCSS', 'JavaScript', 'React.js'],
   },
   {
     id: 4,
@@ -88,7 +117,7 @@ const projects: Project[] = [
     descriptionKey: 'projects.project4.description',
     github: 'https://github.com/AaronPG095/brainwave',
     liveDemo: 'https://braynewave.netlify.app/',
-    technologies: ['Tailwind', 'React.js'],
+    technologies: ['HTML', 'Tailwind', 'JavaScript', 'React.js'],
   },
   {
     id: 5,
@@ -97,7 +126,7 @@ const projects: Project[] = [
     descriptionKey: 'projects.project5.description',
     github: 'https://github.com/AaronPG095/kollektiv-spinnen-timetable',
     liveDemo: 'https://kollektiv-spinnen-timetable.lovable.app/',
-    technologies: ['TypeScript', 'Next.js', 'React.js', 'PostgreSQL'],
+    technologies: ['HTML', 'TypeScript', 'JavaScript', 'Next.js', 'React.js', 'PostgreSQL'],
   },
 ];
 
@@ -162,7 +191,11 @@ export default function Projects() {
             const TechIcon = getTechIcon(tech);
             return (
               <span key={index} className={styles.techTag}>
-                <TechIcon className={styles.techIcon} aria-hidden="true" />
+                <TechIcon
+                  className={styles.techIcon}
+                  style={{ color: getTechColor(tech) }}
+                  aria-hidden="true"
+                />
                 {tech}
               </span>
             );
