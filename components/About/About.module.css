@@ -737,6 +737,94 @@
   transition: opacity var(--transition-speed) var(--transition-ease);
 }
 
+/* Node Group Hover Effects */
+.nodeGroup {
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nodeGroup:hover {
+  transform: scale(1.15);
+}
+
+/* Circle Hover Effects */
+.nodeGroup:hover .nodeCircle {
+  filter: brightness(1.2) drop-shadow(0 0 8px rgba(0, 0, 0, 0.3));
+  stroke-width: 3;
+  transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              stroke-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .nodeGroup:hover .nodeCircle {
+  filter: brightness(1.2) drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+.nodeGroup.nodeTransition:hover .nodeCircle {
+  filter: brightness(1.15) drop-shadow(0 0 6px rgba(149, 165, 166, 0.4));
+}
+
+[data-theme="dark"] .nodeGroup.nodeTransition:hover .nodeCircle {
+  filter: brightness(1.15) drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
+}
+
+.nodeGroup:hover .nodeCircleOuter {
+  opacity: 0.5;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Text Hover Effects */
+.nodeGroup:hover .nodeTitle {
+  fill: #2c3e50;
+  transition: fill 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .nodeGroup:hover .nodeTitle {
+  fill: var(--text-color);
+  filter: brightness(1.1);
+}
+
+/* Description Hover Effects */
+.nodeGroup:hover .nodeDescription {
+  opacity: 1;
+  fill: #5a6c7d;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              fill 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .nodeGroup:hover .nodeDescription {
+  fill: var(--color-medium-grey);
+  filter: brightness(1.1);
+}
+
+/* Touch device support */
+.nodeGroup:active {
+  transform: scale(1.1);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .nodeGroup {
+    transition: none;
+  }
+
+  .nodeGroup:hover {
+    transform: none;
+  }
+
+  .nodeGroup:hover .nodeCircle {
+    filter: none;
+    transition: none;
+  }
+
+  .nodeGroup:hover .nodeTitle {
+    transition: fill var(--transition-speed) var(--transition-ease);
+  }
+
+  .nodeGroup:hover .nodeDescription {
+    transition: fill var(--transition-speed) var(--transition-ease);
+  }
+}
+
 /* Responsive styles for SVG timeline */
 @media screen and (max-width: 1200px) {
   .timelineSVGWrapper {

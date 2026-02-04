@@ -107,7 +107,6 @@ const timelineBranches: TimelineBranch[] = [
       {
         id: 'graduation',
         title: 'N2: Graduation',
-        description: '(Career Launch)',
         isTransition: true,
         connectsToBranch: 'software-experience',
         position: 40,

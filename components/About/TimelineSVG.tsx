@@ -280,7 +280,12 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
             }
             
             return (
-              <g key={node.id}>
+              <g 
+                key={node.id}
+                className={`${styles.nodeGroup} ${isTransition ? styles.nodeTransition : ''}`}
+                pointerEvents="all"
+                style={{ transformOrigin: `${x}px ${y}px` }}
+              >
                 {/* Node circle */}
                 <circle 
                   cx={x} 
@@ -344,7 +349,11 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
         })}
         
         {/* Future Node: Computer Science Degree */}
-        <g>
+        <g 
+          className={styles.nodeGroup}
+          pointerEvents="all"
+          style={{ transformOrigin: `${900 + leftPadding}px 220px` }}
+        >
           <circle 
             cx={900 + leftPadding} 
             cy="220" 
