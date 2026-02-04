@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { useCounterAnimation } from '@/hooks/useCounterAnimation';
+import TimelineSVG from './TimelineSVG';
 import styles from './About.module.css';
 
 /**
@@ -49,6 +50,101 @@ function parseExperienceText(text: string): {
   // Fallback: no time unit found
   return { timeUnit: 'Years', category: text };
 }
+
+/**
+ * Timeline data structures for Git-flow-style career timeline
+ */
+interface TimelineNode {
+  id: string;
+  yearLabel?: string;
+  title: string;
+  description?: string;
+  isFuture?: boolean;
+  isTransition?: boolean; // Node that connects to another branch
+  connectsToBranch?: string; // Branch ID this transition connects to
+  isCurrentPosition?: boolean; // "You are here" marker
+  position?: number; // Position along the branch (0-100 for percentage)
+}
+
+interface TimelineBranch {
+  id: string;
+  label: string;
+  nodes: TimelineNode[];
+  isPast?: boolean; // Whether this branch is in the past (dashed line)
+}
+
+const timelineBranches: TimelineBranch[] = [
+  {
+    id: 'chef-work',
+    label: 'Professional Chef',
+    isPast: true,
+    nodes: [
+      {
+        id: 'restaurant-zest',
+        title: 'Restaurant Zest',
+        position: 20,
+      },
+      {
+        id: 'bootcamp-start',
+        title: 'N1: Bootcamp Start',
+        description: '(Major Transition)',
+        isTransition: true,
+        connectsToBranch: 'software-education',
+        position: 60,
+      },
+    ],
+  },
+  {
+    id: 'software-education',
+    label: 'Software Education',
+    nodes: [
+      {
+        id: 'dci-bootcamp',
+        title: '12-Month DCI Bootcamp',
+        description: '(Full-Stack Training)',
+        position: 15,
+      },
+      {
+        id: 'graduation',
+        title: 'N2: Graduation',
+        description: '(Career Launch)',
+        isTransition: true,
+        connectsToBranch: 'software-experience',
+        position: 40,
+      },
+      {
+        id: 'online-courses',
+        title: 'N3: Online Courses',
+        description: '(Skill Enhancement)',
+        position: 55,
+      },
+      {
+        id: 'current-position',
+        title: 'You are here',
+        isCurrentPosition: true,
+        position: 70,
+      },
+    ],
+  },
+  {
+    id: 'software-experience',
+    label: 'Software Experience',
+    nodes: [
+      {
+        id: 'internship',
+        title: '2-Month Developer Internship',
+        description: '(First Pro Experience)',
+        position: 20,
+      },
+      {
+        id: 'personal-projects',
+        title: 'N4: Personal Projects',
+        description: '(Portfolio Building)',
+        position: 50,
+      },
+    ],
+  },
+];
 
 export default function About() {
   const { t } = useLanguage();
@@ -169,6 +265,13 @@ export default function About() {
             <p>{t('about.description1')}</p>
             <p>{t('about.description2')}</p>
           </div>
+        </div>
+      </div>
+      <div className={styles.timelineSection} role="list" aria-label="Career timeline">
+        <h2 className={styles.timelineHeading}>Career Timeline & Professional Development</h2>
+        <p className={styles.timelineSubtitle}>Journey from Culinary Arts to Software Development</p>
+        <div className={styles.timelineWrapper}>
+          <TimelineSVG branches={timelineBranches} />
         </div>
       </div>
     </section>
