@@ -153,17 +153,19 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
       return;
     }
 
-    const repoInfo = extractGithubRepo(project.github);
-    if (!repoInfo) {
-      return;
-    }
-
     const controller = new AbortController();
 
     async function fetchSummary() {
       try {
+        const repoInfo = extractGithubRepo(project.github);
+        if (!repoInfo) {
+          return;
+        }
+
+        const { owner, repo } = repoInfo;
+
         const res = await fetch(
-          `https://api.github.com/repos/${repoInfo.owner}/${repoInfo.repo}/readme`,
+          `https://api.github.com/repos/${owner}/${repo}/readme`,
           {
             headers: {
               Accept: 'application/vnd.github.v3+json',
