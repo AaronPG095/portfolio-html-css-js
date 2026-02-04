@@ -97,11 +97,13 @@ const skillColorMap: Record<string, string> = {
   'HTML': '#E34F26',
   'CSS': '#1572B6',
   'Javascript': '#F7DF1E',
+  'JavaScript': '#F7DF1E',
   'SASS': '#CC6699',
   'React.js': '#61DAFB',
   'Tailwind': '#38BDF8',
   'Framer': '#E11D48',
   'Typescript': '#3178C6',
+  'TypeScript': '#3178C6',
   'Next.js': '#000000',
   'PHP': '#777BB4',
   'Laravel': '#FF2D20',
@@ -141,8 +143,8 @@ interface SkillCardProps {
 function SkillCard({ title, skills, onTooltipShow, onTooltipHide }: SkillCardProps) {
   const { t, translations, language } = useLanguage();
   const articleRefs = useRef<Map<number, HTMLElement>>(new Map());
-  
-  const handleMouseEnter = (index: number, tooltipText: string, event: React.MouseEvent<HTMLElement>) => {
+
+  const handleShowTooltip = (index: number, tooltipText: string) => {
     if (!tooltipText || !onTooltipShow) return;
     const element = articleRefs.current.get(index);
     if (element) {
@@ -155,7 +157,7 @@ function SkillCard({ title, skills, onTooltipShow, onTooltipHide }: SkillCardPro
       onTooltipShow(tooltipText, tooltipX, tooltipY);
     }
   };
-  
+
   const handleMouseLeave = () => {
     if (onTooltipHide) onTooltipHide();
   };
@@ -180,8 +182,11 @@ function SkillCard({ title, skills, onTooltipShow, onTooltipHide }: SkillCardPro
                 else articleRefs.current.delete(index);
               }}
               className={styles.skillArticle}
-              onMouseEnter={(e) => handleMouseEnter(index, tooltipText, e)}
+              tabIndex={0}
+              onMouseEnter={() => handleShowTooltip(index, tooltipText)}
               onMouseLeave={handleMouseLeave}
+              onFocus={() => handleShowTooltip(index, tooltipText)}
+              onBlur={handleMouseLeave}
             >
               <IconComponent
                 className={styles.icon}
