@@ -136,16 +136,50 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
         <rect width={svgWidth} height="450" fill="#f8f9fa" className={styles.timelineBackground} rx="12" ry="12" />
         
         {/* Timeline markers */}
-        <text x={60 + leftPadding} y="50" fontSize="13" fontStyle="italic" className={styles.timelineMarker}>
-          {t('about.timeline.markers.startYear')}
-        </text>
-        <text x={svgWidth - 120} y="50" fontSize="13" fontStyle="italic" className={styles.timelineMarker}>
+        {/* Year 2023 Node */}
+        <g 
+          className={styles.nodeGroup}
+          pointerEvents="all"
+          style={{ transformOrigin: `${60 + leftPadding - 80}px 50px` }}
+        >
+          <circle 
+            cx={60 + leftPadding - 80} 
+            cy="50" 
+            r="9" 
+            fill="#95a5a6" 
+            stroke="white" 
+            strokeWidth="2"
+            className={styles.nodeCircle}
+          />
+          <text 
+            x={60 + leftPadding - 80} 
+            y="35" 
+            textAnchor="middle" 
+            fontSize="14" 
+            fill="var(--color-dark-grey)" 
+            fontWeight="500"
+            fontStyle="italic"
+            className={styles.timelineMarker}
+          >
+            {t('about.timeline.markers.startYear')}
+          </text>
+        </g>
+        
+        <text 
+          x={svgWidth - 120} 
+          y="50" 
+          fontSize="14" 
+          fontStyle="italic" 
+          fontWeight="500"
+          className={styles.timelineMarker}
+          dominantBaseline="middle"
+        >
           {t('about.timeline.markers.future')}
         </text>
         
         {/* Top timeline line */}
         <line 
-          x1={110 + leftPadding} 
+          x1={60 + leftPadding - 80 + 9} 
           y1="50" 
           x2={svgWidth - 130} 
           y2="50" 
@@ -174,9 +208,9 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           />
           <text 
             x={750 + leftPadding} 
-            y="40" 
+            y="35" 
             textAnchor="middle" 
-            fontSize="13" 
+            fontSize="14" 
             fill="var(--color-dark-grey)" 
             fontWeight="500"
             fontStyle="italic"
