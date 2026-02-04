@@ -96,7 +96,7 @@ const timelineBranches: TimelineBranch[] = [
   },
   {
     id: 'software-education',
-    label: 'Software Education',
+    label: 'Developer Education',
     nodes: [
       {
         id: 'dci-bootcamp',
@@ -128,7 +128,7 @@ const timelineBranches: TimelineBranch[] = [
   },
   {
     id: 'software-experience',
-    label: 'Software Experience',
+    label: 'Developer Experience',
     nodes: [
       {
         id: 'internship',

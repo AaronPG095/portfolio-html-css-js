@@ -305,26 +305,30 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
                 )}
                 
                 {/* Node title */}
-                {titleLines.map((line, index) => (
-                  <text 
-                    key={`title-${index}`}
-                    x={x} 
-                    y={y - (isTransition ? 30 : 25) + (index * 15)} 
-                    textAnchor="middle" 
-                    fontSize="12" 
-                    fill="#34495e" 
-                    fontWeight="600"
-                    className={styles.nodeTitle}
-                  >
-                    {line}
-                  </text>
-                ))}
+                {titleLines.map((line, index) => {
+                  const isSingleLine = titleLines.length === 1;
+                  const baseOffset = isSingleLine ? 30 : 40;
+                  return (
+                    <text 
+                      key={`title-${index}`}
+                      x={x} 
+                      y={y - baseOffset + (index * 15)} 
+                      textAnchor="middle" 
+                      fontSize="12" 
+                      fill="#34495e" 
+                      fontWeight="600"
+                      className={styles.nodeTitle}
+                    >
+                      {line}
+                    </text>
+                  );
+                })}
                 
                 {/* Node description */}
                 {node.description && (
                   <text 
                     x={x} 
-                    y={y + (isTransition ? 45 : 40)} 
+                    y={y + 40} 
                     textAnchor="middle" 
                     fontSize="10" 
                     fill="#7f8c8d" 
@@ -352,7 +356,7 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           />
           <text 
             x={900 + leftPadding} 
-            y="190" 
+            y="180" 
             textAnchor="middle" 
             fontSize="12" 
             fill="#34495e" 
@@ -363,7 +367,7 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           </text>
           <text 
             x={900 + leftPadding} 
-            y="205" 
+            y="195" 
             textAnchor="middle" 
             fontSize="12" 
             fill="#34495e" 
@@ -374,7 +378,7 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           </text>
           <text 
             x={900 + leftPadding} 
-            y="255" 
+            y="260" 
             textAnchor="middle" 
             fontSize="10" 
             fill="#7f8c8d" 
