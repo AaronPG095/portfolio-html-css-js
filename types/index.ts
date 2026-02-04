@@ -123,7 +123,7 @@ export interface CarouselOptions {
 
 // Carousel return type
 export interface CarouselReturn {
-  containerRef: React.RefObject<HTMLDivElement | null>;
+  containerRef: React.RefObject<HTMLDivElement>;
   currentIndex: number;
   scrollToIndex: (index: number, customDuration?: number) => void;
   scroll: (direction: 'left' | 'right') => void;
