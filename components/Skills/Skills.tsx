@@ -32,22 +32,21 @@ import { FaCode, FaProjectDiagram } from 'react-icons/fa';
 const frontendSkills: Skill[] = [
   { name: 'HTML', level: 'experienced' },
   { name: 'CSS', level: 'experienced' },
-  { name: 'Javascript', level: 'experienced' },
+  { name: 'JavaScript', level: 'experienced' },
   { name: 'SASS', level: 'intermediate' },
   { name: 'React.js', level: 'intermediate' },
   { name: 'Tailwind', level: 'basic' },
   { name: 'Framer', level: 'basic' },
-  { name: 'Typescript', level: 'basic' },
+  { name: 'TypeScript', level: 'basic' },
   { name: 'Next.js', level: 'basic' },
-  { name: 'PHP', level: 'basic' },
-  { name: 'Laravel', level: 'basic' },
 ];
 
 const backendSkills: Skill[] = [
   { name: 'MongoDB', level: 'intermediate' },
   { name: 'Node.js', level: 'intermediate' },
   { name: 'Express.js', level: 'intermediate' },
-  { name: 'Git', level: 'intermediate' },
+  { name: 'PHP', level: 'basic' },
+  { name: 'Laravel', level: 'basic' },
   { name: 'MySQL', level: 'basic' },
   { name: 'APIs', level: 'basic' },
 ];
@@ -59,6 +58,7 @@ const toolsSkills: Skill[] = [
   { name: 'SPRINT', level: 'experienced' },
   { name: 'Project Management', level: 'intermediate' },
   { name: 'Docker', level: 'intermediate' },
+  { name: 'Git', level: 'intermediate' },
 ];
 
 // Icon mapping for skills
@@ -66,12 +66,12 @@ const skillIconMap: Record<string, IconType> = {
   // Frontend
   'HTML': SiHtml5,
   'CSS': SiCss3,
-  'Javascript': SiJavascript,
+  'JavaScript': SiJavascript,
   'SASS': SiSass,
   'React.js': SiReact,
   'Tailwind': SiTailwindcss,
   'Framer': SiFramer,
-  'Typescript': SiTypescript,
+  'TypeScript': SiTypescript,
   'Next.js': SiNextdotjs,
   'PHP': SiPhp,
   'Laravel': SiLaravel,
