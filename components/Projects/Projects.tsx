@@ -89,7 +89,7 @@ const projects: Project[] = [
     titleKey: 'projects.project5.title',
     descriptionKey: 'projects.project5.description',
     github: 'https://github.com/AaronPG095/kollektiv-spinnen-timetable',
-    liveDemo: 'https://kollektiv-spinnen-timetable.lovable.app/',
+    liveDemo: 'https://kollektiv-spinnen-festival.vercel.app/',
     technologies: ['HTML', 'TypeScript', 'JavaScript', 'Next.js', 'React.js', 'PostgreSQL'],
   },
   {
@@ -98,7 +98,7 @@ const projects: Project[] = [
     titleKey: 'projects.project1.title',
     descriptionKey: 'projects.project1.description',
     github: 'https://github.com/AaronPG095/portfolio-html-css-js',
-    liveDemo: 'https://github.com/AaronPG095/portfolio-html-css-js',
+    liveDemo: 'https://aaronpaulgreyling.netlify.app/',
     technologies: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Next.js'],
   },
   {
