@@ -155,9 +155,9 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
     const controller = new AbortController();
 
-    async function fetchSummary() {
+    async function fetchSummary(githubUrl: string) {
       try {
-        const repoInfo = extractGithubRepo(project.github);
+        const repoInfo = extractGithubRepo(githubUrl);
         if (!repoInfo) {
           return;
         }
@@ -178,7 +178,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
           return;
         }
 
-        const data = await res.json() as { content?: string };
+        const data = (await res.json()) as { content?: string };
         if (!data.content) {
           return;
         }
@@ -202,7 +202,8 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
       }
     }
 
-    fetchSummary();
+    // project.github is guaranteed to be defined here because of the early return above
+    fetchSummary(project.github);
 
     return () => {
       controller.abort();
