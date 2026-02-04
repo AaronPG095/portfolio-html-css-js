@@ -560,8 +560,10 @@
 
 @media screen and (max-width: 768px) {
   .skills {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
   
   .carouselContainer {
@@ -594,6 +596,15 @@
 }
 
 @media screen and (max-width: 600px) {
+  .skills {
+    height: auto;
+    margin: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+  }
+
   .carouselContainer {
     padding-left: calc(50% - 140px);
     padding-right: calc(50% - 140px);
@@ -644,6 +655,12 @@
 }
 
 @media screen and (max-width: 400px) {
+  .skills {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 2.25rem;
+  }
+
   .carouselContainer {
     padding-left: calc(50% - 110px);
     padding-right: calc(50% - 110px);
