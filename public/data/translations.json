@@ -70,7 +70,7 @@
       "subtitle": "Browse My Recent",
       "title": "Projects",
       "project1": {
-        "title": "Portfolio Website",
+        "title": "Modern Minimalist Portfolio",
         "description": "HTML / CSS / Javascript / NextJS"
       },
       "project2": {
@@ -86,7 +86,7 @@
         "description": "tailwindcss / ReactJS"
       },
       "project5": {
-        "title": "Kollektiv Spinnen Website",
+        "title": "Kollektiv Spinnen Festival Website",
         "description": "TypeScript / PLpgSQL / CSS / NextJS / ReactJS"
       },
       "github": "Github",
@@ -177,7 +177,7 @@
       "subtitle": "Durchsuche meine neuesten",
       "title": "Projekte",
       "project1": {
-        "title": "Portfolio Website",
+        "title": "Modern Minimalist Portfolio",
         "description": "HTML / CSS / Javascript / NextJS"
       },
       "project2": {
@@ -193,7 +193,7 @@
         "description": "tailwindcss / ReactJS"
       },
       "project5": {
-        "title": "Kollektiv Spinnen Website",
+        "title": "Kollektiv Spinnen Festival Website",
         "description": "TypeScript / PLpgSQL / CSS / NextJS / ReactJS"
       },
       "github": "Github",

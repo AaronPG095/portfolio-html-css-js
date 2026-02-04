@@ -21,6 +21,7 @@ import {
 } from 'react-icons/si';
 import { FaCode, FaTimes, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import styles from './ProjectModal.module.css';
+import projectStyles from '../Projects/Projects.module.css';
 
 // Icon mapping for technologies
 const techIconMap: Record<string, IconType> = {
@@ -46,9 +47,37 @@ const techIconMap: Record<string, IconType> = {
   'Postgres': SiPostgresql,
 };
 
-// Helper function to get icon for a technology
+// Color mapping for technologies (kept in sync with Projects.tsx)
+const techColorMap: Record<string, string> = {
+  HTML: '#E34F26',
+  CSS: '#1572B6',
+  JavaScript: '#F7DF1E',
+  Javascript: '#F7DF1E',
+  SCSS: '#CC6699',
+  SASS: '#CC6699',
+  'React.js': '#61DAFB',
+  React: '#61DAFB',
+  Tailwind: '#38BDF8',
+  TypeScript: '#3178C6',
+  Typescript: '#3178C6',
+  'Next.js': '#000000',
+  NextJS: '#000000',
+  'Node.js': '#339933',
+  NodeJS: '#339933',
+  'Express.js': '#000000',
+  ExpressJS: '#000000',
+  MongoDB: '#47A248',
+  PostgreSQL: '#336791',
+  Postgres: '#336791',
+};
+
+// Helper functions to get icon and color for a technology
 function getTechIcon(techName: string): IconType {
   return techIconMap[techName] || FaCode;
+}
+
+function getTechColor(techName: string): string {
+  return techColorMap[techName] || 'var(--color-accent, #6366f1)';
 }
 
 interface ProjectModalProps {
@@ -136,10 +165,6 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               {t(project.titleKey)}
             </h2>
 
-            <p className={styles.modalDescription}>
-              {t(project.descriptionKey)}
-            </p>
-
             {project.technologies && project.technologies.length > 0 && (
               <div className={styles.techSection}>
                 <h3 className={styles.techSectionTitle}>Technologies</h3>
@@ -148,7 +173,11 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     const TechIcon = getTechIcon(tech);
                     return (
                       <span key={index} className={styles.techTag}>
-                        <TechIcon className={styles.techIcon} aria-hidden="true" />
+                        <TechIcon
+                          className={styles.techIcon}
+                          style={{ color: getTechColor(tech) }}
+                          aria-hidden="true"
+                        />
                         {tech}
                       </span>
                     );
@@ -159,7 +188,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
             <div className={styles.linksSection}>
               <button
-                className={styles.linkButton}
+                className={`${projectStyles.btn} ${projectStyles.projectBtn} ${styles.linkButton}`}
                 onClick={() => openLink(project.github)}
                 aria-label={`View ${t(project.titleKey)} project on GitHub`}
               >
@@ -167,7 +196,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                 <span>{t('projects.github')}</span>
               </button>
               <button
-                className={styles.linkButton}
+                className={`${projectStyles.btn} ${projectStyles.projectBtn} ${styles.linkButton}`}
                 onClick={() => openLink(project.liveDemo)}
                 aria-label={`View ${t(project.titleKey)} project live demo`}
               >
