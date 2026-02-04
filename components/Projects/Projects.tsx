@@ -84,6 +84,15 @@ function getTechColor(techName: string): string {
 
 const projects: Project[] = [
   {
+    id: 5,
+    image: '/assets/Screenshot 2025-11-12 203334.png',
+    titleKey: 'projects.project5.title',
+    descriptionKey: 'projects.project5.description',
+    github: 'https://github.com/AaronPG095/kollektiv-spinnen-timetable',
+    liveDemo: 'https://kollektiv-spinnen-timetable.lovable.app/',
+    technologies: ['HTML', 'TypeScript', 'JavaScript', 'Next.js', 'React.js', 'PostgreSQL'],
+  },
+  {
     id: 1,
     image: '/assets/Screenshot 2024-05-08 140820.png',
     titleKey: 'projects.project1.title',
@@ -91,6 +100,15 @@ const projects: Project[] = [
     github: 'https://github.com/AaronPG095/portfolio-html-css-js',
     liveDemo: 'https://github.com/AaronPG095/portfolio-html-css-js',
     technologies: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Next.js'],
+  },
+  {
+    id: 4,
+    image: '/assets/Screenshot 2024-05-23 211320.png',
+    titleKey: 'projects.project4.title',
+    descriptionKey: 'projects.project4.description',
+    github: 'https://github.com/AaronPG095/brainwave',
+    liveDemo: 'https://braynewave.netlify.app/',
+    technologies: ['HTML', 'Tailwind', 'JavaScript', 'React.js'],
   },
   {
     id: 2,
@@ -109,24 +127,6 @@ const projects: Project[] = [
     github: 'https://github.com/AaronPG095/React-Ecommerce-Project?tab=readme-ov-file',
     liveDemo: 'https://sunnyeyles.github.io/React-Ecommerce-Project/',
     technologies: ['HTML', 'SCSS', 'JavaScript', 'React.js'],
-  },
-  {
-    id: 4,
-    image: '/assets/Screenshot 2024-05-23 211320.png',
-    titleKey: 'projects.project4.title',
-    descriptionKey: 'projects.project4.description',
-    github: 'https://github.com/AaronPG095/brainwave',
-    liveDemo: 'https://braynewave.netlify.app/',
-    technologies: ['HTML', 'Tailwind', 'JavaScript', 'React.js'],
-  },
-  {
-    id: 5,
-    image: '/assets/Screenshot 2025-11-12 203334.png',
-    titleKey: 'projects.project5.title',
-    descriptionKey: 'projects.project5.description',
-    github: 'https://github.com/AaronPG095/kollektiv-spinnen-timetable',
-    liveDemo: 'https://kollektiv-spinnen-timetable.lovable.app/',
-    technologies: ['HTML', 'TypeScript', 'JavaScript', 'Next.js', 'React.js', 'PostgreSQL'],
   },
 ];
 
