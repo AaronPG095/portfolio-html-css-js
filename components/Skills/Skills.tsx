@@ -147,10 +147,11 @@ function SkillCard({ title, skills, onTooltipShow, onTooltipHide }: SkillCardPro
     const element = articleRefs.current.get(index);
     if (element) {
       const rect = element.getBoundingClientRect();
-      // For left column (even index 0, 2, 4...), align to left; for right column (odd index), center
+      // Position the tooltip above the skill, slightly offset so it doesn't cover the label.
+      // For the left column, shift it 50% to the right within the card; otherwise, center it.
       const isLeftColumn = index % 2 === 0;
-      const tooltipX = isLeftColumn ? rect.left : rect.left + rect.width / 2;
-      const tooltipY = rect.top;
+      const tooltipX = isLeftColumn ? rect.left + rect.width * 0.5 : rect.left + rect.width / 2;
+      const tooltipY = rect.top - 16; // offset upwards so it clears the h3 text
       onTooltipShow(tooltipText, tooltipX, tooltipY);
     }
   };
@@ -225,7 +226,7 @@ export default function Skills() {
       className={styles.fixedTooltip}
       style={{
         left: `${hoveredTooltip.x}px`,
-        top: `${hoveredTooltip.y - 8}px`,
+        top: `${hoveredTooltip.y}px`,
         transform: hoveredTooltip.x < 300 ? 'translate(0, -100%)' : 'translate(-50%, -100%)',
       }}
     >
