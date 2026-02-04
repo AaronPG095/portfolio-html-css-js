@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { useLanguage } from '@/hooks/useLanguage';
 import ProjectsCarousel from './ProjectsCarousel';
 import ProjectModal from '../ProjectModal/ProjectModal';
@@ -173,7 +173,7 @@ export default function Projects() {
       aria-label={`View details for ${t(project.titleKey)} project`}
     >
       <div className={styles.articleContainer}>
-        <Image
+        <OptimizedImage
           src={project.image}
           alt={`${t(project.titleKey)} project screenshot`}
           className={styles.projectImg}
@@ -181,7 +181,6 @@ export default function Projects() {
           height={400}
           quality={85}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
-          loading="lazy"
         />
       </div>
       <h2 className={styles.projectTitle}>{t(project.titleKey)}</h2>

@@ -1,19 +1,30 @@
-'use client';
-
-import { lazy, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import Profile from '@/components/Profile/Profile';
 import About from '@/components/About/About';
 import Contact from '@/components/Contact/Contact';
-import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
 import SkillsSkeleton from '@/components/ui/SkillsSkeleton';
 import ProjectsSkeleton from '@/components/ui/ProjectsSkeleton';
 
-// Lazy load heavy components (below the fold)
-const Skills = lazy(() => import('@/components/Skills/Skills'));
-const Projects = lazy(() => import('@/components/Projects/Projects'));
+// Lazy load heavy components (below the fold) on the client
+const Skills = dynamic(() => import('@/components/Skills/Skills'), {
+  ssr: false,
+  loading: () => <SkillsSkeleton />,
+});
+
+const Projects = dynamic(() => import('@/components/Projects/Projects'), {
+  ssr: false,
+  loading: () => <ProjectsSkeleton />,
+});
+
+const ScrollToTop = dynamic(
+  () => import('@/components/ScrollToTop/ScrollToTop'),
+  {
+    ssr: false,
+  },
+);
 
 export default function Home() {
   return (
@@ -27,14 +38,10 @@ export default function Home() {
           <About />
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<SkillsSkeleton />}>
-            <Skills />
-          </Suspense>
+          <Skills />
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<ProjectsSkeleton />}>
-            <Projects />
-          </Suspense>
+          <Projects />
         </ErrorBoundary>
         <ErrorBoundary>
           <Contact />

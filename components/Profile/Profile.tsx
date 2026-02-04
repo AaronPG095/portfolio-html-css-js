@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useTheme } from '@/hooks/useTheme';
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
@@ -72,7 +72,7 @@ export default function Profile() {
   return (
     <section id="profile" className={styles.profile} aria-label="Profile section">
       <div className={styles.picContainer}>
-        <Image
+        <OptimizedImage
           src="/assets/profile-pic-1.jpg"
           alt="Aaron Paul Greyling - Fullstack Developer"
           className={styles.profilePic}
@@ -118,7 +118,7 @@ export default function Profile() {
             className={styles.socialLink}
             data-tooltip="LinkedIn"
           >
-            <Image
+            <OptimizedImage
               src="/assets/linkedin.png"
               alt="LinkedIn icon"
               className={styles.icon}
@@ -136,7 +136,7 @@ export default function Profile() {
             className={styles.socialLink}
             data-tooltip="GitHub"
           >
-            <Image
+            <OptimizedImage
               src="/assets/github.png"
               alt="GitHub icon"
               className={styles.icon}

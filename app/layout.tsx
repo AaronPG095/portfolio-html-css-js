@@ -1,6 +1,13 @@
 import './globals.css';
 import Providers from '@/components/Providers/Providers';
 import type { Metadata, Viewport } from 'next';
+import { Poppins } from 'next/font/google';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Aaron Paul Greyling | Fullstack Developer',
@@ -47,26 +54,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if (typeof window !== 'undefined') {
-                // Disable browser scroll restoration
-                if ('scrollRestoration' in history) {
-                  history.scrollRestoration = 'manual';
-                }
-                // Scroll to top immediately
-                window.scrollTo(0, 0);
-              }
-            `,
-          }}
-        />
-      </head>
-      <body>
-        <Providers>
-          {children}
-        </Providers>
+      <body className={poppins.className}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
