@@ -136,19 +136,19 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
         <rect width={svgWidth} height="450" fill="#f8f9fa" className={styles.timelineBackground} rx="12" ry="12" />
         
         {/* Timeline markers */}
-        <text x={60 + leftPadding} y="30" fontSize="13" fontStyle="italic" className={styles.timelineMarker}>
+        <text x={60 + leftPadding} y="50" fontSize="13" fontStyle="italic" className={styles.timelineMarker}>
           {t('about.timeline.markers.startYear')}
         </text>
-        <text x={svgWidth - 120} y="30" fontSize="13" fontStyle="italic" className={styles.timelineMarker}>
+        <text x={svgWidth - 120} y="50" fontSize="13" fontStyle="italic" className={styles.timelineMarker}>
           {t('about.timeline.markers.future')}
         </text>
         
         {/* Top timeline line */}
         <line 
           x1={110 + leftPadding} 
-          y1="30" 
+          y1="50" 
           x2={svgWidth - 130} 
-          y2="30" 
+          y2="50" 
           stroke="#95a5a6" 
           strokeWidth="2" 
           strokeDasharray="5,5" 
@@ -161,11 +161,11 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
         <g 
           className={styles.nodeGroup}
           pointerEvents="all"
-          style={{ transformOrigin: `${750 + leftPadding}px 30px` }}
+          style={{ transformOrigin: `${750 + leftPadding}px 50px` }}
         >
           <circle 
             cx={750 + leftPadding} 
-            cy="30" 
+            cy="50" 
             r="9" 
             fill="#95a5a6" 
             stroke="white" 
@@ -174,7 +174,7 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           />
           <text 
             x={750 + leftPadding} 
-            y="20" 
+            y="40" 
             textAnchor="middle" 
             fontSize="13" 
             fill="var(--color-dark-grey)" 
