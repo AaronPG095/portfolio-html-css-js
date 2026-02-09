@@ -35,7 +35,7 @@ export default function Header() {
   };
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`} role="banner">
       <ScrollProgress />
       <DesktopNav activeSection={activeSection} />
       <MobileNav onMenuToggle={toggleMenu} isOpen={sidebarOpen} />

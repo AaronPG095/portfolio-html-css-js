@@ -49,13 +49,19 @@ export default function DesktopNav({ activeSection = '' }: DesktopNavProps) {
         <ul className={styles.navLinks}>
           {navItems.map((item) => (
             <li key={item.key}>
+              {(() => {
+                const isActive = activeSection === item.key;
+                return (
               <a
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className={activeSection === item.key ? 'active' : undefined}
+                  className={isActive ? 'active' : undefined}
+                  aria-current={isActive ? 'page' : undefined}
               >
                 {item.label}
               </a>
+                );
+              })()}
             </li>
           ))}
         </ul>

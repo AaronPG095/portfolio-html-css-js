@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <ErrorBoundary>
           <Profile />
         </ErrorBoundary>

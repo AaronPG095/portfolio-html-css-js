@@ -61,8 +61,9 @@ export default function Sidebar({ isOpen, onClose, activeSection = '' }: Sidebar
       />
       <aside
         className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}
-        role="menu"
-        aria-label="Mobile menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label={t('sidebar.menu')}
       >
         <div className={styles.header}>
           <span className={styles.title}>{t('sidebar.menu')}</span>
@@ -78,38 +79,42 @@ export default function Sidebar({ isOpen, onClose, activeSection = '' }: Sidebar
           </div>
         </div>
         <ul className={styles.links}>
-          <li role="menuitem">
+          <li>
             <a
               href="#about"
               onClick={(e) => handleLinkClick(e, '#about')}
               className={activeSection === 'about' ? 'active' : ''}
+              aria-current={activeSection === 'about' ? 'page' : undefined}
             >
               {t('nav.about')}
             </a>
           </li>
-          <li role="menuitem">
+          <li>
             <a
               href="#skills"
               onClick={(e) => handleLinkClick(e, '#skills')}
               className={activeSection === 'skills' ? 'active' : ''}
+              aria-current={activeSection === 'skills' ? 'page' : undefined}
             >
               {t('nav.skills')}
             </a>
           </li>
-          <li role="menuitem">
+          <li>
             <a
               href="#projects"
               onClick={(e) => handleLinkClick(e, '#projects')}
               className={activeSection === 'projects' ? 'active' : ''}
+              aria-current={activeSection === 'projects' ? 'page' : undefined}
             >
               {t('nav.projects')}
             </a>
           </li>
-          <li role="menuitem">
+          <li>
             <a
               href="#contact"
               onClick={(e) => handleLinkClick(e, '#contact')}
               className={activeSection === 'contact' ? 'active' : ''}
+              aria-current={activeSection === 'contact' ? 'page' : undefined}
             >
               {t('nav.contact')}
             </a>

@@ -121,6 +121,27 @@ a:focus-visible {
   border-radius: 4px;
 }
 
+/* Skip to main content link */
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 9999px;
+  box-shadow: var(--shadow-subtle);
+  transform: translateY(-150%);
+  transition: transform var(--transition-speed) var(--transition-ease);
+  z-index: 1000;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--color-dark-grey);
+  outline-offset: 4px;
+}
+
 /* ============================================
    RESPONSIVE BREAKPOINTS
    ============================================ */
