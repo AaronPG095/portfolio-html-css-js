@@ -76,14 +76,14 @@ function getBranchY(branchId: string, branchIndex: number): number {
 function getNodeX(nodeId: string, position: number, branchId: string, leftPadding: number = 0): number {
   // Fixed coordinate mapping based on the provided code
   const fixedPositions: { [key: string]: number } = {
-    'restaurant-zest': 80,
-    'bootcamp-start': 250,
-    'dci-bootcamp': 250,
-    'graduation': 500,
-    'online-courses': 650,
-    'internship': 500,
-    'personal-projects': 650,
-    'current-position': 900, // Will be replaced by Computer Science Degree
+    'restaurant-zest': -20,
+    'bootcamp-start': 150,
+    'dci-bootcamp': 150,
+    'graduation': 400,
+    'online-courses': 550,
+    'internship': 400,
+    'personal-projects': 550,
+    'current-position': 800, // Will be replaced by Computer Science Degree
   };
   
   if (fixedPositions[nodeId]) {
@@ -99,9 +99,9 @@ function getNodeX(nodeId: string, position: number, branchId: string, leftPaddin
  */
 function getBranchStartX(branchId: string): number {
   const startPositions: { [key: string]: number } = {
-    'chef-work': 80,
-    'software-education': 250,
-    'software-experience': 500,
+    'chef-work': -20,
+    'software-education': 150,
+    'software-experience': 400,
   };
   return startPositions[branchId] || 80;
 }
@@ -110,41 +110,66 @@ function getBranchStartX(branchId: string): number {
  * Gets branch transition X coordinate (where it becomes dashed)
  */
 function getBranchTransitionX(branchId: string): number {
-  // All branches transition at x=900 based on the provided code
-  return 900;
+  // All branches transition at x=800 based on the provided code
+  return 800;
 }
 
 export default function TimelineSVG({ branches }: TimelineSVGProps) {
   const { t } = useLanguage();
   
-  // Reduced left padding by 50%: from 200px to 100px, keep right reduction: 1200 + 100 - 100 = 1200
-  const leftPadding = 100;
+  // Left padding shifts all content right so Professional Chef label is fully visible
+  const leftPadding = 180;
   const rightReduction = 100;
-  const svgWidth = 1200 + leftPadding - rightReduction; // 1200
-  const viewBox = `0 0 ${svgWidth} 450`;
-  
+
+  // Right end of dashed lines (grey and colored) – shortened 60%, all align to this x
+  const transitionX = 800 + leftPadding;
+  const endXFull = 1120 + leftPadding - rightReduction;
+  const dashedLinesEndX = transitionX + 0.4 * (endXFull - transitionX);
+
+  // Blue/green (screenshot) content moved 15% left inside container
+  const contentShiftFactor = 0.85;
+  const shiftContentX = (x: number) => x * contentShiftFactor;
+  // Blue/green content moved an extra 10% of blue line length left (graduation, online-courses, internship, personal-projects, Developer Experience label; green line extended)
+  const blueLineLength = (800 + leftPadding) - (150 + leftPadding);
+  const contentExtraLeft = 0.1 * blueLineLength;
+
+  // Equal padding left and right; right edge ends after Future label + padding only
+  const contentPadding = 40;
+  const futureLabelX = shiftContentX(dashedLinesEndX) + 10;
+  const contentMaxX = futureLabelX + 70; // Future label width + right padding only
+  const contentMinX = -contentPadding;
+  const totalWidth = contentMaxX + 2 * contentPadding;
+  // Top row moved 3% up; container extended at top by same amount (longer at top)
+  const svgHeight = 450;
+  const topRowShiftUp = Math.round(svgHeight * 0.03); // 14
+  const topRowY = 50 - topRowShiftUp; // 36
+  const topLabelY = 35 - topRowShiftUp; // 21
+  const viewBoxMinY = -topRowShiftUp; // -14: extra space above
+  const viewBoxHeight = svgHeight + topRowShiftUp; // 464
+  const contentViewBox = `${contentMinX} ${viewBoxMinY} ${totalWidth} ${viewBoxHeight}`;
+
   return (
     <div className={styles.timelineSVGWrapper}>
       <svg 
-        viewBox={viewBox} 
+        viewBox={contentViewBox} 
         className={styles.timelineSVG}
         preserveAspectRatio="xMidYMid meet"
         role="img"
         aria-label={t('about.timeline.heading')}
       >
-        {/* Background */}
-        <rect width={svgWidth} height="450" fill="#f8f9fa" className={styles.timelineBackground} rx="12" ry="12" />
+        {/* Background – equal padding left and right; y/height offset for 3% top crop */}
+        <rect x={contentMinX} y={viewBoxMinY} width={totalWidth} height={viewBoxHeight} fill="#f8f9fa" className={styles.timelineBackground} rx="12" ry="12" />
         
         {/* Timeline markers */}
-        {/* Year 2023 Node */}
+        {/* Year 2022 Node */}
         <g 
           className={styles.nodeGroup}
           pointerEvents="all"
-          style={{ transformOrigin: `${60 + leftPadding - 80}px 50px` }}
+          style={{ transformOrigin: `${60 + leftPadding - 80}px ${topRowY}px` }}
         >
           <circle 
             cx={60 + leftPadding - 80} 
-            cy="50" 
+            cy={topRowY} 
             r="9" 
             fill="#95a5a6" 
             stroke="white" 
@@ -153,7 +178,7 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           />
           <text 
             x={60 + leftPadding - 80} 
-            y="35" 
+            y={topLabelY} 
             textAnchor="middle" 
             fontSize="14" 
             fill="var(--color-dark-grey)" 
@@ -166,8 +191,9 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
         </g>
         
         <text 
-          x={svgWidth - 120} 
-          y="50" 
+          x={shiftContentX(dashedLinesEndX) + 10} 
+          y={topRowY} 
+          textAnchor="start"
           fontSize="14" 
           fontStyle="italic" 
           fontWeight="500"
@@ -177,12 +203,12 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           {t('about.timeline.markers.future')}
         </text>
         
-        {/* Top timeline line */}
+        {/* Top timeline line – ends at same x as branch dashed lines below */}
         <line 
           x1={60 + leftPadding - 80 + 9} 
-          y1="50" 
-          x2={svgWidth - 130} 
-          y2="50" 
+          y1={topRowY} 
+          x2={shiftContentX(dashedLinesEndX)} 
+          y2={topRowY} 
           stroke="#95a5a6" 
           strokeWidth="2" 
           strokeDasharray="5,5" 
@@ -191,15 +217,15 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           className={styles.timelineTopLine}
         />
         
-        {/* Year 2026 Node */}
+        {/* Year 2026 Node (10% left) */}
         <g 
           className={styles.nodeGroup}
           pointerEvents="all"
-          style={{ transformOrigin: `${750 + leftPadding}px 50px` }}
+          style={{ transformOrigin: `${(650 + leftPadding) * 0.9}px ${topRowY}px` }}
         >
           <circle 
-            cx={750 + leftPadding} 
-            cy="50" 
+            cx={(650 + leftPadding) * 0.9} 
+            cy={topRowY} 
             r="9" 
             fill="#95a5a6" 
             stroke="white" 
@@ -207,8 +233,8 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
             className={styles.nodeCircle}
           />
           <text 
-            x={750 + leftPadding} 
-            y="35" 
+            x={(650 + leftPadding) * 0.9} 
+            y={topLabelY} 
             textAnchor="middle" 
             fontSize="14" 
             fill="var(--color-dark-grey)" 
@@ -220,15 +246,19 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           </text>
         </g>
         
-        {/* Branch Labels */}
+        {/* Branch Labels – same distance from label to first node on each branch */}
         {branches.map((branch, branchIndex) => {
           const [line1, line2] = splitBranchLabel(branch.label);
           const y = getBranchY(branch.id, branchIndex);
           const color = getBranchColor(branch.id);
-          // Shift labels to the right by leftPadding, ensure Professional Chef has enough space
-          // B2 label adjusted to match 60px spacing: node at 350, so label at 290 (190 + 100)
-          // B3 label adjusted to match 60px spacing: node at 600, so label at 540 (440 + 100)
-          const labelX = branchIndex === 0 ? 20 + leftPadding : branchIndex === 1 ? 190 + leftPadding : 440 + leftPadding;
+          const labelGap = 32.15;
+          const firstNodeX =
+            branch.id === 'chef-work'
+              ? getBranchStartX(branch.id) + leftPadding
+              : branch.id === 'software-education'
+                ? shiftContentX(getBranchStartX(branch.id) + leftPadding)
+                : shiftContentX(getBranchStartX(branch.id) + leftPadding) - contentExtraLeft;
+          const labelX = firstNodeX - labelGap;
           
           return (
             <g key={`label-${branch.id}`}>
@@ -265,28 +295,34 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           const y = getBranchY(branch.id, 0);
           const color = getBranchColor(branch.id);
           const startX = getBranchStartX(branch.id) + leftPadding;
-          const transitionX = getBranchTransitionX(branch.id) + leftPadding;
-          // Reduce end position by rightReduction: 1120 + leftPadding - rightReduction
-          const endX = 1120 + leftPadding - rightReduction;
+          const branchTransitionX = getBranchTransitionX(branch.id) + leftPadding;
+          const isBlueOrGreen = branch.id === 'software-education' || branch.id === 'software-experience';
+          const lineStartX = isBlueOrGreen ? shiftContentX(startX) : startX;
+          const lineTransitionX = isBlueOrGreen ? shiftContentX(branchTransitionX) : branchTransitionX;
+          const lineDashedEndX = (branch.id === 'chef-work' || isBlueOrGreen) ? shiftContentX(dashedLinesEndX) : dashedLinesEndX;
+          const solidLineX1 = branch.id === 'software-experience' ? lineStartX - contentExtraLeft : lineStartX;
+          const redEndAtNode = shiftContentX(800 + leftPadding);
+          const solidLineX2 = branch.id === 'chef-work' ? redEndAtNode : lineTransitionX;
+          const dashedLineX1 = branch.id === 'chef-work' ? redEndAtNode : lineTransitionX;
           
           return (
             <g key={`line-${branch.id}`}>
-              {/* Solid line */}
+              {/* Solid line – red ends at future indicator node; green extended left */}
               <line 
-                x1={startX} 
+                x1={solidLineX1} 
                 y1={y} 
-                x2={transitionX} 
+                x2={solidLineX2} 
                 y2={y} 
                 stroke={color} 
                 strokeWidth="3" 
                 strokeLinecap="round"
                 className={styles.branchLineSolid}
               />
-              {/* Dashed line */}
+              {/* Dashed line – red starts at future indicator node */}
               <line 
-                x1={transitionX} 
+                x1={dashedLineX1} 
                 y1={y} 
-                x2={endX} 
+                x2={lineDashedEndX} 
                 y2={y} 
                 stroke={color} 
                 strokeWidth="3" 
@@ -299,11 +335,11 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           );
         })}
         
-        {/* Connector Lines */}
+        {/* Connector Lines (second one between Graduation & green node – both shifted 15% left) */}
         <line 
-          x1={250 + leftPadding} 
+          x1={shiftContentX(150 + leftPadding)} 
           y1="100" 
-          x2={250 + leftPadding} 
+          x2={shiftContentX(150 + leftPadding)} 
           y2="220" 
           stroke="#95a5a6" 
           strokeWidth="2" 
@@ -312,9 +348,9 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           className={styles.connectorLine}
         />
         <line 
-          x1={500 + leftPadding} 
+          x1={shiftContentX(400 + leftPadding) - contentExtraLeft} 
           y1="220" 
-          x2={500 + leftPadding} 
+          x2={shiftContentX(400 + leftPadding) - contentExtraLeft} 
           y2="340" 
           stroke="#95a5a6" 
           strokeWidth="2" 
@@ -334,7 +370,19 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
               return null;
             }
             
-            const x = getNodeX(node.id, node.position || 0, branch.id, leftPadding);
+            const xBase = getNodeX(node.id, node.position || 0, branch.id, leftPadding);
+            let x = (branch.id === 'software-education' || branch.id === 'software-experience')
+              ? shiftContentX(xBase)
+              : xBase;
+            if (branch.id === 'chef-work' && node.id === 'bootcamp-start') {
+              x = shiftContentX(150 + leftPadding);
+            }
+            const isExtraLeftNode =
+              (branch.id === 'software-education' && (node.id === 'graduation' || node.id === 'online-courses')) ||
+              branch.id === 'software-experience';
+            if (isExtraLeftNode) {
+              x -= contentExtraLeft;
+            }
             const isTransition = node.isTransition || false;
             const cleanTitle = cleanNodeTitle(node.title);
             
@@ -427,14 +475,14 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           });
         })}
         
-        {/* Future Node: Computer Science Degree */}
+        {/* Future Node: Computer Science Degree (shifted 15% left) */}
         <g 
           className={styles.nodeGroup}
           pointerEvents="all"
-          style={{ transformOrigin: `${900 + leftPadding}px 220px` }}
+          style={{ transformOrigin: `${shiftContentX(800 + leftPadding)}px 220px` }}
         >
           <circle 
-            cx={900 + leftPadding} 
+            cx={shiftContentX(800 + leftPadding)} 
             cy="220" 
             r="9" 
             fill="#3498db" 
@@ -443,7 +491,7 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
             className={styles.nodeCircle}
           />
           <text 
-            x={900 + leftPadding} 
+            x={shiftContentX(800 + leftPadding)} 
             y="180" 
             textAnchor="middle" 
             fontSize="12" 
@@ -454,7 +502,7 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
             {t('about.timeline.futureNode.titleLine1')}
           </text>
           <text 
-            x={900 + leftPadding} 
+            x={shiftContentX(800 + leftPadding)} 
             y="195" 
             textAnchor="middle" 
             fontSize="12" 
@@ -465,7 +513,7 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
             {t('about.timeline.futureNode.titleLine2')}
           </text>
           <text 
-            x={900 + leftPadding} 
+            x={shiftContentX(800 + leftPadding)} 
             y="260" 
             textAnchor="middle" 
             fontSize="10" 
@@ -477,10 +525,47 @@ export default function TimelineSVG({ branches }: TimelineSVGProps) {
           </text>
         </g>
         
-        {/* Future indicators */}
+        {/* Future indicator (red) – small circle only */}
         <g opacity="0.4" className={styles.futureIndicators}>
-          <circle cx={900 + leftPadding} cy="100" r="5" fill="#e74c3c" />
-          <circle cx={900 + leftPadding} cy="340" r="5" fill="#2ecc71" />
+          <circle cx={shiftContentX(800 + leftPadding)} cy="100" r="5" fill="#e74c3c" />
+        </g>
+        {/* Future green node: Develop Own MVP (proper node with label & sublabel) */}
+        <g
+          className={styles.nodeGroup}
+          pointerEvents="all"
+          style={{ transformOrigin: `${shiftContentX(800 + leftPadding)}px 340px` }}
+        >
+          <circle
+            cx={shiftContentX(800 + leftPadding)}
+            cy="340"
+            r="9"
+            fill="#2ecc71"
+            stroke="white"
+            strokeWidth="2"
+            className={styles.nodeCircle}
+          />
+          <text
+            x={shiftContentX(800 + leftPadding)}
+            y="315"
+            textAnchor="middle"
+            fontSize="12"
+            fill="#34495e"
+            fontWeight="600"
+            className={styles.nodeTitle}
+          >
+            {t('about.timeline.futureGreenNode.title')}
+          </text>
+          <text
+            x={shiftContentX(800 + leftPadding)}
+            y="380"
+            textAnchor="middle"
+            fontSize="10"
+            fill="#7f8c8d"
+            fontStyle="italic"
+            className={styles.nodeDescription}
+          >
+            {t('about.timeline.futureGreenNode.description')}
+          </text>
         </g>
       </svg>
     </div>

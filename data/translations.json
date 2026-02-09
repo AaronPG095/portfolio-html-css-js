@@ -28,7 +28,7 @@
         "heading": "Career Timeline & Professional Development",
         "subtitle": "Journey from Culinary Arts to Software Development",
         "markers": {
-          "startYear": "2023",
+          "startYear": "2022",
           "year2026": "2026",
           "future": "Future →"
         },
@@ -36,6 +36,10 @@
           "titleLine1": "Computer Science",
           "titleLine2": "Degree",
           "description": "(Future Goal)"
+        },
+        "futureGreenNode": {
+          "title": "Develop Own SaaS",
+          "description": "(Become Entrepreneur)"
         },
         "branches": {
           "chefWork": "Professional Chef",
@@ -179,7 +183,7 @@
         "heading": "Karriere-Timeline & Berufliche Entwicklung",
         "subtitle": "Weg von der Kochkunst zur Softwareentwicklung",
         "markers": {
-          "startYear": "2023",
+          "startYear": "2022",
           "year2026": "2026",
           "future": "Zukunft →"
         },
@@ -187,6 +191,10 @@
           "titleLine1": "Informatik",
           "titleLine2": "Studium",
           "description": "(Zukunfts-Ziel)"
+        },
+        "futureGreenNode": {
+          "title": "Eigenes SaaS entwickeln",
+          "description": "(Unternehmer werden)"
         },
         "branches": {
           "chefWork": "Profikoch",
