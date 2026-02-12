@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { useLanguage } from '@/hooks/useLanguage';
 import SkillsCarousel from './SkillsCarousel';
 import SkillProgress from './SkillProgress';
+import SkillIcon from './SkillIcon';
 import styles from './Skills.module.css';
 import type { Skill } from '@/types';
 import { IconType } from 'react-icons';
@@ -26,6 +27,7 @@ import {
   SiGit,
   SiMysql,
   SiDocker,
+  SiDotnet,
 } from 'react-icons/si';
 import { FaCode, FaProjectDiagram } from 'react-icons/fa';
 
@@ -59,9 +61,12 @@ const toolsSkills: Skill[] = [
   { name: 'Project Management', level: 'intermediate' },
   { name: 'Docker', level: 'intermediate' },
   { name: 'Git', level: 'intermediate' },
+  { name: 'Visual Studio', level: 'basic' },
+  { name: 'WinUI 3', level: 'basic' },
+  { name: '.NET 8', level: 'basic' },
 ];
 
-// Icon mapping for skills
+// Icon mapping for skills - react-icons components
 const skillIconMap: Record<string, IconType> = {
   // Frontend
   'HTML': SiHtml5,
@@ -84,11 +89,23 @@ const skillIconMap: Record<string, IconType> = {
   'APIs': FaCode,
   // Tools
   'Docker': SiDocker,
-  'Cursor': FaCode,
   'MCP': FaCode,
   'Prompt Engineering': FaCode,
   'SPRINT': FaProjectDiagram,
   'Project Management': FaProjectDiagram,
+  '.NET 8': SiDotnet,
+};
+
+// Custom inline SVG icon keys for skills without react-icons
+const skillCustomIconMap: Record<string, string> = {
+  'Cursor': 'cursor',
+  'Visual Studio': 'microsoft',
+  'WinUI 3': 'microsoft',
+};
+
+// Dark mode colors for custom SVG icons
+const skillDarkColorMap: Record<string, string> = {
+  'Cursor': '#FFFFFF',
 };
 
 // Color mapping for skill icons
@@ -116,21 +133,36 @@ const skillColorMap: Record<string, string> = {
   'APIs': '#6366F1',
   // Tools / Other
   'Docker': '#0DB7ED',
-  'Cursor': '#0891B2',
+  'Cursor': '#000000',
   'MCP': '#22C55E',
   'Prompt Engineering': '#A855F7',
   'SPRINT': '#EC4899',
   'Project Management': '#F97316',
+  'Visual Studio': '#5C2D91',
+  'WinUI 3': '#0078D4',
+  '.NET 8': '#512BD4',
 };
 
-// Helper function to get icon for a skill
-function getSkillIcon(skillName: string): IconType {
-  return skillIconMap[skillName] || FaCode;
+// Helper to get icon component for a skill (or undefined if using custom SVG)
+function getSkillIconComponent(skillName: string): IconType | undefined {
+  if (skillName in skillIconMap) return skillIconMap[skillName];
+  if (skillName in skillCustomIconMap) return undefined;
+  return FaCode;
+}
+
+// Helper to get custom icon key for a skill
+function getSkillCustomIcon(skillName: string): string | undefined {
+  return skillCustomIconMap[skillName];
 }
 
 // Helper function to get color for a skill icon
 function getSkillColor(skillName: string): string {
   return skillColorMap[skillName] || 'var(--color-accent, #6366f1)';
+}
+
+// Helper function to get dark mode color for CDN icons
+function getSkillDarkColor(skillName: string): string | undefined {
+  return skillDarkColorMap[skillName];
 }
 
 interface SkillCardProps {
@@ -167,7 +199,9 @@ function SkillCard({ title, skills, onTooltipShow, onTooltipHide }: SkillCardPro
       <h2 className={styles.subTitle}>{title}</h2>
       <div className={styles.articleContainer}>
         {skills.map((skill, index) => {
-          const IconComponent = getSkillIcon(skill.name);
+          const iconComponent = getSkillIconComponent(skill.name);
+          const customIcon = getSkillCustomIcon(skill.name);
+          const fallbackComponent = !iconComponent && !customIcon ? FaCode : undefined;
           // Access descriptions directly to handle keys with dots (e.g., "React.js")
           const currentLangTranslations = translations?.[language];
           const descriptions = (currentLangTranslations as any)?.skills?.descriptions;
@@ -188,10 +222,12 @@ function SkillCard({ title, skills, onTooltipShow, onTooltipHide }: SkillCardPro
               onFocus={() => handleShowTooltip(index, tooltipText)}
               onBlur={handleMouseLeave}
             >
-              <IconComponent
-                className={styles.icon}
-                style={{ color: getSkillColor(skill.name) }}
-                aria-hidden="true"
+              <SkillIcon
+                skillName={skill.name}
+                iconComponent={iconComponent ?? fallbackComponent}
+                customIcon={customIcon}
+                color={getSkillColor(skill.name)}
+                darkColor={getSkillDarkColor(skill.name)}
               />
               <div className={styles.skillContent}>
                 <h3>{skill.name}</h3>

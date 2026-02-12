@@ -249,6 +249,20 @@
   transition: color var(--transition-speed) var(--transition-ease);
 }
 
+/* Theme-aware icon visibility for custom SVGs */
+.iconLight {
+  display: inline-block;
+}
+.iconDark {
+  display: none;
+}
+:global([data-theme="dark"]) .iconLight {
+  display: none;
+}
+:global([data-theme="dark"]) .iconDark {
+  display: inline-block;
+}
+
 .articleContainer :global(article h3),
 .skillContent h3 {
   font-weight: 600;

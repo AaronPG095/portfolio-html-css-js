@@ -63,7 +63,10 @@
         "MCP": "Model Context Protocol - A protocol for AI-assisted development workflows. Used for integrating AI tools and enhancing development processes.",
         "Prompt Engineering": "The practice of designing effective prompts for AI systems to achieve desired outputs. Experience crafting prompts for code generation, debugging, and documentation.",
         "SPRINT": "Agile project management methodology for iterative development cycles. Experience with sprint planning, daily standups, and iterative delivery.",
-        "Project Management": "Planning, organizing, and managing resources to achieve specific project goals. Skills in task prioritization, timeline management, and team coordination."
+        "Project Management": "Planning, organizing, and managing resources to achieve specific project goals. Skills in task prioritization, timeline management, and team coordination.",
+        "Visual Studio": "Microsoft's integrated development environment for building applications. Experience with debugging, IntelliSense, and project management for .NET and other platforms.",
+        "WinUI 3": "Windows UI Library 3 - Microsoft's native UI framework for building modern Windows applications. Creating fluent, native experiences with C# and XAML.",
+        ".NET 8": "Microsoft's cross-platform, open-source framework for building modern applications. Experience with C#, ASP.NET Core, and building web APIs and desktop applications."
       }
     },
     "projects": {
@@ -170,7 +173,10 @@
         "MCP": "Model Context Protocol - Ein Protokoll für KI-gestützte Entwicklungs-Workflows. Wird für die Integration von KI-Tools und die Verbesserung von Entwicklungsprozessen verwendet.",
         "Prompt Engineering": "Die Praxis des Entwerfens effektiver Prompts für KI-Systeme, um gewünschte Ausgaben zu erzielen. Erfahrung beim Erstellen von Prompts für Codegenerierung, Debugging und Dokumentation.",
         "SPRINT": "Agile Projektmanagement-Methodik für iterative Entwicklungszyklen. Erfahrung mit Sprint-Planung, Daily Standups und iterativer Lieferung.",
-        "Project Management": "Planung, Organisation und Verwaltung von Ressourcen zur Erreichung spezifischer Projektziele. Fähigkeiten in Aufgabenpriorisierung, Zeitplanmanagement und Teamkoordination."
+        "Project Management": "Planung, Organisation und Verwaltung von Ressourcen zur Erreichung spezifischer Projektziele. Fähigkeiten in Aufgabenpriorisierung, Zeitplanmanagement und Teamkoordination.",
+        "Visual Studio": "Microsofts integrierte Entwicklungsumgebung zum Erstellen von Anwendungen. Erfahrung mit Debugging, IntelliSense und Projektverwaltung für .NET und andere Plattformen.",
+        "WinUI 3": "Windows UI Library 3 - Microsofts natives UI-Framework zum Erstellen moderner Windows-Anwendungen. Erstellen von flüssigen, nativen Benutzererlebnissen mit C# und XAML.",
+        ".NET 8": "Microsofts plattformübergreifendes, Open-Source-Framework zum Erstellen moderner Anwendungen. Erfahrung mit C#, ASP.NET Core und dem Erstellen von Web-APIs und Desktop-Anwendungen."
       }
     },
     "projects": {
