@@ -15,13 +15,4 @@ const nextConfig = {
   },
 };
 
-// Bundle analyzer (enabled when ANALYZE=true)
-// Requires: npm install -D @next/bundle-analyzer
-const withBundleAnalyzer =
-  process.env.ANALYZE === 'true'
-    ? require('@next/bundle-analyzer')({
-        enabled: true,
-      })
-    : (config) => config;
-
-module.exports = withBundleAnalyzer(nextConfig);
+module.exports = nextConfig;
